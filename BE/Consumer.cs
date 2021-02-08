@@ -14,5 +14,6 @@ namespace BE
         private string password;
         private string imageUrl;
         private DateTime birthday;
+        private int check;
     }
 }
