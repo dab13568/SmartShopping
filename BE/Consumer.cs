@@ -16,5 +16,6 @@ namespace BE
         private DateTime birthday17;
         private int check50;
         private int check22;
+        private int kuku;
     }
 }
