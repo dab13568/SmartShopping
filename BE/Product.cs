@@ -16,9 +16,9 @@ namespace BE
         }
         private int _id;
         private string _name;
-        private string imageUrl;
-        private float cost;
-        private int rating;
-
+        private string _imageUrl;
+        private float _cost;
+        private int _rating;
+        private Store _store;
     }
 }
