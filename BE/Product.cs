@@ -14,7 +14,7 @@ namespace BE
             drinks,
             hygene
         }
-        private int _id;
+        private int ID;
         private string _name;
         private string _imageUrl;
         private float _cost;

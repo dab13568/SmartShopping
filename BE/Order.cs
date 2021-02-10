@@ -10,6 +10,6 @@ namespace BE
     class Order
     {
         //observableCollection Dictionary<int, int> My_dict1
-        private string orderId; 
+        private string orderID; 
     }
 }

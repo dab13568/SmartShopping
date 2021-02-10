@@ -8,7 +8,7 @@ namespace BE
 {
     public class Consumer
     {
-        private int _id;
+        private int ID;
         private string _userName;
         private string name;
         private string password;
