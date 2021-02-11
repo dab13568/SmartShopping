@@ -6,19 +6,25 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Product
+    public class Product
     {
-        private enum Category
+        public enum Category
         {
             food,
             drinks,
             hygene
         }
-        private int ID;
-        private string _name;
-        private string _imageUrl;
-        private float _cost;
-        private int _rating;
-        private Store _store;
+
+        public int ID;
+        public string _name;
+        public string _imageUrl;
+        public float _cost;
+        public int _rating;
+        public Store _store;
+        public DateTime _dateScan;
+        public Product()
+        {
+
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BE
 {
-    class Order
+    public class Order
     {
         //observableCollection Dictionary<int, int> My_dict1
         private string orderID; 

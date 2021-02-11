@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1267
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "SmartShopping\PL.csproj", "{D94531E2-DB7E-40E6-975A-1A1F7E525851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartShopping", "SmartShopping\SmartShopping.csproj", "{D94531E2-DB7E-40E6-975A-1A1F7E525851}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE", "BE\BE.csproj", "{19582018-D735-4889-9F41-890C6F8301A4}"
 EndProject
