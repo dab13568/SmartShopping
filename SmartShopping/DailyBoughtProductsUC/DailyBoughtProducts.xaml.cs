@@ -16,15 +16,16 @@ using System.Windows.Shapes;
 namespace SmartShopping.UserControls.DailyBoughtProductsUC
 {
     /// <summary>
-    /// Interaction logic for dailyBoughtProducts.xaml
+    /// Interaction logic for DailyBoughtProducts.xaml
     /// </summary>
-    public partial class dailyBoughtProducts : UserControl
+    public partial class DailyBoughtProducts : UserControl
     {
-        public dailyBoughtProducts()
+        public DailyBoughtProducts()
         {
 
             InitializeComponent();
-            this.DataContext=
+            DataContext = new DailyBoughtProductVM(this);
+            MessageBox.Show(productsDayli.Items.Count.ToString());
         }
     }
 }

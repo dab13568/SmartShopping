@@ -9,7 +9,13 @@ namespace BE
 {
     public class Order
     {
-        //observableCollection Dictionary<int, int> My_dict1
-        private string orderID; 
+        public int orderID;
+        public int _productId;
+        public Store _store;
+        public DateTime _dateScan;
+        public float _costOrder;
+        public int _rating;
+
+
     }
 }
