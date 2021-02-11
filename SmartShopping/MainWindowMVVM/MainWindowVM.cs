@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SmartShopping.MainWindowMVVM
 {
@@ -18,11 +19,12 @@ namespace SmartShopping.MainWindowMVVM
         }
 
 
+        public ICommand HomeView { get { return new LoadHomeCMD(this); } }
 
 
 
 
-
+        public void LoadHomeView() { View.LoadHomeView(); }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

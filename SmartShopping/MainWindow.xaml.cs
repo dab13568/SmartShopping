@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SmartShopping.MainWindowMVVM;
 using SmartShopping.UserControls.DailyBoughtProductsUC;
-using SmartShopping.HelloUCMVVM;
+using SmartShopping.HomeUserControlMVVM;
 namespace SmartShopping
 {
     /// <summary>
@@ -46,8 +46,8 @@ namespace SmartShopping
 
         internal void LoadHome()
         {
-            HelloUCV hello = new HelloUCV();
-            CurrnetUserControl = hello;
+            HomeUserControlV HomeUC = new HomeUserControlV();
+            CurrnetUserControl = HomeUC;
         }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
@@ -67,5 +67,13 @@ namespace SmartShopping
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
         }
 
+        internal void LoadHomeView()
+        {
+            HomeUserControlV Home = new HomeUserControlV();
+            CurrnetUserControl = Home;
+        }
+
+
+      
     }
 }

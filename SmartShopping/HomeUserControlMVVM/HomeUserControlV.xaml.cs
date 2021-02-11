@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartShopping.HelloUCMVVM
+namespace SmartShopping.HomeUserControlMVVM
 {
     /// <summary>
     /// Interaction logic for HelloUCV.xaml
     /// </summary>
-    public partial class HelloUCV : UserControl
+    public partial class HomeUserControlV : UserControl
     {
-        public HelloUCV()
+        public HomeUserControlV()
         {
             InitializeComponent();
+            MessageBox.Show("in home");
         }
     }
 }

@@ -86,9 +86,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Convertors\StringToBitMapConvertor.cs" />
-    <Compile Include="HelloUCMVVM\HelloUCV.xaml.cs">
-      <DependentUpon>HelloUCV.xaml</DependentUpon>
+    <Compile Include="HomeUserControlMVVM\HomeUserControlV.xaml.cs">
+      <DependentUpon>HomeUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowMVVM\LoadHomeCMD.cs" />
     <Compile Include="MainWindowMVVM\MainWindowVM.cs" />
     <Compile Include="DailyBoughtProductsUC\DailyBoughtProducts.xaml.cs">
       <DependentUpon>DailyBoughtProducts.xaml</DependentUpon>
@@ -105,7 +106,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HelloUCMVVM\HelloUCV.xaml">
+    <Page Include="HomeUserControlMVVM\HomeUserControlV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
