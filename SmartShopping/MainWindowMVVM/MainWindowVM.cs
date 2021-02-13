@@ -22,6 +22,15 @@ namespace SmartShopping.MainWindowMVVM
 
         public ICommand HomeView { get { return new LoadHomeCMD(this); } }
 
+        public ICommand LastProductsView { get { return new LastProductsCMD(this); } }
+
+        public ICommand PurchasedTogetherView { get { return new PurchasedTogetherCMD(this); } }
+
+        public ICommand RecommendedShoppingView { get { return new RecommendedShoppingCMD(this); } }
+
+        public ICommand StatisticsView { get { return new StatisticsCMD(this); } }
+
+
         public ICommand SelectedItemChangedCommand { get { return new MenuCMD(this); } }
 
 

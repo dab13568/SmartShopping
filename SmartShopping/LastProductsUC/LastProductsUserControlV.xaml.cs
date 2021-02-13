@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartShopping.HomeUserControlMVVM
+namespace SmartShopping.LastProductsUC
 {
     /// <summary>
-    /// Interaction logic for HelloUCV.xaml
+    /// Interaction logic for LastProductsUserControlV.xaml
     /// </summary>
-    public partial class HomeUserControlV : UserControl
+    public partial class LastProductsUserControlV : UserControl
     {
-        public HomeUserControlV()
+        public LastProductsUserControlV()
         {
             InitializeComponent();
         }

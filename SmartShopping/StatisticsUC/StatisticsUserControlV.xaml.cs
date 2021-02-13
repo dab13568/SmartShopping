@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartShopping.HomeUserControlMVVM
+namespace SmartShopping.StatisticsUC
 {
     /// <summary>
-    /// Interaction logic for HelloUCV.xaml
+    /// Interaction logic for StatisticsUserControlV.xaml
     /// </summary>
-    public partial class HomeUserControlV : UserControl
+    public partial class StatisticsUserControlV : UserControl
     {
-        public HomeUserControlV()
+        public StatisticsUserControlV()
         {
             InitializeComponent();
         }

@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartShopping.UserControls.DailyBoughtProductsUC
+namespace SmartShopping.RecommendedShoppingUC
 {
     /// <summary>
-    /// Interaction logic for DailyBoughtProducts.xaml
+    /// Interaction logic for RecommendedShoppingUserControlV.xaml
     /// </summary>
-    public partial class DailyBoughtProducts : UserControl
+    public partial class RecommendedShoppingUserControlV : UserControl
     {
-        public DailyBoughtProducts()
+        public RecommendedShoppingUserControlV()
         {
-
             InitializeComponent();
-            DataContext = new DailyBoughtProductVM(this);
-            MessageBox.Show(productsDayli.Items.Count.ToString());
         }
     }
 }

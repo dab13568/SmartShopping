@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SmartShopping.MainWindowMVVM;
-using SmartShopping.UserControls.DailyBoughtProductsUC;
 using SmartShopping.HomeUserControlMVVM;
 namespace SmartShopping
 {
