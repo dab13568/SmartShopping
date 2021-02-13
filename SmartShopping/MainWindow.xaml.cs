@@ -41,14 +41,10 @@ namespace SmartShopping
         {
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
-            LoadHome();
+            LoadHomeView();
         }
 
-        internal void LoadHome()
-        {
-            HomeUserControlV HomeUC = new HomeUserControlV();
-            CurrnetUserControl = HomeUC;
-        }
+       
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
@@ -74,6 +70,6 @@ namespace SmartShopping
         }
 
 
-      
+        
     }
 }

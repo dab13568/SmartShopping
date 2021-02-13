@@ -89,6 +89,7 @@
     <Compile Include="HomeUserControlMVVM\HomeUserControlV.xaml.cs">
       <DependentUpon>HomeUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowMVVM\LastProductsCMD.cs" />
     <Compile Include="MainWindowMVVM\LoadHomeCMD.cs" />
     <Compile Include="MainWindowMVVM\MainWindowVM.cs" />
     <Compile Include="DailyBoughtProductsUC\DailyBoughtProducts.xaml.cs">
@@ -102,6 +103,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PurchasedTogetherUC\PurchasedTogetherUserControlV.xaml.cs">
+      <DependentUpon>PurchasedTogetherUserControlV.xaml</DependentUpon>
+    </Compile>
     <Page Include="DailyBoughtProductsUC\DailyBoughtProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,8 +118,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PurchasedTogetherUC\PurchasedTogetherUserControlV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowMVVM\MenuCMD.cs" />
+    <Compile Include="MainWindowMVVM\PurchasedTogetherCMD.cs" />
+    <Compile Include="MainWindowMVVM\RecommendedShoppingCMD.cs" />
+    <Compile Include="MainWindowMVVM\StatisticsCMD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -144,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background.jpg" />

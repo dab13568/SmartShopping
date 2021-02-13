@@ -10,6 +10,7 @@ namespace SmartShopping.MainWindowMVVM
 {
     class MainWindowVM : INotifyPropertyChanged
     {
+       
 
         private  MainWindow View;
 
@@ -21,7 +22,7 @@ namespace SmartShopping.MainWindowMVVM
 
         public ICommand HomeView { get { return new LoadHomeCMD(this); } }
 
-
+        public ICommand SelectedItemChangedCommand { get { return new MenuCMD(this); } }
 
 
         public void LoadHomeView() { View.LoadHomeView(); }

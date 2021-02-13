@@ -9,7 +9,7 @@
         FlowDirection="RightToLeft"
 WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ie="http://schemas.microsoft.com/xaml/behaviors"
         Title="Window1" Height="600" Width="1024">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
@@ -118,7 +118,12 @@ WindowStartupLocation="CenterScreen"
                     <materialDesign:PackIcon Kind="InformationOutline" Width="40" Height="40"/>
                 </Button>
             </StackPanel>
-            <ListBox>
+            <ListBox x:Name="MenuListBox" >
+                <ie:Interaction.Triggers>
+                    <ie:EventTrigger EventName="SelectionChanged">
+                        <ie:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"  CommandParameter="{Binding ElementName=MenuListBox, Path=SelectedIndex}"/>
+                    </ie:EventTrigger>
+                </ie:Interaction.Triggers>
                 <ListBoxItem x:Name="listViewItem" Height="60" RenderTransformOrigin="0.5,0.5">
                     
                     
