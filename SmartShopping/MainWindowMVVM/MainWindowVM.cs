@@ -24,6 +24,8 @@ namespace SmartShopping.MainWindowMVVM
 
         public ICommand LastProductsView { get { return new LastProductsCMD(this); } }
 
+        public ICommand PurchaseHistoryView { get { return new PurchaseHistoryCMD(this); } }
+
         public ICommand PurchasedTogetherView { get { return new PurchasedTogetherCMD(this); } }
 
         public ICommand RecommendedShoppingView { get { return new RecommendedShoppingCMD(this); } }
@@ -35,6 +37,8 @@ namespace SmartShopping.MainWindowMVVM
         public void LoadHomeView() { View.LoadHomeView(); }
 
         public void LoadLastProductsView() { View.LoadLastProductsView(); }
+
+        public void LoadPurchaseHistoryView() { View.LoadPurchaseHistoryView(); }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
