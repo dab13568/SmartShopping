@@ -36,13 +36,13 @@ namespace SmartShopping.MainWindowMVVM
                     switch ((parameter))
                     {
                         case 0:
-                            VM.LoadHomeView();
+                            VM.HomeView.Execute(parameter);
                             break;
                         case 1:
-                            VM.LoadHomeView();
+                            VM.LastProductsView.Execute(parameter);
                             break;
                         default:
-                            VM.LoadHomeView();
+                            VM.HomeView.Execute(parameter);
                             break;
                     }
                 

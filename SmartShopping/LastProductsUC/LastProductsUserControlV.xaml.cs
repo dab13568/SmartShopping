@@ -23,6 +23,7 @@ namespace SmartShopping.LastProductsUC
         public LastProductsUserControlV()
         {
             InitializeComponent();
+            DataContext = new LastProductsUserControlVM(this);
         }
     }
 }

@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SmartShopping.MainWindowMVVM;
 using SmartShopping.HomeUserControlMVVM;
+using SmartShopping.LastProductsUC;
+
 namespace SmartShopping
 {
     /// <summary>
@@ -69,6 +71,13 @@ namespace SmartShopping
         }
 
 
-        
+        internal void LoadLastProductsView()
+        {
+            LastProductsUserControlV LP = new LastProductsUserControlV();
+            CurrnetUserControl = LP;
+        }
+
+
+
     }
 }

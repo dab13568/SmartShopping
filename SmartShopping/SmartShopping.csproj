@@ -85,13 +85,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Convertors\StringToBitMapConvertor.cs" />
+    <Compile Include="Convertors\Base64ToBitmapImageConvertor.cs" />
     <Compile Include="HomeUserControlMVVM\HomeUserControlV.xaml.cs">
       <DependentUpon>HomeUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LastProductsUC\LastProductsUserControlM.cs" />
     <Compile Include="LastProductsUC\LastProductsUserControlV.xaml.cs">
       <DependentUpon>LastProductsUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LastProductsUC\LastProductsUserControlVM.cs" />
     <Compile Include="MainWindowMVVM\LastProductsCMD.cs" />
     <Compile Include="MainWindowMVVM\LoadHomeCMD.cs" />
     <Compile Include="MainWindowMVVM\MainWindowVM.cs" />
@@ -177,6 +179,10 @@
     <ProjectReference Include="..\BE\BE.csproj">
       <Project>{19582018-d735-4889-9f41-890c6f8301a4}</Project>
       <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{ddd95a66-bbae-4654-a9dc-3e01d29f7527}</Project>
+      <Name>BL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

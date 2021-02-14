@@ -9,11 +9,12 @@ namespace BE
 {
     public class Order
     {
-        private int orderID;
-        private int _productId;
-        private Store _store;
-        private DateTime _dateScan;
-        private float _costOrder;
+        public int orderID;
+        public int _productId;
+        public Store _store;
+        public DateTime _dateScan;
+        public float _costOrder;
+        public int _rating;
 
 
     }

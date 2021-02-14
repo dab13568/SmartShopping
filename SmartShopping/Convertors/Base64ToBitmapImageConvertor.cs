@@ -10,10 +10,13 @@ using System.Windows.Media.Imaging;
 
 namespace SmartShopping.Convertors
 {
-    class StringToBitMapConvertor : IValueConverter
+    class Base64ToBitmapImageConvertor : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+                return "/SmartShopping;component/Images/background.png";
+
             byte[] binaryData = System.Convert.FromBase64String((string)value);
             BitmapImage bi = new BitmapImage();
             bi.BeginInit();

@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SmartShopping.LastProductsUC"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:local="clr-namespace:SmartShopping.LastProductsUC" xmlns:convert="clr-namespace:SmartShopping.Convertors" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <convert:Base64ToBitmapImageConvertor x:Key="Base64ToBitmapImageConvertor"/>
+    </UserControl.Resources>
+    
     <Grid>
         <!-- and here's another -->
-        <ItemsControl x:Name="productsDayli"
-  ItemsSource="{Binding Products }"
+        <ItemsControl x:Name="LastProductItemSource"
+  ItemsSource="{Binding LastproductsList }"
   Grid.IsSharedSizeScope="True">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -23,17 +26,28 @@
                                 <ColumnDefinition
               SharedSizeGroup="Checkerz" />
                                 <ColumnDefinition />
+                                <ColumnDefinition />
+
                             </Grid.ColumnDefinitions>
                             <ToggleButton
+                                Grid.Column="2"
             VerticalAlignment="Center"
             IsChecked="{Binding IsSelected}"
-            Style="{StaticResource MaterialDesignActionLightToggleButton}"
-            Content="{Binding Code}" />
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+            Content="{materialDesign:PackIcon Kind=MinusThick}" />
                             <StackPanel
             Margin="8 0 0 0"
             Grid.Column="1">
-                                <TextBlock Text="{Binding name}" FontSize="40"/>
+                                <TextBlock Text="rfj rkjfnmrkjhk" FontSize="40"/>
+
+                                <!--<TextBlock Text="{Binding name}" FontSize="40"/>-->
                             </StackPanel>
+                            <Ellipse Width="50" Height="50" Grid.Column="0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="../Images/background.jpg" />
+                                </Ellipse.Fill>
+                            </Ellipse>
                         </Grid>
                     </Border>
                     <DataTemplate.Triggers>
