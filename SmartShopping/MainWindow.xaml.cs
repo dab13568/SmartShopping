@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using SmartShopping.MainWindowMVVM;
 using SmartShopping.HomeUserControlMVVM;
 using SmartShopping.LastProductsUC;
-
+using BE;
 namespace SmartShopping
 {
     /// <summary>
@@ -43,6 +43,8 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
+            DAL.Repository rep = new DAL.Repository();
+            rep.add_Product(new Product("kuku",  @"sdasda",Category.drinks ));
         }
 
        

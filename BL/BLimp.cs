@@ -11,7 +11,7 @@ namespace BL
     {
         public List<Product> GetLastProducts()
         {
-            return new List<Product> { new Product(), new Product() };
+            return new List<Product> { new Product("fish",@"ssdasd",Category.food), new Product("meat",@"eergdfg",Category.hygene) };
             //return new Reposetory().Get_all_Products();
         }
 
