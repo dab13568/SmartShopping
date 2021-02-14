@@ -31,6 +31,7 @@ namespace SmartShopping
             get { return _currnetUserControl; }
             set
             {
+                GridLoadUC.Children.Remove(CurrnetUserControl);
                 _currnetUserControl = value;
                 _currnetUserControl.HorizontalAlignment = HorizontalAlignment.Stretch;
                 _currnetUserControl.VerticalAlignment = VerticalAlignment.Center;
