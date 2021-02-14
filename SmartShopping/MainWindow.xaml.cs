@@ -15,7 +15,9 @@ using System.Windows.Shapes;
 using SmartShopping.MainWindowMVVM;
 using SmartShopping.HomeUserControlMVVM;
 using SmartShopping.LastProductsUC;
-using BE;
+using System.Windows.Media.Animation;
+using SmartShopping.PurchaseHistoryUC;
+
 namespace SmartShopping
 {
     /// <summary>
@@ -43,8 +45,6 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-            DAL.Repository rep = new DAL.Repository();
-            rep.add_Product(new Product("kuku",  @"sdasda",Category.drinks ));
         }
 
        
@@ -64,22 +64,38 @@ namespace SmartShopping
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            
         }
 
         internal void LoadHomeView()
         {
             HomeUserControlV Home = new HomeUserControlV();
             CurrnetUserControl = Home;
+            closeMenuStoryBoard();
         }
-
 
         internal void LoadLastProductsView()
         {
             LastProductsUserControlV LP = new LastProductsUserControlV();
             CurrnetUserControl = LP;
+            closeMenuStoryBoard();
+        }
+
+        internal void LoadPurchaseHistoryView()
+        {
+            PurchaseHistoryV PH = new PurchaseHistoryV();
+            CurrnetUserControl = PH;
+            closeMenuStoryBoard();
         }
 
 
+        public void closeMenuStoryBoard()
+        {
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            Storyboard sb = this.FindResource("CloseMenu") as Storyboard;
+            sb.Begin();
+        }
 
     }
 }

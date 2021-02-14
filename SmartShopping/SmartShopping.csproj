@@ -111,9 +111,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MainWindowMVVM\PurchaseHistoryCMD.cs" />
     <Compile Include="PurchasedTogetherUC\PurchasedTogetherUserControlV.xaml.cs">
       <DependentUpon>PurchasedTogetherUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseHistoryUC\PurchaseHistoryV.xaml.cs">
+      <DependentUpon>PurchaseHistoryV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseHistoryUC\PurchaseHistoryVM.cs" />
     <Compile Include="RecommendedShoppingUC\RecommendedShoppingUserControlV.xaml.cs">
       <DependentUpon>RecommendedShoppingUserControlV.xaml</DependentUpon>
     </Compile>
@@ -133,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PurchasedTogetherUC\PurchasedTogetherUserControlV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PurchaseHistoryUC\PurchaseHistoryV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

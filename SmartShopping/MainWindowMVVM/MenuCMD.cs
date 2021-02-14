@@ -41,6 +41,9 @@ namespace SmartShopping.MainWindowMVVM
                         case 1:
                             VM.LastProductsView.Execute(parameter);
                             break;
+                        case 2:
+                            VM.PurchaseHistoryView.Execute(parameter);
+                            break;
                         default:
                             VM.HomeView.Execute(parameter);
                             break;

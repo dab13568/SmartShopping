@@ -38,7 +38,7 @@
             IsChecked="{Binding IsSelected}"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
-            Content="{materialDesign:PackIcon Kind=MinusThick}" />
+            Content="{materialDesign:PackIcon Kind=CloseThick}" />
                             <StackPanel
             Margin="8 0 0 0"
             Grid.Column="1">
