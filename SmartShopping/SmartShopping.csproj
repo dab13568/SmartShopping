@@ -115,6 +115,7 @@
     <Compile Include="PurchasedTogetherUC\PurchasedTogetherUserControlV.xaml.cs">
       <DependentUpon>PurchasedTogetherUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseHistoryUC\PurchaseHistoryM.cs" />
     <Compile Include="PurchaseHistoryUC\PurchaseHistoryV.xaml.cs">
       <DependentUpon>PurchaseHistoryV.xaml</DependentUpon>
     </Compile>
