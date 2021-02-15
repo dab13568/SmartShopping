@@ -126,6 +126,7 @@
     <Compile Include="StatisticsUC\StatisticsUserControlV.xaml.cs">
       <DependentUpon>StatisticsUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatisticsUC\StatisticsUserControlVM.cs" />
     <Page Include="CustomStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

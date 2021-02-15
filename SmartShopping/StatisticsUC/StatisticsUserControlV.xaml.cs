@@ -26,12 +26,20 @@ namespace SmartShopping.StatisticsUC
         public StatisticsUserControlV()
         {
             InitializeComponent();
-            PointLabel = chartPoint =>
-                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+
+            foreach (var n in (new StatisticsUserControlVM(this)).slice)
+            {
+                PieChartProducts.Series.Add(new PieSeries
+                {
+                    Title = n.Key,
+                    Values = new ChartValues<double> { n.Value }
+                });
+            }
+
 
             DataContext = this;
         }
-        public Func<ChartPoint, string> PointLabel { get; set; }
+
 
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
         {
