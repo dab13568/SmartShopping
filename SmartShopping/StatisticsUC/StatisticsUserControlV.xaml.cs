@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+
+
 namespace SmartShopping.StatisticsUC
 {
     /// <summary>
@@ -25,7 +27,7 @@ namespace SmartShopping.StatisticsUC
         {
             InitializeComponent();
             PointLabel = chartPoint =>
-              string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 
             DataContext = this;
         }

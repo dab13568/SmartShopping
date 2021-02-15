@@ -33,9 +33,10 @@ namespace SmartShopping
             get { return _currnetUserControl; }
             set
             {
+                GridLoadUC.Children.Remove(CurrnetUserControl);
                 _currnetUserControl = value;
                 _currnetUserControl.HorizontalAlignment = HorizontalAlignment.Stretch;
-                _currnetUserControl.VerticalAlignment = VerticalAlignment.Center;
+                _currnetUserControl.VerticalAlignment = VerticalAlignment.Stretch;
                 GridLoadUC.Children.Add(_currnetUserControl);
                 //this.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/background.jpg")));
             }
@@ -47,8 +48,8 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-            //DAL.Repository rep= new DAL.Repository();
-            //rep.add_Product(new Product("kuku1", @"url1", Category.drinks));
+            DAL.Repository rep= new DAL.Repository();
+            rep.add_Product(new Product("kuku1", @"url1", Category.drinks));
         }
 
        
@@ -91,12 +92,14 @@ namespace SmartShopping
             CurrnetUserControl = PH;
             closeMenuStoryBoard();
         }
+
         internal void LoadStatisticsView()
         {
             StatisticsUserControlV S = new StatisticsUserControlV();
             CurrnetUserControl = S;
             closeMenuStoryBoard();
         }
+
 
         public void closeMenuStoryBoard()
         {

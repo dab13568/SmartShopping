@@ -7,13 +7,14 @@
         FlowDirection="RightToLeft"
              xmlns:local="clr-namespace:SmartShopping.PurchaseHistoryUC"
              mc:Ignorable="d" 
+             VerticalAlignment="Stretch"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="95"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
@@ -23,14 +24,46 @@
                 <materialDesign:PackIcon Kind="MinusThick" VerticalAlignment="Center" Margin="20 0 0 0" />
                 <DatePicker Margin="20 0 0 0" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך סופי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
             </StackPanel>
-            <Button Grid.Column="1"
-    Style="{StaticResource MaterialDesignRaisedButton}" Width="120"
-    VerticalAlignment="Center" Height="40" HorizontalAlignment="Right"  Margin="0 0 20 0"
-    materialDesign:ButtonAssist.CornerRadius="10"
-    ToolTip="MaterialDesignRaisedButton with Round Corners">
-                <TextBlock
-      Text="חפש" />
+            <Button Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Width="120" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right"  Margin="0 0 20 0" materialDesign:ButtonAssist.CornerRadius="10" Background="DimGray">
+                <TextBlock Text="חפש" />
             </Button>
         </Grid>
+
+        <StackPanel Margin="0 0 5 0" Orientation="Horizontal" FlowDirection="RightToLeft">
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="PurchaseHistoryItemSource" Background="DimGray" ItemsSource="{Binding PurchaseHistoryList }" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0 5 0 0" CornerRadius="7" x:Name="Border" Padding="8" Background="GhostWhite" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                        <TextBlock  Text="{Binding name}" FontWeight="DemiBold" FontSize="40"/>
+                                        <TextBlock FontWeight="Thin" FontSize="35" Text="{Binding name}"/>
+                                        <!--<TextBlock Text="{Binding name}" FontSize="40"/>-->
+                                    </StackPanel>
+                                    <Border CornerRadius="8,8,8,8" Width="50" Height="50">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="../Images/background.jpg"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <Ellipse Width="50" Height="50" Grid.Column="0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="../Images/background.jpg" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 </UserControl>

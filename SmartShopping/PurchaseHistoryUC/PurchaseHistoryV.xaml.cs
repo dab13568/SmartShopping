@@ -23,6 +23,7 @@ namespace SmartShopping.PurchaseHistoryUC
         public PurchaseHistoryV()
         {
             InitializeComponent();
+            DataContext = new PurchaseHistoryVM(this);
         }
     }
 }

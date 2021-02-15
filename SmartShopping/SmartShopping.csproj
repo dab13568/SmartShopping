@@ -115,6 +115,7 @@
     <Compile Include="PurchasedTogetherUC\PurchasedTogetherUserControlV.xaml.cs">
       <DependentUpon>PurchasedTogetherUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseHistoryUC\PurchaseHistoryM.cs" />
     <Compile Include="PurchaseHistoryUC\PurchaseHistoryV.xaml.cs">
       <DependentUpon>PurchaseHistoryV.xaml</DependentUpon>
     </Compile>
@@ -125,6 +126,10 @@
     <Compile Include="StatisticsUC\StatisticsUserControlV.xaml.cs">
       <DependentUpon>StatisticsUserControlV.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeUserControlMVVM\HomeUserControlV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,7 +160,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowMVVM\MenuCMD.cs" />
     <Compile Include="MainWindowMVVM\PurchasedTogetherCMD.cs" />
     <Compile Include="MainWindowMVVM\RecommendedShoppingCMD.cs" />
     <Compile Include="MainWindowMVVM\StatisticsCMD.cs" />
