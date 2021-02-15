@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 
 namespace BE
-{
+{ 
     public class ScannedProduct:INotifyPropertyChanged
     {
         private Delegate[] InvocationList;
