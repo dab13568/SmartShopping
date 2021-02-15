@@ -40,6 +40,8 @@ namespace SmartShopping.MainWindowMVVM
 
         public void LoadPurchaseHistoryView() { View.LoadPurchaseHistoryView(); }
 
+        public void LoadStatisticsView() { View.LoadStatisticsView(); }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

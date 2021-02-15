@@ -18,6 +18,8 @@ using SmartShopping.LastProductsUC;
 using System.Windows.Media.Animation;
 using SmartShopping.PurchaseHistoryUC;
 using BE;
+using SmartShopping.StatisticsUC;
+
 namespace SmartShopping
 {
     /// <summary>
@@ -45,8 +47,8 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-            DAL.Repository rep= new DAL.Repository();
-            rep.add_Product(new Product("kuku1", @"url1", Category.drinks));
+            //DAL.Repository rep= new DAL.Repository();
+            //rep.add_Product(new Product("kuku1", @"url1", Category.drinks));
         }
 
        
@@ -89,7 +91,12 @@ namespace SmartShopping
             CurrnetUserControl = PH;
             closeMenuStoryBoard();
         }
-
+        internal void LoadStatisticsView()
+        {
+            StatisticsUserControlV S = new StatisticsUserControlV();
+            CurrnetUserControl = S;
+            closeMenuStoryBoard();
+        }
 
         public void closeMenuStoryBoard()
         {

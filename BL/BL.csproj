@@ -59,6 +59,10 @@
       <Project>{19582018-d735-4889-9f41-890c6f8301a4}</Project>
       <Name>BE</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{eb9ebc25-1fa4-4c15-8938-40dbca3b88c2}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
