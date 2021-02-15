@@ -48,8 +48,8 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-            DAL.Repository rep= new DAL.Repository();
-            rep.add_Product(new Product("kuku1", @"url1", Category.drinks));
+            //DAL.Repository rep= new DAL.Repository();
+            //rep.add_Product(new Product("kuku1", @"url1", Category.drinks));
         }
 
        
