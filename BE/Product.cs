@@ -24,7 +24,9 @@ namespace BE
             this._category = category;
         }
 
-
+        public Product()
+        {
+        }
 
         public Category category
         {

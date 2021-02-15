@@ -7,13 +7,13 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         FlowDirection="RightToLeft"
-WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ie="http://schemas.microsoft.com/xaml/behaviors"
-        Title="מעקב קניות חכם" Height="600" Width="1024">
-    <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0"/>
-    </WindowChrome.WindowChrome>
+        Height="600" Width="1024"
+        WindowStartupLocation="CenterScreen"
+
+        Title="מעקב קניות חכם" >
+    
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMain">
@@ -92,7 +92,7 @@ WindowStartupLocation="CenterScreen"
             <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Background="#FF3580BF">
+    <Grid Background="LightGray">
         <StackPanel x:Name="StackPanelMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
                 <TransformGroup>
@@ -124,12 +124,13 @@ WindowStartupLocation="CenterScreen"
                 </Button>
             </StackPanel>
             <ListBox x:Name="MenuListBox" >
-                <ie:Interaction.Triggers>
-                    <ie:EventTrigger EventName="SelectionChanged">
-                        <ie:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"  CommandParameter="{Binding ElementName=MenuListBox, Path=SelectedIndex}"/>
-                    </ie:EventTrigger>
-                </ie:Interaction.Triggers>
+                
                 <ListBoxItem x:Name="listViewItem" Height="60" RenderTransformOrigin="0.5,0.5">
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="Selected">
+                            <ie:InvokeCommandAction Command="{Binding HomeView}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
                     <ListBoxItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -144,6 +145,11 @@ WindowStartupLocation="CenterScreen"
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem x:Name="listViewItem1" Height="60" RenderTransformOrigin="0.5,0.5">
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="Selected">
+                            <ie:InvokeCommandAction Command="{Binding LastProductsView}"  CommandParameter="{Binding ElementName=MenuListBox, Path=SelectedIndex}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
                     <ListBoxItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -158,6 +164,11 @@ WindowStartupLocation="CenterScreen"
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem x:Name="HistoryListItem" Height="60" RenderTransformOrigin="0.5,0.5">
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="Selected">
+                            <ie:InvokeCommandAction Command="{Binding PurchaseHistoryView}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
                     <ListBoxItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -173,6 +184,11 @@ WindowStartupLocation="CenterScreen"
                 </ListBoxItem>
 
                 <ListBoxItem x:Name="listViewItem2" Height="60" RenderTransformOrigin="0.5,0.5">
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="Selected">
+                            <ie:InvokeCommandAction Command="{Binding StatisticsView}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
                     <ListBoxItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -187,6 +203,11 @@ WindowStartupLocation="CenterScreen"
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem x:Name="listViewItem3" Height="60" RenderTransformOrigin="0.5,0.5">
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="Selected">
+                            <ie:InvokeCommandAction Command="{Binding RecommendedShoppingView}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
                     <ListBoxItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -201,7 +222,11 @@ WindowStartupLocation="CenterScreen"
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem x:Name="listViewItem4" Height="60" RenderTransformOrigin="0.5,0.5">
-
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="Selected">
+                            <ie:InvokeCommandAction Command="{Binding PurchasedTogetherView}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
                     <ListBoxItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -234,10 +259,10 @@ WindowStartupLocation="CenterScreen"
                 </Grid.RowDefinitions>
                
 
-                <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
+                <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
                     <materialDesign:PackIcon Kind="Close" Foreground="#FF3580BF"/>
                 </Button>
-                <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="ButtonOpenMenu_Click">
+                <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonOpenMenu_Click">
                     <materialDesign:PackIcon Kind="Menu" Foreground="#FF3580BF"/>
                 </Button>
 
@@ -251,7 +276,7 @@ WindowStartupLocation="CenterScreen"
                 </Grid>
             </Grid>
         </Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="5">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
                 <materialDesign:PackIcon Kind="Bell"/>
             </Button>

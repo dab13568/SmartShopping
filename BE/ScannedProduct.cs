@@ -10,7 +10,6 @@ namespace BE
     public class ScannedProduct:INotifyPropertyChanged
     {
         private Delegate[] InvocationList;
-
         private int _orderID;
         private int _productId;
         private Store _store;
@@ -28,6 +27,8 @@ namespace BE
             this._cost = cost;
             this._amount = amount;
         }
+
+        public ScannedProduct() { }
 
         public int? rating
         {

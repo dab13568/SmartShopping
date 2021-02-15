@@ -10,6 +10,8 @@ namespace BE
     {
         food,
         drinks,
-        hygene
+        hygene,
+        clothes,
+        electronics
     }
 }
