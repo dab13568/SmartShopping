@@ -18,6 +18,8 @@ using SmartShopping.LastProductsUC;
 using System.Windows.Media.Animation;
 using SmartShopping.PurchaseHistoryUC;
 using BE;
+using SmartShopping.StatisticsUC;
+
 namespace SmartShopping
 {
     /// <summary>
@@ -88,6 +90,13 @@ namespace SmartShopping
         {
             PurchaseHistoryV PH = new PurchaseHistoryV();
             CurrnetUserControl = PH;
+            closeMenuStoryBoard();
+        }
+
+        internal void LoadStatisticsView()
+        {
+            StatisticsUserControlV S = new StatisticsUserControlV();
+            CurrnetUserControl = S;
             closeMenuStoryBoard();
         }
 
