@@ -31,9 +31,7 @@ namespace SmartShopping.MainWindowMVVM
         public ICommand RecommendedShoppingView { get { return new RecommendedShoppingCMD(this); } }
 
         public ICommand StatisticsView { get { return new StatisticsCMD(this); } }
-
-        public ICommand SelectedItemChangedCommand { get { return new MenuCMD(this); } }
-
+        
         public void LoadHomeView() { View.LoadHomeView(); }
 
         public void LoadLastProductsView() { View.LoadLastProductsView(); }

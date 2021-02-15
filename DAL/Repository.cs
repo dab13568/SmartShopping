@@ -44,7 +44,22 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public List<Product> get_all_Products()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ScannedProduct> Get_all_Scans()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ScannedProduct> get_all_Scans()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Store> get_all_stores()
         {
             throw new NotImplementedException();
         }

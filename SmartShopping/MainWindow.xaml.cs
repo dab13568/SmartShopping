@@ -34,7 +34,7 @@ namespace SmartShopping
                 GridLoadUC.Children.Remove(CurrnetUserControl);
                 _currnetUserControl = value;
                 _currnetUserControl.HorizontalAlignment = HorizontalAlignment.Stretch;
-                _currnetUserControl.VerticalAlignment = VerticalAlignment.Center;
+                _currnetUserControl.VerticalAlignment = VerticalAlignment.Stretch;
                 GridLoadUC.Children.Add(_currnetUserControl);
                 //this.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/background.jpg")));
             }
