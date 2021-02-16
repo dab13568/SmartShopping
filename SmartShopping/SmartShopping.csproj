@@ -101,6 +101,9 @@
       <DependentUpon>LastProductsUserControlV.xaml</DependentUpon>
     </Compile>
     <Compile Include="LastProductsUC\LastProductsUserControlVM.cs" />
+    <Compile Include="ListProductsUC.xaml.cs">
+      <DependentUpon>ListProductsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindowMVVM\LastProductsCMD.cs" />
     <Compile Include="MainWindowMVVM\LoadHomeCMD.cs" />
     <Compile Include="MainWindowMVVM\MainWindowVM.cs" />
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LastProductsUC\LastProductsUserControlV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListProductsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,6 +216,27 @@
       <Project>{eb9ebc25-1fa4-4c15-8938-40dbca3b88c2}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bamba.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bisli.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cake.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\carrot.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dordorant.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\melafefon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pasta.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0-ci2405\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0-ci2405\build\MaterialDesignThemes.targets')" />

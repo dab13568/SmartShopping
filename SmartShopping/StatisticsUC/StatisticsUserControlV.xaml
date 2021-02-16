@@ -4,11 +4,57 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
+                FlowDirection="RightToLeft"
              xmlns:local="clr-namespace:SmartShopping.StatisticsUC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <lvc:PieChart Name="PieChartProducts" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}"/>
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="355"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <lvc:PieChart Grid.Column="1" Name="PieChartProducts" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}"/>
+
+        <StackPanel Background="#f1edf5" Grid.Column="0" >
+            <TextBlock Margin="0 60 0 6" Text="אני רוצה לראות סטטיסטיקה של:" FontSize="12">
+                <TextBlock.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="3" Opacity=".5" Softness="9" />
+                </TextBlock.BitmapEffect> 
+            </TextBlock>
+
+            <StackPanel VerticalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="4">
+                <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" IsChecked="True" Content="מוצר" />
+                <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  IsChecked="False" Content="קטגוריה" />
+                <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="חנות" />
+                <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="עלות" />
+            </StackPanel>
+                
+
+            <TextBlock Margin="0 40 0 6" Text="לפי:" FontSize="12">
+                <TextBlock.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="3" Opacity=".5" Softness="9" />
+                </TextBlock.BitmapEffect>
+            </TextBlock>
+
+            <StackPanel VerticalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="4">
+                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" IsChecked="True" Content="יום" />
+                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  IsChecked="False" Content="שבוע" />
+                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="חודש" />
+            </StackPanel>
+
+            <TextBlock Margin="0 40 0 6" Text="סוג דיאגרמה" FontSize="12">
+                <TextBlock.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="3" Opacity=".5" Softness="9" />
+                </TextBlock.BitmapEffect>
+            </TextBlock>
+
+            <StackPanel VerticalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="4">
+                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" IsChecked="True" Content="מקלות" />
+                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  IsChecked="False" Content="עוגה" />
+                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="גרף" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
