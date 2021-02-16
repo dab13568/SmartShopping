@@ -7,7 +7,7 @@ using BE;
 
 namespace DAL
 {
-    public class Repository : IRepository
+    public class Repository : IRepository 
     {
         public Repository() { }
 
