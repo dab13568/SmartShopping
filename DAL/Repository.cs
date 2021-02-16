@@ -17,7 +17,7 @@ namespace DAL
             {
                 context.products.Add(product);
                 context.SaveChanges();
-            }
+            } 
         }
 
         public void add_ScannedProduct(ScannedProduct scan)
