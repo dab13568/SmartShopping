@@ -10,18 +10,18 @@ namespace BE
     public class ScannedProduct:INotifyPropertyChanged
     {
         private Delegate[] InvocationList;
-        private int _orderID;
-        private int _productId;
+        private int _Id;
+        private int _productNum;
         private Store _store;
         private DateTime _dateScan;
         private float _cost;
         private int _amount;
         private int? _rating;
 
-        public ScannedProduct(int order,int productId,Store store,DateTime time,float cost,int amount)
+        public ScannedProduct(int productId,Store store,DateTime time,float cost,int amount)
         {
-            this._orderID = order;
-            this._productId = productId;
+           
+            this._productNum = productId;
             this._store = store;
             this._dateScan = time;
             this._cost = cost;
@@ -47,32 +47,32 @@ namespace BE
                 OnPropertyChanged("amount");
             }
         }
-        public int orderID
+        public int Id
         {
-            get { return _orderID; }
+            get { return _Id; }
             set
             {
-                _orderID = value;
-                OnPropertyChanged("orderID");
+                _Id = value;
+                OnPropertyChanged("Id");
             }
         }
 
-        public int productId
+        public int productNum
         {
-            get { return _productId; }
+            get { return _productNum; }
             set
             {
-                _productId = value;
-                OnPropertyChanged("productId");
+                _productNum = value;
+                OnPropertyChanged("productNum");
             }
         }
-        public Store storeId
+        public Store store
         {
             get { return _store; }
             set
             {
                 _store = value;
-                OnPropertyChanged("storeId");
+                OnPropertyChanged("store");
             }
         }
         public DateTime dateScan

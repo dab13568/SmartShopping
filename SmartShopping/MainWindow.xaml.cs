@@ -49,7 +49,7 @@ namespace SmartShopping
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
             DAL.Repository rep= new DAL.Repository();
-            rep.add_Product(new Product("kuku1", @"url1", Category.drinks));
+            rep.add_ScannedProduct(new ScannedProduct( 3, new Store(5,"cafe",new Address("HAYARDEN",7,"RAMAT-GAN")),DateTime.Now,4,4));
         }
 
        

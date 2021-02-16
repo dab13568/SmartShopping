@@ -7,7 +7,7 @@ using BE;
 
 namespace DAL
 {
-    public class Repository: IRepository
+    public class Repository : IRepository
     {
         public Repository() { }
 
@@ -44,7 +44,7 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.scans.Find(scan.productId);
+                var old = context.scans.Find(scan.productNum);
                 context.scans.Remove(old);
 
                 context.SaveChanges();
@@ -53,10 +53,10 @@ namespace DAL
 
         public List<Product> Get_all_Products()
         {
-            List<Product> result=new List<Product>();
+            List<Product> result = new List<Product>();
             using (var context = new ProductDB())
             {
-                 result = (from p in context.products select p).ToList<Product>();
+                result = (from p in context.products select p).ToList<Product>();
             }
             return result;
         }
@@ -83,7 +83,7 @@ namespace DAL
                 var old = context.products.Find(product.productId);
                 old.name = product.name;
                 old.imageUrl = product.imageUrl;
-               
+
                 context.SaveChanges();
             }
         }
@@ -92,14 +92,14 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.scans.Find(scan.productId);
+                var old = context.scans.Find(scan.Id);
                 old.amount = scan.amount;
                 old.cost = scan.cost;
                 old.dateScan = scan.dateScan;
-                old.orderID = scan.orderID;
-                old.productId = scan.productId;
+               
+                old.productNum = scan.productNum;
                 old.rating = scan.rating;
-                old.storeId = scan.storeId;
+                old.store = scan.store;
 
                 context.SaveChanges();
             }
