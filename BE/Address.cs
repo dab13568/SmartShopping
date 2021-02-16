@@ -48,9 +48,9 @@ namespace BE
         /// <param name="_street"></param>
         /// <param name="_building_number"></param>
         /// <param name="_city"></param>
-        public Address(string _street, int _building_number, string _city)
+        public Address(string _ID,string _street, int _building_number, string _city)
         {
-            AddressID = DateTime.Now.Ticks.ToString("X");
+            AddressID = _ID;
             Street = _street;
             BuildingNumber = _building_number;
             City = _city;

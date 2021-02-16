@@ -48,8 +48,8 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-            DAL.Repository rep= new DAL.Repository();
-            rep.add_ScannedProduct(new ScannedProduct( 3, new Store(5,"cafe",new Address("HAYARDEN",7,"RAMAT-GAN")),DateTime.Now,4,4));
+            //DAL.Repository rep= new DAL.Repository();
+            //rep.add_ScannedProduct(new ScannedProduct( 3, new Store(5,"cafe",new Address("2","HAYARDEN",7,"RAMAT-GAN")),DateTime.Now,4,4));
         }
 
        
