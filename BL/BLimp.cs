@@ -11,7 +11,7 @@ namespace BL
     {
         public List<Product> GetLastProducts()
         {
-            return new List<Product> { new Product("fish", @"ssdasd", Category.food), new Product("meat", @"eergdfg", Category.hygene) };
+            return new List<Product> { new Product("fish",@"ssdasd",Category.food), new Product("meat",@"eergdfg",Category.hygene) };
             //return new Reposetory().Get_all_Products();
         }
 
@@ -28,7 +28,7 @@ namespace BL
             return new Repository().Get_all_Scans();
         }
 
-        public void add_product(Product product)
+        public  void add_product(Product product)
         {
             new Repository().add_Product(product);
         }
