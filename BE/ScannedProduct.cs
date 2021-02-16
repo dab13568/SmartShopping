@@ -19,8 +19,7 @@ namespace BE
         private int? _rating;
 
         public ScannedProduct(int productId,Store store,DateTime time,float cost,int amount)
-        {
-           
+        { 
             this._productNum = productId;
             this._store = store;
             this._dateScan = time;
