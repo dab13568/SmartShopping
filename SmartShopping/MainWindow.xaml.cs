@@ -48,8 +48,10 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-            //DAL.Repository rep= new DAL.Repository();
-            //rep.add_ScannedProduct(new ScannedProduct( 3, new Store(5,"cafe",new Address("2","HAYARDEN",7,"RAMAT-GAN")),DateTime.Now,4,4));
+            DAL.Repository rep= new DAL.Repository();
+            //new Product(9, "shlomichai", @"kuku.url",Category.clothes
+            //3,new Store(4,"yami",new Address("8","Meshorer",4,"PT")),DateTime.Now,10,10
+            rep.add_Product(new Product(9, "shlomichai", @"kuku.url", Category.clothes));
         }
 
        
@@ -61,6 +63,11 @@ namespace SmartShopping
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
+            DAL.Repository rep = new DAL.Repository();
+            foreach (var s in rep.Get_all_Products())
+            {
+                MessageBox.Show(s.ToString());
+            }
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
         }

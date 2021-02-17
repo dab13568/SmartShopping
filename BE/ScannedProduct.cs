@@ -9,26 +9,47 @@ namespace BE
 { 
     public class ScannedProduct:INotifyPropertyChanged
     {
-        private Delegate[] InvocationList;
         private int _Id;
-        private int _productNum;
-        private Store _store;
+        private string _productName;
+        private int _productNo;
+        private string _store;
         private DateTime _dateScan;
-        private float _cost;
-        private int _amount;
+        private float? _cost;
+        private int? _amount;
         private int? _rating;
+        private Delegate[] InvocationList;
 
-        public ScannedProduct(int productId,Store store,DateTime time,float cost,int amount)
+        public ScannedProduct(int no,string name,string store,DateTime time,float? cost,int? amount)
         { 
-            this._productNum = productId;
+            this._productName = name;
             this._store = store;
             this._dateScan = time;
             this._cost = cost;
             this._amount = amount;
+            this._productNo = no;
         }
+        public ScannedProduct( int no,string store, DateTime time, float? cost, int? amount)
+        {
+            this._productName = "";
+            this._store = store;
+            this._dateScan = time;
+            this._cost = cost;
+            this._amount = amount;
+            this._productNo = no;
 
+        }
         public ScannedProduct() { }
 
+
+        public int productNo
+        {
+            get { return _productNo; }
+            set
+            {
+                _productNo = value;
+                OnPropertyChanged("productNo");
+            }
+        }
         public int? rating
         {
             get { return _rating; }
@@ -39,7 +60,7 @@ namespace BE
             }
         }
 
-        public int amount
+        public int? amount
         {
             get { return _amount; }
             set { _amount = value;
@@ -56,16 +77,26 @@ namespace BE
             }
         }
 
-        public int productNum
+        public string productName
         {
-            get { return _productNum; }
+            get { return _productName; }
             set
             {
-                _productNum = value;
-                OnPropertyChanged("productNum");
+                _productName = value;
+                OnPropertyChanged("productName");
             }
         }
-        public Store store
+        //public Store store
+        //{
+        //    get { return _store; }
+        //    set
+        //    {
+        //        _store = value;
+        //        OnPropertyChanged("store");
+        //    }
+        //}
+
+        public string store
         {
             get { return _store; }
             set
@@ -83,7 +114,7 @@ namespace BE
                 OnPropertyChanged("dateScan");
             }
         }
-        public float cost
+        public float? cost
         {
             get { return _cost; }
             set

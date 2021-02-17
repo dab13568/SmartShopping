@@ -11,14 +11,15 @@ namespace BL
     {
         public List<Product> GetLastProducts()
         {
-            return new List<Product> { new Product("fish",@"ssdasd",Category.food), new Product("meat",@"eergdfg",Category.hygene) };
+            return new List<Product> { new Product(2,"fish",@"ssdasd",Category.food), new Product(7,"meat",@"eergdfg",Category.hygene) };
             //return new Reposetory().Get_all_Products();
         }
 
         public void update_Product(Product product)
         {
-            //new Reposetory().update_Product(product); 
+            new Repository().update_Product(product); 
         }
+        
         public List<Product> Get_all_Products()
         {
             return new Repository().Get_all_Products();

@@ -24,6 +24,12 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
+                var arr=(from p in context.products where p.num==scan.productNo select p ).ToList<Product>();
+                if (arr.Count == 0)
+                {
+                    add_Product(new Product(scan.productNo, scan.productName, "", null));
+                    
+                }
                 context.scans.Add(scan);
                 context.SaveChanges();
             }
@@ -33,7 +39,7 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.products.Find(product.productId);
+                var old = context.products.Find(product.productID);
                 context.products.Remove(old);
 
                 context.SaveChanges();
@@ -44,7 +50,7 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.scans.Find(scan.productNum);
+                var old = context.scans.Find(scan.productName);
                 context.scans.Remove(old);
 
                 context.SaveChanges();
@@ -80,7 +86,7 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.products.Find(product.productId);
+                var old = context.products.Find(product.productID);
                 old.name = product.name;
                 old.imageUrl = product.imageUrl;
 
@@ -97,7 +103,7 @@ namespace DAL
                 old.cost = scan.cost;
                 old.dateScan = scan.dateScan;
                
-                old.productNum = scan.productNum;
+                old.productName = scan.productName;
                 old.rating = scan.rating;
                 old.store = scan.store;
 

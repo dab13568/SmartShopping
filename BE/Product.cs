@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,16 +10,17 @@ namespace BE
 {
     public class Product : INotifyPropertyChanged
     {
-        private Category _category;
+        public int productID { get; set; }
+        private int _num;
+        private Category? _category;
         private Delegate[] InvocationList;
-        private int _productID;
         private string _name;
         private string _imageUrl;
 
-        public Product( string name, string url,Category category)
+        public Product(int num,string name, string url,Category? category)
         {
-
-            
+            //productID = id;
+            this._num= num;
             this._name = name;
             this._imageUrl = url;
             this._category = category;
@@ -28,7 +30,7 @@ namespace BE
         {
         }
 
-        public Category category
+        public Category? category
         {
             get { return _category; }
             set
@@ -38,15 +40,24 @@ namespace BE
             }
         }
 
-        public int productId
+        public int num
         {
-            get { return _productID; }
+            get { return _num; }
             set
             {
-                _productID = value;
-                OnPropertyChanged("productId");
+                _num = value;
+                OnPropertyChanged("num");
             }
         }
+        //public int productID
+        //{
+        //    get { return _productID; }
+        //    set
+        //    {
+        //        _productID = value;
+        //        OnPropertyChanged("productID");
+        //    }
+        //}
         public string name
         {
             get { return _name; }
@@ -68,7 +79,10 @@ namespace BE
 
 
 
-
+        public override string ToString()
+        {
+            return productID + "  " + num + "     " + name;
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
 
