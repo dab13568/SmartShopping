@@ -13,17 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartShopping.RecommendedShoppingUC
+namespace SmartShopping
 {
     /// <summary>
-    /// Interaction logic for RecommendedShoppingUserControlV.xaml
+    /// Interaction logic for ListProductsUC.xaml
     /// </summary>
-    public partial class RecommendedShoppingUserControlV : UserControl
+    public partial class ListProductsUC : UserControl
     {
-        public RecommendedShoppingUserControlV()
+        public ListProductsUC()
         {
             InitializeComponent();
-            DataContext = new RecommendedShoppingUserControlVM(this);
+
         }
+        
     }
 }

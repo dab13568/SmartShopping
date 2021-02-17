@@ -4,9 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartShopping.RecommendedShoppingUC"
+             xmlns:SmartShopping="clr-namespace:SmartShopping"  
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="DarkSlateGray" Content="רשימת הקניות המומלצת עבורך:"/>
+        <Grid Grid.Row="2" >
+            <Grid Width="124">
+                <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="0.5"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+    Background="#000d33" Content="PDF-הורד כ" />
+            </Grid>
+        </Grid>
+        <SmartShopping:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>
+
     </Grid>
 </UserControl>
