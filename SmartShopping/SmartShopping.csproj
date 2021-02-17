@@ -123,9 +123,11 @@
       <DependentUpon>PurchaseHistoryV.xaml</DependentUpon>
     </Compile>
     <Compile Include="PurchaseHistoryUC\PurchaseHistoryVM.cs" />
+    <Compile Include="RecommendedShoppingUC\RecommendedShoppingUserControlM.cs" />
     <Compile Include="RecommendedShoppingUC\RecommendedShoppingUserControlV.xaml.cs">
       <DependentUpon>RecommendedShoppingUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecommendedShoppingUC\RecommendedShoppingUserControlVM.cs" />
     <Compile Include="StatisticsUC\StatisticsUserControlV.xaml.cs">
       <DependentUpon>StatisticsUserControlV.xaml</DependentUpon>
     </Compile>

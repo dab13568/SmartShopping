@@ -40,8 +40,8 @@ namespace SmartShopping.MainWindowMVVM
 
         public void LoadStatisticsView() { View.LoadStatisticsView(); }
 
+        public void LoadRecommendedShoppingView(){ View.LoadRecommendedShoppingView(); }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
     }
 }

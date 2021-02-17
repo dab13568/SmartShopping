@@ -23,6 +23,7 @@ namespace SmartShopping.RecommendedShoppingUC
         public RecommendedShoppingUserControlV()
         {
             InitializeComponent();
+            DataContext = new RecommendedShoppingUserControlVM(this);
         }
     }
 }

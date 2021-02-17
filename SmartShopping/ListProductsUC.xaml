@@ -3,39 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SmartShopping"
-             mc:Ignorable="d" Width="1000">
-    <Grid x:Name="listProductGrid"  FlowDirection="RightToLeft" >
-        <ScrollViewer FlowDirection="RightToLeft" x:Name="scrollViewerProductList"   VerticalScrollBarVisibility="Auto">
-            <StackPanel>
-                <StackPanel Margin="20 0">
-                    <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding PurchaseHistoryList}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="#f7f8fa" Margin="10" CornerRadius="5" Width="150" Height="200">
+             xmlns:local="clr-namespace:SmartShopping" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              Width="1050"
+             mc:Ignorable="d" >
+
+    <ScrollViewer  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
+        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding PurchaseHistoryList}">
+            <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                    <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="140" />
+                                <RowDefinition  Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding imageUrl}"   Height="140"   Width="196" Stretch="UniformToFill" />
+                           
+                            <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                                <TextBlock  FontWeight="Bold">
+      Cycling
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding name}" />
+                            </StackPanel>
+                            <StackPanel  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal" Margin="8">
+                                <Button
+        Style="{StaticResource MaterialDesignToolButton}"
+        Width="30"
+        Padding="2 0 2 0"
+        materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+          Kind="ShareVariant" />
+                                </Button>
+                                <Button
+        Style="{StaticResource MaterialDesignToolButton}"
+        Width="30"
+        Padding="2 0 2 0"
+        materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+          Kind="Heart" />
+                                </Button>
+                                <materialDesign:PopupBox
+        Padding="2 0 2 0">
                                     <StackPanel>
-                                        <Border Width="100" Height="100"  Margin="5">
-                                            <Border.Effect>
-                                                <DropShadowEffect ShadowDepth="1"/>
-                                            </Border.Effect>
-                                            <Border.Background>
-                                                <ImageBrush ImageSource="{Binding imageUrl}"/>
-                                            </Border.Background>
-                                        </Border>
-                                        <TextBlock Margin="5" Text="{Binding name, StringFormat={}{0:C}}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                        <TextBlock Margin="5 0" Text="{Binding name}" FontSize="15"/>
+                                        <Button
+            Content="More" />
+                                        <Button
+            Content="Options" />
                                     </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+                                </materialDesign:PopupBox>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+
+
+                 
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+    </ScrollViewer>
 </UserControl>

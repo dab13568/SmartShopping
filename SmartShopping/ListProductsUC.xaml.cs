@@ -23,6 +23,8 @@ namespace SmartShopping
         public ListProductsUC()
         {
             InitializeComponent();
+
         }
+        
     }
 }

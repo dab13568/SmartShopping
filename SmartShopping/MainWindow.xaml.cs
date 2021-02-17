@@ -19,6 +19,9 @@ using System.Windows.Media.Animation;
 using SmartShopping.PurchaseHistoryUC;
 using BE;
 using SmartShopping.StatisticsUC;
+using System.Threading;
+using System.ComponentModel;
+using SmartShopping.RecommendedShoppingUC;
 
 namespace SmartShopping
 {
@@ -27,7 +30,6 @@ namespace SmartShopping
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public UserControl CurrnetUserControl
         {
             get { return _currnetUserControl; }
@@ -43,6 +45,7 @@ namespace SmartShopping
         }
         private UserControl _currnetUserControl;
 
+        PurchaseHistoryV PH;
         public MainWindow()
         {
             InitializeComponent();
@@ -52,7 +55,7 @@ namespace SmartShopping
             //rep.add_ScannedProduct(new ScannedProduct( 3, new Store(5,"cafe",new Address("2","HAYARDEN",7,"RAMAT-GAN")),DateTime.Now,4,4));
         }
 
-       
+
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
@@ -69,7 +72,7 @@ namespace SmartShopping
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
-            
+
         }
 
         internal void LoadHomeView()
@@ -101,6 +104,12 @@ namespace SmartShopping
         }
 
 
+        internal void LoadRecommendedShoppingView()
+        {
+            RecommendedShoppingUserControlV RS = new RecommendedShoppingUserControlV();
+            CurrnetUserControl = RS;
+            closeMenuStoryBoard();
+        }
         public void closeMenuStoryBoard()
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;
@@ -109,5 +118,9 @@ namespace SmartShopping
             sb.Begin();
         }
 
+      
     }
+
+
 }
+    
