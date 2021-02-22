@@ -10,7 +10,6 @@ namespace BE
     public class ScannedProduct:INotifyPropertyChanged
     {
         private int _Id;
-        private string _productName;
         private int _productNo;
         private string _store;
         private DateTime _dateScan;
@@ -19,25 +18,24 @@ namespace BE
         private int? _rating;
         private Delegate[] InvocationList;
 
-        public ScannedProduct(int no,string name,string store,DateTime time,float? cost,int? amount)
+        public ScannedProduct(int no,string store,DateTime time,float? cost,int? amount)
         { 
-            this._productName = name;
             this._store = store;
             this._dateScan = time;
             this._cost = cost;
             this._amount = amount;
             this._productNo = no;
         }
-        public ScannedProduct( int no,string store, DateTime time, float? cost, int? amount)
-        {
-            this._productName = "";
-            this._store = store;
-            this._dateScan = time;
-            this._cost = cost;
-            this._amount = amount;
-            this._productNo = no;
+        //public ScannedProduct( int no,string store, DateTime time, float? cost, int? amount)
+        //{
+        //    //this._productName = "";
+        //    this._store = store;
+        //    this._dateScan = time;
+        //    this._cost = cost;
+        //    this._amount = amount;
+        //    this._productNo = no;
 
-        }
+        //}
         public ScannedProduct() { }
 
 
@@ -77,15 +75,15 @@ namespace BE
             }
         }
 
-        public string productName
-        {
-            get { return _productName; }
-            set
-            {
-                _productName = value;
-                OnPropertyChanged("productName");
-            }
-        }
+        //public string productName
+        //{
+        //    get { return _productName; }
+        //    set
+        //    {
+        //        _productName = value;
+        //        OnPropertyChanged("productName");
+        //    }
+        //}
         //public Store store
         //{
         //    get { return _store; }

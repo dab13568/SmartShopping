@@ -34,5 +34,10 @@ namespace BL
             new Repository().add_Product(product);
         }
 
+        public void add_ScannedProduct(ScannedProduct scan)
+        {
+            new Repository().add_ScannedProduct(scan);
+        }
+
     }
 }

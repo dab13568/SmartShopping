@@ -24,7 +24,7 @@ namespace DAL
         static string[] Scopes = { DriveService.Scope.DriveReadonly };
         static string ApplicationName = "Drive API .NET Quickstart";
 
-        public void Initiallize() {
+        public String Initiallize() {
         UserCredential credential;
 
         using (var stream =
@@ -57,20 +57,21 @@ namespace DAL
         // List files.
         IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute()
             .Files;
-        Console.WriteLine("Files:");
+        string result="";
+        //Console.WriteLine("Files:");
         if (files != null && files.Count > 0)
         {
             foreach (var file in files)
             {
-                Console.WriteLine("{0} ({1})", file.Name, file.Id);
+                result+= " "+file.Name+" "+ file.Id;
             }
         }
         else
         {
             Console.WriteLine("No files found.");
         }
-        Console.Read();
-
+            //Console.Read();
+            return result;
     } 
     }
 }
