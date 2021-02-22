@@ -13,9 +13,9 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-        <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="DarkSlateGray" Content="חלון עריכת פרטים"/>
-        <Label HorizontalAlignment="Center" FontSize="13" VerticalAlignment="Center" Foreground="DarkSlateGray" Content=".כאן תוכל לעדכן את פרטי המוצר. כל שינוי נשמר באופן אוטומטי במסד הנתונים"/>
+        <StackPanel Background="#000d33"  Grid.Row="0">
+        <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="White" Content="עריכת מוצר"/>
+        <Label HorizontalAlignment="Center" FontSize="13" VerticalAlignment="Center" Foreground="White" Content=".כאן תוכל לעדכן את פרטי המוצר. כל שינוי נשמר באופן אוטומטי במסד הנתונים"/>
         </StackPanel>
         <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto">
 
@@ -29,16 +29,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" >
                             <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="כמות יחידות המוצר:"/>
-                            <ComboBox HorizontalAlignment="Left" Width="200"
-  materialDesign:HintAssist.Hint="כמות יחידות"
-  ItemsSource="{Binding LongListToTestComboVirtualization}"
-  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                <ComboBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel />
-                                    </ItemsPanelTemplate>
-                                </ComboBox.ItemsPanel>
-                            </ComboBox>
+                            <TextBox Width="200" HorizontalAlignment="Left" MaxLength="4" PreviewTextInput="NumberValidationTextBox"  materialDesign:HintAssist.Hint="הכנס כמות"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                         </StackPanel>
                         <StackPanel Grid.Column="1" >
                             <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="דירוג המוצר:"/>
@@ -50,9 +41,7 @@
 
                 </Border>
 
-                <StackPanel Orientation="Horizontal">
-
-                </StackPanel>
+               
                 <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="תמונת המוצר:"/>
 
                 <Button Background="White" Height="160" Width="180" Margin="0 0 0 30"  Click="ImagePicker" >
@@ -68,7 +57,7 @@
                 </Border>
 
                 <StackPanel>
-                    <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="בחר קטגוריה:"/>
+                    <Label HorizontalAlignment="Left" Margin="0 10 10 22" FontSize="15"  Foreground="DarkSlateGray" Content="בחר קטגוריה:"/>
 
                     <ListBox  HorizontalAlignment="Center" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemsPanel>
