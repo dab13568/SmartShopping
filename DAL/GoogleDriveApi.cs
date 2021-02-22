@@ -104,16 +104,21 @@ namespace DAL
 
 
 
+                foreach (var file in files)
+                {
+                    
+                }
 
 
                 foreach (var file in files)
                 {
-
+                    
                     string saveTo = String.Format(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\Images\Barcodes\{0}.png", file.Name);
                     Console.WriteLine("{0} ({1})", file.Name, file.Id);
                     
                         DownloadFile(service, file, saveTo);
                 }
+
             }
             else
             {

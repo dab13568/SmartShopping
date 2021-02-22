@@ -39,5 +39,7 @@ namespace BL
             new Repository().add_ScannedProduct(scan);
         }
 
+
+
     }
 }

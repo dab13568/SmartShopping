@@ -13,6 +13,7 @@ namespace SmartShopping.LastProductsUC
     {
         public List<Product> GetLastProducts()
         {
+            //BL.getscansproduct
             List<Product> l = new List<Product> { new Product(), new Product(), new Product(), new Product(), new Product(), new Product(), new Product(), new Product(), new Product(), new Product(), new Product(), new Product(), new Product() };
             l[0].name = l[1].name = l[2].name = l[3].name = l[4].name = l[5].name = l[6].name = l[7].name = l[8].name = l[9].name = l[10].name = l[11].name = l[12].name = "דוגמא של סתם טקסט";
             l[0].imageUrl = "../Images/bamba.jpg";
