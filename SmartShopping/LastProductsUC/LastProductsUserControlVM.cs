@@ -12,14 +12,14 @@ namespace SmartShopping.LastProductsUC
 {
     public class LastProductsUserControlVM : INotifyPropertyChanged
     {
-        private List<Product> _LastproductsList;
-        public List<Product> LastproductsList
+        private List<Product> _SourceList;
+        public List<Product> SourceList
         {
-            get { return _LastproductsList; }
+            get { return _SourceList; }
             set
             {
-                _LastproductsList = value;
-                OnPropertyChanged("ProductsList");
+                _SourceList = value;
+                OnPropertyChanged("SourceList");
             }
         }
 
@@ -50,47 +50,17 @@ namespace SmartShopping.LastProductsUC
         public LastProductsUserControlVM(LastProductsUserControlV view, List<Product> products)
         {
             this.View = view;
-            Initialize(products);
+            SourceList = products;
 
         }
 
         public LastProductsUserControlVM(LastProductsUserControlV view)
         {
             this.View = view;
-            Initialize(new LastProductsUserControlM().GetLastProducts());
+            SourceList = new LastProductsUserControlM().GetLastProducts();
         }
 
-        private void Initialize(List<Product> products)
-        {
-            //Message = "לעריכת מוצר לחץ פעמיים על המאפיין אותו תרצה לערוך";
-            //MessageColor = Brushes.Black;
-            LastproductsList = products;
-            foreach (var item in LastproductsList)
-            {
-                item.PropertyChanged += (x, y) => { SaveChanges(item); };
-            }
-        }
-
-        private void SaveChanges(Product product)
-        {
-            new Thread(() =>
-            {
-                Message = "שומר שינויים...";
-                try
-                {
-                    new LastProductsUserControlM().SaveChanges(product);
-                    Message = "השינויים נשמרו";
-                    MessageColor = Brushes.Black;
-                }
-                catch (Exception ex)
-                {
-                    Message = ex.Message + ", השינויים שביצעת לא נשמרו";
-                    MessageColor = Brushes.Red;
-                }
-            }).Start();
-        }
-
-
+      
 
         // INotifyPropertyChanged implementaion
         public event PropertyChangedEventHandler PropertyChanged;

@@ -23,6 +23,7 @@ namespace SmartShopping.PurchasedTogetherUC
         public PurchasedTogetherUserControlV()
         {
             InitializeComponent();
+            DataContext = new PurchasedTogetherVM(this);
         }
     }
 }

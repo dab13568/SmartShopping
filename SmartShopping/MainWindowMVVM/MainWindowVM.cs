@@ -28,6 +28,7 @@ namespace SmartShopping.MainWindowMVVM
 
         public ICommand PurchasedTogetherView { get { return new PurchasedTogetherCMD(this); } }
 
+
         public ICommand RecommendedShoppingView { get { return new RecommendedShoppingCMD(this); } }
 
         public ICommand StatisticsView { get { return new StatisticsCMD(this); } }
@@ -42,6 +43,9 @@ namespace SmartShopping.MainWindowMVVM
 
         public void LoadRecommendedShoppingView(){ View.LoadRecommendedShoppingView(); }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+        public void LoadPurchaseTogetherView() { View.LoadPurchaseTogetherView(); }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

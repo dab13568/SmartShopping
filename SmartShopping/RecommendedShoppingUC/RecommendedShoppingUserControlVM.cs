@@ -11,14 +11,14 @@ namespace SmartShopping.RecommendedShoppingUC
     class RecommendedShoppingUserControlVM : INotifyPropertyChanged
     {
 
-        private List<Product> _PurchaseHistoryList;
-        public List<Product> PurchaseHistoryList
+        private List<Product> _SourceList;
+        public List<Product> SourceList
         {
-            get { return _PurchaseHistoryList; }
+            get { return _SourceList; }
             set
             {
-                _PurchaseHistoryList = value;
-                OnPropertyChanged("ProductsList");
+                _SourceList = value;
+                OnPropertyChanged("SourceList");
             }
         }
 
@@ -27,7 +27,7 @@ namespace SmartShopping.RecommendedShoppingUC
         public RecommendedShoppingUserControlVM(RecommendedShoppingUserControlV view)
         {
             this.View = view;
-            PurchaseHistoryList = new RecommendedShoppingUserControlM().GetRecommendedShoppingList();
+            SourceList = new RecommendedShoppingUserControlM().GetRecommendedShoppingList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

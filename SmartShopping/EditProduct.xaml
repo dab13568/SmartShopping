@@ -1,0 +1,91 @@
+﻿<Window x:Class="SmartShopping.EditProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartShopping" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        FlowDirection="RightToLeft"
+        WindowStartupLocation="CenterScreen"
+        Title="עריכת מוצר" Height="450" Width="800">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Background="#000d33"  Grid.Row="0">
+        <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="White" Content="עריכת מוצר"/>
+        <Label HorizontalAlignment="Center" FontSize="13" VerticalAlignment="Center" Foreground="White" Content=".כאן תוכל לעדכן את פרטי המוצר. כל שינוי נשמר באופן אוטומטי במסד הנתונים"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto">
+
+            <StackPanel>
+
+                <Border Background="#FFE0E0E7">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" >
+                            <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="כמות יחידות המוצר:"/>
+                            <TextBox Width="200" HorizontalAlignment="Left" MaxLength="4" PreviewTextInput="NumberValidationTextBox"  materialDesign:HintAssist.Hint="הכנס כמות"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" >
+                            <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="דירוג המוצר:"/>
+                            <materialDesign:RatingBar  x:Name="BasicRatingBar"  Value="3"   />
+
+                            <!--<materialDesign:RatingBar  x:Name="BasicRatingBar"  Value="3"  ValueChanged="BasicRatingBar_ValueChanged" />-->
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
+
+               
+                <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="תמונת המוצר:"/>
+
+                <Button Background="White" Height="160" Width="180" Margin="0 0 0 30"  Click="ImagePicker" >
+                    <Image HorizontalAlignment="Center" Source="/Images/defaultImg.png"  Stretch="UniformToFill"/>
+                </Button>
+                <Border Background="#FFE0E0E7">
+                    <GroupBox materialDesign:ColorZoneAssist.Mode="Custom"
+                         materialDesign:ColorZoneAssist.Background="#FF00011F"
+                         materialDesign:ColorZoneAssist.Foreground="White"
+                          Header="תיאור המוצר" Width="500" Margin="16">
+                        <TextBox MaxLength="25"  Text="{Binding description}" materialDesign:HintAssist.Hint="מקסימום 25 תווים" />
+                    </GroupBox>
+                </Border>
+
+                <StackPanel>
+                    <Label HorizontalAlignment="Left" Margin="0 10 10 22" FontSize="15"  Foreground="DarkSlateGray" Content="בחר קטגוריה:"/>
+
+                    <ListBox  HorizontalAlignment="Center" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel IsItemsHost="True" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        
+                        <ListBoxItem ToolTip="מאכלים">
+
+                                <Image Width="120" Height="80" Source="Images/Food.jpg" Stretch="UniformToFill"/>
+                            </ListBoxItem>
+                            <ListBoxItem  ToolTip="משקאות">
+                                <Image Width="120" Height="80" Source="Images/drinks.jpg" Stretch="UniformToFill"/>
+                            </ListBoxItem>
+                            <ListBoxItem ToolTip="הגיינה">
+                                <Image Width="120" Height="80" Source="Images/hygene.jpg" Stretch="UniformToFill"/>
+                            </ListBoxItem>
+                            <ListBoxItem ToolTip="ביגוד">
+                                <Image Width="120" Height="80" Source="Images/clothes.jpg" Stretch="UniformToFill"/>
+                            </ListBoxItem>
+                            <ListBoxItem ToolTip="אלקטרוניקה">
+                                <Image Width="120" Height="80" Source="Images/electronics.jpg" Stretch="UniformToFill"/>
+                            </ListBoxItem>
+
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

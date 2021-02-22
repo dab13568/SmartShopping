@@ -8,7 +8,7 @@
              mc:Ignorable="d" >
 
     <ScrollViewer  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
-        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding PurchaseHistoryList}">
+        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList}">
             <ItemsControl.ItemTemplate>
                     <DataTemplate>
                     <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
@@ -27,31 +27,11 @@
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding name}" />
                             </StackPanel>
                             <StackPanel  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal" Margin="8">
-                                <Button
-        Style="{StaticResource MaterialDesignToolButton}"
-        Width="30"
-        Padding="2 0 2 0"
-        materialDesign:RippleAssist.IsCentered="True">
-                                    <materialDesign:PackIcon
-          Kind="ShareVariant" />
+
+                                <Button x:Name="editProductButton"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">
+                                    <materialDesign:PackIcon Kind="Pencil" />
                                 </Button>
-                                <Button
-        Style="{StaticResource MaterialDesignToolButton}"
-        Width="30"
-        Padding="2 0 2 0"
-        materialDesign:RippleAssist.IsCentered="True">
-                                    <materialDesign:PackIcon
-          Kind="Heart" />
-                                </Button>
-                                <materialDesign:PopupBox
-        Padding="2 0 2 0">
-                                    <StackPanel>
-                                        <Button
-            Content="More" />
-                                        <Button
-            Content="Options" />
-                                    </StackPanel>
-                                </materialDesign:PopupBox>
+
                             </StackPanel>
                         </Grid>
                     </materialDesign:Card>
