@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartShopping.PurchaseHistoryUC
+namespace SmartShopping.PurchasedTogetherUC
 {
-    class PurchaseHistoryVM : INotifyPropertyChanged
+    class PurchasedTogetherVM : INotifyPropertyChanged
     {
         private List<Product> _SourceList;
         public List<Product> SourceList
@@ -21,19 +21,19 @@ namespace SmartShopping.PurchaseHistoryUC
             }
         }
 
-        public PurchaseHistoryV View;
+        public PurchasedTogetherUserControlV View;
 
-        public PurchaseHistoryVM(PurchaseHistoryV view, List<Product> products)
+        public PurchasedTogetherVM(PurchasedTogetherUserControlV view, List<Product> products)
         {
             this.View = view;
             SourceList = products;
 
         }
 
-        public PurchaseHistoryVM(PurchaseHistoryV view)
+        public PurchasedTogetherVM(PurchasedTogetherUserControlV view)
         {
             this.View = view;
-            SourceList = new PurchaseHistoryM().GetPurchaseHistoryList();
+            SourceList = new PurchaseTogetherM().GetPurchaseTogetherList();
         }
 
 
@@ -42,3 +42,4 @@ namespace SmartShopping.PurchaseHistoryUC
         private void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
     }
 }
+

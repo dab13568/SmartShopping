@@ -22,6 +22,8 @@ using SmartShopping.StatisticsUC;
 using System.Threading;
 using System.ComponentModel;
 using SmartShopping.RecommendedShoppingUC;
+using DAL;
+using SmartShopping.PurchasedTogetherUC;
 
 namespace SmartShopping
 {
@@ -43,6 +45,8 @@ namespace SmartShopping
                 //this.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/background.jpg")));
             }
         }
+
+       
         private UserControl _currnetUserControl;
 
         PurchaseHistoryV PH;
@@ -51,10 +55,31 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-            DAL.Repository rep= new DAL.Repository();
-            //new Product(9, "shlomichai", @"kuku.url",Category.clothes
+            //DAL.Repository rep = new DAL.Repository();
+            //new ScannedProduct(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.food);
+            //new Product(9, "cola", @"kuku.url", Category.drinks);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+            //new Product(9, "Bamba", @"kuku.url", Category.clothes);
+
             //3,new Store(4,"yami",new Address("8","Meshorer",4,"PT")),DateTime.Now,10,10
-            rep.add_Product(new Product(9, "shlomichai", @"kuku.url", Category.clothes));
+            //rep.add_Product(new Product(9, "shlomichai", @"kuku.url", Category.clothes));
+            //googleDriveConnection drive = new googleDriveConnection();
+
         }
 
 
@@ -66,11 +91,11 @@ namespace SmartShopping
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
-            DAL.Repository rep = new DAL.Repository();
-            foreach (var s in rep.Get_all_Products())
-            {
-                MessageBox.Show(s.ToString());
-            }
+            //DAL.Repository rep = new DAL.Repository();
+            //foreach (var s in rep.Get_all_Products())
+            //{
+            //    MessageBox.Show(s.ToString());
+            //}
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
         }
@@ -117,6 +142,15 @@ namespace SmartShopping
             CurrnetUserControl = RS;
             closeMenuStoryBoard();
         }
+
+        internal void LoadPurchaseTogetherView()
+        {
+            PurchasedTogetherUserControlV PT = new PurchasedTogetherUserControlV();
+            CurrnetUserControl = PT;
+            closeMenuStoryBoard();
+        }
+
+
         public void closeMenuStoryBoard()
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;

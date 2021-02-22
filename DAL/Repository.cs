@@ -28,7 +28,6 @@ namespace DAL
                 if (arr.Count == 0)
                 {
                     add_Product(new Product(scan.productNo, scan.productName, "", null));
-                    
                 }
                 context.scans.Add(scan);
                 context.SaveChanges();

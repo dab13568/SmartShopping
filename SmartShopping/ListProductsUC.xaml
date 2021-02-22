@@ -8,7 +8,7 @@
              mc:Ignorable="d" >
 
     <ScrollViewer  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
-        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding PurchaseHistoryList}">
+        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList}">
             <ItemsControl.ItemTemplate>
                     <DataTemplate>
                     <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
