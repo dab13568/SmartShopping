@@ -70,7 +70,7 @@ namespace SmartShopping
         private void nameProductTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             
-        }
+        } 
 
         private void ProductRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
         {
