@@ -12,6 +12,10 @@ namespace SmartShopping.MainWindowMVVM
 
         private MainWindowVM VM;
 
+        public LastProductsCMD()
+        {
+        }
+
         public LastProductsCMD(MainWindowVM VM)
         {
             this.VM = VM;

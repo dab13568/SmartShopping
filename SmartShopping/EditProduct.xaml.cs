@@ -27,7 +27,7 @@ namespace SmartShopping
         {
             InitializeComponent();
             this.sp = sp;
-            this.DataContext = sp;
+            this.DataContext = this.sp;
         }
 
         private void ImagePicker(object sender, RoutedEventArgs e)
@@ -76,6 +76,8 @@ namespace SmartShopping
         private void ProductRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
         {
             sp.rating = ProductRatingBar.Value;
+            DAL.Repository rep = new DAL.Repository();
+            rep.update_ScannedProduct(sp);
         }
     } 
 }

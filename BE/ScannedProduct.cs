@@ -75,25 +75,6 @@ namespace BE
             }
         }
 
-        //public string productName
-        //{
-        //    get { return _productName; }
-        //    set
-        //    {
-        //        _productName = value;
-        //        OnPropertyChanged("productName");
-        //    }
-        //}
-        //public Store store
-        //{
-        //    get { return _store; }
-        //    set
-        //    {
-        //        _store = value;
-        //        OnPropertyChanged("store");
-        //    }
-        //}
-
         public string store
         {
             get { return _store; }
@@ -126,22 +107,12 @@ namespace BE
 
 
 
-
-
         public event PropertyChangedEventHandler PropertyChanged;
-        
 
-        public void OnPropertyChanged(string propertyName) {
-            //if(PropertyChanged!=null)
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public void ClearPropertyChanged() { InvocationList = PropertyChanged.GetInvocationList(); PropertyChanged = null; }
-        public void RestorePropertyChanged()
+        
+        public void OnPropertyChanged(string propertyName)
         {
-            foreach (var item in InvocationList)
-            {
-                PropertyChanged += (PropertyChangedEventHandler)item;
-            }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

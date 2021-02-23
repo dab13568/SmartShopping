@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,7 +78,7 @@ namespace DAL
             return result;
         }
 
-        public List<ScannedProduct> Get_all_Scans()
+        public ObservableCollection<ScannedProduct> Get_all_Scans()
         {
             //call drive
             List<ScannedProduct> result = new List<ScannedProduct>();
@@ -84,7 +86,7 @@ namespace DAL
             {
                 result = (from p in context.scans select p).ToList<ScannedProduct>();
             }
-            return result;
+            return new ObservableCollection<ScannedProduct>(result); ;
         }
 
         public List<Store> get_all_Stores()

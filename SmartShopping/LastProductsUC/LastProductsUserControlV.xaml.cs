@@ -24,11 +24,7 @@ namespace SmartShopping.LastProductsUC
         public LastProductsUserControlV()
         {
             InitializeComponent();
-            ListedVM<ScannedProduct> vm = new LastProductsUserControlVM(this, lastProductListUC);
-            DataContext = vm;
-            lastProductListUC.SetDataContext(vm);
+            DataContext = new LastProductsUserControlVM(this);
         }
-
-         
     }
 }

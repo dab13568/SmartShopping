@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
+
 namespace BL
 {
     public class BLimp
@@ -24,7 +27,7 @@ namespace BL
         {
             return new Repository().Get_all_Products();
         }
-        public List<ScannedProduct> Get_all_ScannedProducts()
+        public ObservableCollection<ScannedProduct> Get_all_ScannedProducts()
         {
             return new Repository().Get_all_Scans();
         }

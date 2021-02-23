@@ -133,7 +133,6 @@
       <DependentUpon>LastProductsUserControlV.xaml</DependentUpon>
     </Compile>
     <Compile Include="LastProductsUC\LastProductsUserControlVM.cs" />
-    <Compile Include="ListedVM.cs" />
     <Compile Include="ListProductsUC.xaml.cs">
       <DependentUpon>ListProductsUC.xaml</DependentUpon>
     </Compile>
