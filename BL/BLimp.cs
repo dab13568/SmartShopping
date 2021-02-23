@@ -39,5 +39,10 @@ namespace BL
             new Repository().add_ScannedProduct(scan);
         }
 
+        public string getImageUrlByProductId(int id)
+        {
+            return new Repository.getImageUrlByProductId(id);
+        }
+
     }
 }

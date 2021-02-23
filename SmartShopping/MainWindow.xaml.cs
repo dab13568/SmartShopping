@@ -54,7 +54,7 @@ namespace SmartShopping
             LoadHomeView();
 
             //DAL.GoogleDriveApi drive = new DAL.GoogleDriveApi();
-            //drive.Connect();
+            drive.Connect();
 
             //MessageBox.Show(reader.Decode(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\Images\Barcodes\qr_example.png"));
 

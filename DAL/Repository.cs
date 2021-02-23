@@ -24,14 +24,23 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
+               
                 var arr=(from p in context.products where p.num==scan.productNo select p ).ToList<Product>();
                 if (arr.Count == 0)
                 {
-                    add_Product(new Product(scan.productNo,"", "", null));
-                    
+                    add_Product(new Product(scan.productNo, "", "", null));
+
                 }
-                context.scans.Add(scan);
-                context.SaveChanges();
+                var arr2 = (from p in context.scans where p.productNo == scan.productNo && p.store.Equals(scan.store) &&  (0==scan.dateScan.Date.CompareTo(p.dateScan.Date)) select p).ToList<ScannedProduct>();
+                if(arr2.Count!=0)
+                {
+                    arr2.ElementAt(0).amount++;
+                }
+                if (arr2.Count == 0)
+                {
+                    context.scans.Add(scan);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -109,6 +118,15 @@ namespace DAL
 
                 context.SaveChanges();
             }
+        }
+        public string getImageUrlByProductId(int id)
+        {
+            string result = "";
+            using (var context = new ProductDB())
+            {
+                result = context.products.FirstOrDefault(value => value.num == id).imageUrl;
+            }
+            return result;
         }
     }
 }
