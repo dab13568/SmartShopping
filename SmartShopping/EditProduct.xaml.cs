@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
-
+using BE;
 
 namespace SmartShopping
 {
@@ -22,9 +22,11 @@ namespace SmartShopping
     /// </summary>
     public partial class EditProduct : Window
     {
-        public EditProduct()
+        ScannedProduct sp;
+        public EditProduct(ref ScannedProduct sp)
         {
             InitializeComponent();
+            this.sp = sp;
         }
 
         private void ImagePicker(object sender, RoutedEventArgs e)
@@ -64,5 +66,15 @@ namespace SmartShopping
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-    }
+
+        private void nameProductTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }  
+
+        private void ProductRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
+        {
+            sp.rating = ProductRatingBar.Value;
+        }
+    } 
 }

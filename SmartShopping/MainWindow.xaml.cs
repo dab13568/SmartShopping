@@ -23,6 +23,7 @@ using System.Threading;
 using System.ComponentModel;
 using SmartShopping.RecommendedShoppingUC;
 using System.IO;
+using SmartShopping.PurchasedTogetherUC;
 
 namespace SmartShopping
 {
@@ -44,6 +45,10 @@ namespace SmartShopping
                 //this.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/background.jpg")));
             }
         }
+
+       
+
+
         private UserControl _currnetUserControl;
 
         PurchaseHistoryV PH;
@@ -52,44 +57,6 @@ namespace SmartShopping
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
-
-            //DAL.GoogleDriveApi drive = new DAL.GoogleDriveApi();
-            drive.Connect();
-
-            //MessageBox.Show(reader.Decode(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\Images\Barcodes\qr_example.png"));
-
-
-            DAL.Barcode_reader reader = new DAL.Barcode_reader();
-            string[] files = Directory.GetFiles(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\Images\Barcodes\");
-            foreach (var file in files)
-            {
-               
-                //MessageBox.Show(file.Substring(69,file.IndexOf("at")-69));
-                DateTime dateTime = DateTime.Parse(file.Substring(69, file.IndexOf("at") - 69));
-                MessageBox.Show(dateTime.Date.ToString());
-                BL.BLimp bLimp = new BL.BLimp();
-                String text = reader.Decode(file);
-                
-                string[] str = text.Split(',');
-
-                bLimp.add_ScannedProduct(new ScannedProduct(Int32.Parse(str[0]), str[1], dateTime, Int32.Parse(str[2]), Int32.Parse(str[3])));
-                // using the method 
-               
-
-                //MessageBox.Show(file.IndexOf("at").ToString());
-                //MessageBox.Show(reader.Decode(file));
-            }
-
-
-
-            //DAL.Repository rep = new DAL.Repository();
-
-            //new Product(9, "shlomichai", @"kuku.url",Category.clothes);
-            //3,new Store(4,"yami",new Address("8","Meshorer",4,"PT")),DateTime.Now,10,10
-            //foreach (var p in rep.Get_all_Products())
-            //{
-            //    MessageBox.Show(p.ToString());
-            //}
         }
 
 
@@ -101,11 +68,7 @@ namespace SmartShopping
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
-            DAL.Repository rep = new DAL.Repository();
-            foreach (var s in rep.Get_all_Products())
-            {
-                MessageBox.Show(s.ToString());
-            }
+           
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
         }
@@ -130,7 +93,7 @@ namespace SmartShopping
             CurrnetUserControl = LP;
             closeMenuStoryBoard();
         }
-
+        
         internal void LoadPurchaseHistoryView()
         {
             PurchaseHistoryV PH = new PurchaseHistoryV();
@@ -138,6 +101,13 @@ namespace SmartShopping
             closeMenuStoryBoard();
         }
 
+
+        internal void LoadPurchaseTogetherView()
+        {
+            PurchasedTogetherUserControlV PT = new PurchasedTogetherUserControlV();
+            CurrnetUserControl = PT;
+            closeMenuStoryBoard();
+        }
         internal void LoadStatisticsView()
         {
             StatisticsUserControlV S = new StatisticsUserControlV();

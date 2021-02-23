@@ -41,7 +41,22 @@ namespace BL
 
         public string getImageUrlByProductId(int id)
         {
-            return new Repository.getImageUrlByProductId(id);
+            string result = "";
+            using (var context = new ProductDB())
+            {
+                result = context.products.FirstOrDefault(value => value.num == id).imageUrl;
+            }
+            return result;
+        }
+
+        public string getNameByProductId(int id)
+        {
+            string result = "";
+            using (var context = new ProductDB())
+            {
+                result = context.products.FirstOrDefault(value => value.num == id).name;
+            }
+            return result;
         }
 
     }

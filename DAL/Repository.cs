@@ -59,7 +59,7 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.scans.Find(scan.productNo);
+                var old = context.scans.Find(scan.Id);
                 context.scans.Remove(old);
 
                 context.SaveChanges();
@@ -78,6 +78,7 @@ namespace DAL
 
         public List<ScannedProduct> Get_all_Scans()
         {
+            //call drive
             List<ScannedProduct> result = new List<ScannedProduct>();
             using (var context = new ProductDB())
             {
@@ -95,10 +96,10 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.products.Find(product.productID);
+                var old = context.products.Find(product.num);
                 old.name = product.name;
                 old.imageUrl = product.imageUrl;
-
+                old.category = product.category;
                 context.SaveChanges();
             }
         }
@@ -111,8 +112,6 @@ namespace DAL
                 old.amount = scan.amount;
                 old.cost = scan.cost;
                 old.dateScan = scan.dateScan;
-               
-                //old.productName = scan.productName;
                 old.rating = scan.rating;
                 old.store = scan.store;
 
