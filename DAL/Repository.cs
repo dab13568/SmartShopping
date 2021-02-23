@@ -20,7 +20,7 @@ namespace DAL
             } 
         }
 
-        public void add_ScannedProduct(ScannedProduct scan )
+        public void add_ScannedProduct(ScannedProduct scan   )
         {
             using (var context = new ProductDB())
             {
