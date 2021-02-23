@@ -49,15 +49,7 @@ namespace BE
                 OnPropertyChanged("num");
             }
         }
-        //public int productID
-        //{
-        //    get { return _productID; }
-        //    set
-        //    {
-        //        _productID = value;
-        //        OnPropertyChanged("productID");
-        //    }
-        //}
+       
         public string name
         {
             get { return _name; }

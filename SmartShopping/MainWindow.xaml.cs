@@ -68,11 +68,7 @@ namespace SmartShopping
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
-            DAL.Repository rep = new DAL.Repository();
-            foreach (var s in rep.Get_all_Products())
-            {
-                MessageBox.Show(s.ToString());
-            }
+           
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
         }

@@ -120,7 +120,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Convertors\Base64ToBitmapImageConvertor.cs" />
+    <Compile Include="Convertors\indexInProductListToImage.cs" />
+    <Compile Include="Convertors\indexInProductListToName.cs" />
     <Compile Include="EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
     </Compile>

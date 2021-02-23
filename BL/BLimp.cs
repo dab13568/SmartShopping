@@ -39,7 +39,25 @@ namespace BL
             new Repository().add_ScannedProduct(scan);
         }
 
+        public string getImageUrlByProductId(int id)
+        {
+            string result = "";
+            using (var context = new ProductDB())
+            {
+                result = context.products.FirstOrDefault(value => value.num == id).imageUrl;
+            }
+            return result;
+        }
 
+        public string getNameByProductId(int id)
+        {
+            string result = "";
+            using (var context = new ProductDB())
+            {
+                result = context.products.FirstOrDefault(value => value.num == id).name;
+            }
+            return result;
+        }
 
     }
 }

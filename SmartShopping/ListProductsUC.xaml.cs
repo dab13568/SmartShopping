@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,15 @@ namespace SmartShopping
             InitializeComponent();
 
         }
-        
+
+        private void editProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Button button = sender as Button;
+            int index = ListViewProducts.Items.IndexOf(button.DataContext);
+            ScannedProduct s = new BLimp().Get_all_ScannedProducts()[index];
+            EditProduct ep = new EditProduct(ref s);
+            ep.Show();
+        }
     }
 }

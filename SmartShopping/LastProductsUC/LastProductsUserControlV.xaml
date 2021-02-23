@@ -14,10 +14,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     
-    <UserControl.Resources>
-        <convert:Base64ToBitmapImageConvertor x:Key="Base64ToBitmapImageConvertor"/>
-    </UserControl.Resources>
-
+   
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -27,7 +24,8 @@
             <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="DarkSlateGray" Content="השלמת קניות ואישור נתונים"/>
             <Label HorizontalAlignment="Center" FontSize="13" VerticalAlignment="Center" Foreground="DarkSlateGray" Content="כאן מופיעים כל המוצרים שרכשת ב24 שעות האחרונות. באפשרותך לתקן/להסיר/לערוך אותם. השינויים יישמרו אוטומטית במערכת."/>
         </StackPanel>
-        <SmartShopping:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>
+        <ProgressBar x:Name="progressBarListProduct" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
+        <SmartShopping:ListProductsUC Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FlowDirection="RightToLeft" Grid.Row="1" x:Name="lastProductListUC"/>
 
     </Grid>
 </UserControl>

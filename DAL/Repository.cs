@@ -70,7 +70,6 @@ namespace DAL
         public List<ScannedProduct> Get_all_Scans()
         {
             //call drive
-
             List<ScannedProduct> result = new List<ScannedProduct>();
             using (var context = new ProductDB())
             {

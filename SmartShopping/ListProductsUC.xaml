@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SmartShopping" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-              Width="1050"
+             xmlns:local="clr-namespace:SmartShopping" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:SmartShopping.Convertors"
+             Width="1050"
              mc:Ignorable="d" >
+
+    <UserControl.Resources>
+        <local1:indexInProductListToImage  x:Key="indexToImageConvertor" />
+        <local1:indexInProductListToName  x:Key="indexToNameConvertor" />
+    </UserControl.Resources>
 
     <ScrollViewer  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
         <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList}">
@@ -18,17 +23,27 @@
                                 <RowDefinition  Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding imageUrl}"   Height="140"   Width="196" Stretch="UniformToFill" />
-                           
+                            <!--<Image Source="{Binding imageUrl}"   Height="140"   Width="196" Stretch="UniformToFill" />-->
+                            <Image Source="{Binding productNo,  Converter={StaticResource indexToImageConvertor}}"
+                                                    Height="140"   Width="196" Stretch="UniformToFill" />
                             <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                                <TextBlock  FontWeight="Bold">
-      Cycling
-                                </TextBlock>
-                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding name}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" FontWeight="Bold" Text="{Binding productNo,  Converter={StaticResource indexToNameConvertor}}"/>
+                                    <materialDesign:RatingBar  Foreground="#000d33"  Margin="0 0 0 4" Grid.Column="1" HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating}"  IsReadOnly="True" />
+                                </Grid>
+                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=amount,StringFormat='קנית סך הכל {0} פריטים'}"  />
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=store,StringFormat='נקנה ב{0} '}"  />
+
                             </StackPanel>
                             <StackPanel  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal" Margin="8">
 
-                                <Button x:Name="editProductButton"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">
+                                <Button x:Name="editProductButton" Click="editProductButton_Click"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">
                                     <materialDesign:PackIcon Kind="Pencil" />
                                 </Button>
 
