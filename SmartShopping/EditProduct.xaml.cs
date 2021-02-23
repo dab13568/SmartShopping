@@ -22,11 +22,12 @@ namespace SmartShopping
     /// </summary>
     public partial class EditProduct : Window
     {
-        ScannedProduct sp;
+        public ScannedProduct sp;
         public EditProduct(ref ScannedProduct sp)
         {
             InitializeComponent();
             this.sp = sp;
+            this.DataContext = sp;
         }
 
         private void ImagePicker(object sender, RoutedEventArgs e)

@@ -129,9 +129,12 @@ namespace BE
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+        
 
-
-        protected void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        public void OnPropertyChanged(string propertyName) {
+            //if(PropertyChanged!=null)
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public void ClearPropertyChanged() { InvocationList = PropertyChanged.GetInvocationList(); PropertyChanged = null; }
         public void RestorePropertyChanged()
         {

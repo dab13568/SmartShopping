@@ -25,15 +25,31 @@ namespace SmartShopping
         public ListProductsUC()
         {
             InitializeComponent();
+            
+        }
 
+        public void SetDataContext(ListedVM<ScannedProduct> vm)
+        {
+            this.DataContext = vm;
+            if (vm.SourceList != null)
+                foreach (var product in vm.SourceList)
+                    product.PropertyChanged += (x, y) => { MessageBox.Show("Somthing changed"); };
         }
 
         private void editProductButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Button button = sender as Button;
             int index = ListViewProducts.Items.IndexOf(button.DataContext);
             ScannedProduct s = new BLimp().Get_all_ScannedProducts()[index];
+            MessageBox.Show(s.rating.ToString());
+            s.rating = 4;
+
+
+            DAL.Repository rep = new DAL.Repository();
+            rep.update_ScannedProduct(s);
+
+
             EditProduct ep = new EditProduct(ref s);
             ep.Show();
         }

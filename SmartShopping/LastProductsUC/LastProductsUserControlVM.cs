@@ -12,7 +12,7 @@ using System.Windows.Threading;
 
 namespace SmartShopping.LastProductsUC
 {
-    public class LastProductsUserControlVM : INotifyPropertyChanged
+    public class LastProductsUserControlVM : ListedVM<ScannedProduct>, INotifyPropertyChanged
     {
         private readonly BackgroundWorker worker = new BackgroundWorker();
 
@@ -42,7 +42,7 @@ namespace SmartShopping.LastProductsUC
         }
 
         private List<ScannedProduct> _SourceList;
-        public List<ScannedProduct> SourceList
+        public override List<ScannedProduct> SourceList
         {
             get { return _SourceList; }
             set
@@ -65,9 +65,12 @@ namespace SmartShopping.LastProductsUC
 
         }
 
-        public LastProductsUserControlVM(LastProductsUserControlV view)
+        private ListProductsUC uc;
+
+        public LastProductsUserControlVM(LastProductsUserControlV view, ListProductsUC uc)
         {
             this.View = view;
+            this.uc = uc;
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
 
@@ -86,6 +89,7 @@ namespace SmartShopping.LastProductsUC
         {
             VisibilityProgressBar = Visibility.Collapsed; 
             VisibilityListProducts = Visibility.Visible;
+            uc.SetDataContext(this);
         }
 
         // INotifyPropertyChanged implementaion

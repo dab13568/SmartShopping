@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,9 @@ namespace SmartShopping.LastProductsUC
         public LastProductsUserControlV()
         {
             InitializeComponent();
-            DataContext = new LastProductsUserControlVM(this);
+            ListedVM<ScannedProduct> vm = new LastProductsUserControlVM(this, lastProductListUC);
+            DataContext = vm;
+            lastProductListUC.SetDataContext(vm);
         }
 
          

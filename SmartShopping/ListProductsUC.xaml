@@ -13,7 +13,7 @@
     </UserControl.Resources>
 
     <ScrollViewer  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
-        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList}">
+        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList, Mode=TwoWay}">
             <ItemsControl.ItemTemplate>
                     <DataTemplate>
                     <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
@@ -34,7 +34,7 @@
                                     </Grid.ColumnDefinitions>
                                     
                                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" FontWeight="Bold" Text="{Binding productNo,  Converter={StaticResource indexToNameConvertor}}"/>
-                                    <materialDesign:RatingBar  Foreground="#000d33"  Margin="0 0 0 4" Grid.Column="1" HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating}"  IsReadOnly="True" />
+                                    <materialDesign:RatingBar  Foreground="#000d33"  Margin="0 0 0 4" Grid.Column="1" HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating, Mode=TwoWay}"  IsReadOnly="True" />
                                 </Grid>
                                  <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=amount,StringFormat='קנית סך הכל {0} פריטים'}"  />
