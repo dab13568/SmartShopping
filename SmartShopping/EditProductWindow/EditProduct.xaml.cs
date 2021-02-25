@@ -1,8 +1,12 @@
-﻿using System;
+﻿using BE;
+using BL;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,22 +16,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using BE;
 
-namespace SmartShopping
+namespace SmartShopping.EditProductWindow
 {
     /// <summary>
     /// Interaction logic for EditProduct.xaml
     /// </summary>
     public partial class EditProduct : Window
     {
-        public ScannedProduct sp;
-        public EditProduct(ref ScannedProduct sp)
+        ScannedProduct _sp;
+        EditProductVM VM;
+        public EditProduct( ref ScannedProduct  sp)
         {
+            _sp = sp;
             InitializeComponent();
-            this.sp = sp;
-            this.DataContext = this.sp;
+            VM= new EditProductVM(this, ref _sp);
+            this.DataContext = VM;
         }
 
         private void ImagePicker(object sender, RoutedEventArgs e)
@@ -58,26 +62,19 @@ namespace SmartShopping
             {
                 // Open document 
                 string fileName = dlg.FileName;
-                MessageBox.Show(fileName);  
+                MessageBox.Show(fileName);
+                VM.p.imageUrl = fileName;
             }
         }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        void closingWindow(object sender, CancelEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            MessageBox.Show(VM.p.category.ToString());
+            VM.closingWindow();
         }
 
-        private void nameProductTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }  
+        
 
-        private void ProductRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
-        {
-            sp.rating = ProductRatingBar.Value;
-            DAL.Repository rep = new DAL.Repository();
-            rep.update_ScannedProduct(sp);
-        }
-    } 
+
+    }
 }

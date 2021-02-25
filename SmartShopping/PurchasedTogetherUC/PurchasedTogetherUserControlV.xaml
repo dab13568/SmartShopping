@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-            xmlns:SmartShopping="clr-namespace:SmartShopping" xmlns:local="clr-namespace:SmartShopping.PurchasedTogetherUC"
+            xmlns:SmartShopping="clr-namespace:SmartShopping" xmlns:local="clr-namespace:SmartShopping.PurchasedTogetherUC" xmlns:SmartShopping.ListProductsUCMVVM="clr-namespace:SmartShopping.ListProductsUCMVVM"
              mc:Ignorable="d" 
               FlowDirection="RightToLeft"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -37,7 +37,7 @@
     Content="Orange" />
         </ComboBox>
         </StackPanel>
-                <SmartShopping:ListProductsUC Grid.Row="2"  FlowDirection="RightToLeft"  x:Name="listUC"/>
+        <SmartShopping.ListProductsUCMVVM:ListProductsUC Grid.Row="2"  FlowDirection="RightToLeft"  x:Name="listUC"/>
 
     </Grid>
 </UserControl>

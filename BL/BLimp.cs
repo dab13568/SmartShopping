@@ -12,17 +12,24 @@ namespace BL
 {
     public class BLimp
     {
-        public List<Product> GetLastProducts()
-        {
-            return new List<Product> { new Product(2,"fish",@"ssdasd",Category.food), new Product(7,"meat",@"eergdfg",Category.hygene) };
-            //return new Reposetory().Get_all_Products();
-        }
+        //public List<Product> GetLastProducts()
+        //{
+        //    //return new List<Product> { new Product(2,"fish",@"ssdasd",Category.food), new Product(7,"meat",@"eergdfg",Category.hygene) };
+        //    //return new Reposetory().Get_all_Products();
+        //}
 
         public void update_Product(Product product)
         {
+            if (product !=null)
             new Repository().update_Product(product); 
         }
-        
+
+        public void update_ScannedProduct(ScannedProduct sp)
+        {
+            if (sp != null)
+                new Repository().update_ScannedProduct(sp);
+        }
+
         public List<Product> Get_all_Products()
         {
             return new Repository().Get_all_Products();
@@ -62,5 +69,14 @@ namespace BL
             return result;
         }
 
+        public Product getProductByScannedProduct(ScannedProduct sp)
+        {
+            Product result;
+            using (var context = new ProductDB())
+            {
+                result = context.products.FirstOrDefault(value => value.num == sp.productNo);
+            }
+            return result;
+        }
     }
 }

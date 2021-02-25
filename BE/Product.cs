@@ -35,7 +35,10 @@ namespace BE
             get { return _category; }
             set
             {
-                _category = value;
+                if (value is int)
+                    _category = (Category)value;
+                else
+                    _category = value;
                 OnPropertyChanged("category");
             }
         }

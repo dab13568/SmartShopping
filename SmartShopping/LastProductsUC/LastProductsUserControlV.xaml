@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:SmartShopping="clr-namespace:SmartShopping" 
+ 
              xmlns:local="clr-namespace:SmartShopping.LastProductsUC"
              xmlns:convert="clr-namespace:SmartShopping.Convertors"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:SmartShopping="clr-namespace:SmartShopping.ListProductsUCMVVM"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
              FlowDirection="RightToLeft"

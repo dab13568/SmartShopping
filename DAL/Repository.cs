@@ -17,6 +17,8 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
+                if (product.imageUrl == "")
+                    product.imageUrl = "pack://application:,,,/Images/defaultImg.jpg";
                 context.products.Add(product);
                 context.SaveChanges();
             } 
@@ -98,8 +100,9 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.products.Find(product.num);
+                var old = context.products.Find(product.productID);
                 old.name = product.name;
+                old.num = product.num;
                 old.imageUrl = product.imageUrl;
                 old.category = product.category;
                 context.SaveChanges();
