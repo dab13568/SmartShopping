@@ -59,6 +59,16 @@ namespace BL
             return result;
         }
 
+        public string getCategoryStringByProductId(int id)
+        {
+            string result = "";
+            using (var context = new ProductDB())
+            {
+                result = context.products.FirstOrDefault(value => value.num == id).category.ToString();
+            }
+            return result;
+        }
+
         public string getNameByProductId(int id)
         {
             string result = "";

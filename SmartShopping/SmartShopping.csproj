@@ -121,6 +121,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Convertors\enumToIntConvertor.cs" />
+    <Compile Include="Convertors\indexInProductListToCategory.cs" />
     <Compile Include="Convertors\indexInProductListToImage.cs" />
     <Compile Include="Convertors\indexInProductListToName.cs" />
     <Compile Include="EditProductWindow\EditProduct.xaml.cs">

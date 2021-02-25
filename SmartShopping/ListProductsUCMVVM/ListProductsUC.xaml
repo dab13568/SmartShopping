@@ -8,6 +8,8 @@
              mc:Ignorable="d" >
 
     <UserControl.Resources>
+        <local1:indexInProductListToCategory  x:Key="indexInProductListToCategory" />
+
         <local1:indexInProductListToImage  x:Key="indexToImageConvertor" />
         <local1:indexInProductListToName  x:Key="indexToNameConvertor" />
     </UserControl.Resources>
@@ -35,7 +37,9 @@
                                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" FontWeight="Bold" Text="{Binding productNo, Mode=TwoWay, Converter={StaticResource indexToNameConvertor} ,UpdateSourceTrigger=PropertyChanged}"/>
                                     <materialDesign:RatingBar  Foreground="#000d33"  Margin="0 0 0 4" Grid.Column="1" HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" />
                                 </Grid>
-                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding productNo, Mode=TwoWay, Converter={StaticResource indexInProductListToCategory} ,UpdateSourceTrigger=PropertyChanged,StringFormat='קטגוריית המוצר היא {0} '}"  />
+
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=amount,StringFormat='קנית סך הכל {0} פריטים'}"  />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=store,StringFormat='נקנה ב{0} '}"  />
 
