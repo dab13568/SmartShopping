@@ -32,8 +32,9 @@
                 <TextBlock Text="חפש" />
             </Button>
         </Grid>
+        <ProgressBar x:Name="progressBarListProduct" Grid.Row="1" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
 
-        <SmartShopping1:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>
+        <SmartShopping1:ListProductsUC Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listHistoryUC"/>
 
         <!--<StackPanel Grid.Row="1" Margin="0 0 9 0" Orientation="Horizontal" FlowDirection="RightToLeft">
             <SmartShopping:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>

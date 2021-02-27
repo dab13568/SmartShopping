@@ -13,7 +13,10 @@ namespace SmartShopping.Convertors
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new BLimp().getImageUrlByProductId((int)value);
+            string img= new BLimp().getImageUrlByProductId((int)value);
+            if (img != null && img != "")
+                return img;
+            return "pack://application:,,,/Images/defaultImg.png";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

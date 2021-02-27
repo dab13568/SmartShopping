@@ -13,7 +13,10 @@ namespace SmartShopping.Convertors
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new BLimp().getCategoryStringByProductId((int)value);
+            string cat = new BLimp().getCategoryStringByProductId((int)value);
+            if (cat != null && cat != "")
+                return "היא "+cat ;
+            return "חסרה במערכת. ";
         }
     
 

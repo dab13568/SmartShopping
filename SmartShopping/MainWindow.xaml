@@ -260,10 +260,10 @@
 
 
                 <Button Panel.ZIndex="1000" x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
-                    <materialDesign:PackIcon Kind="Close" Foreground="Black"/>
+                    <materialDesign:PackIcon Kind="Close" />
                 </Button>
                 <Button Panel.ZIndex="1000" x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonOpenMenu_Click">
-                    <materialDesign:PackIcon Kind="Menu" Foreground="Black"/>
+                    <materialDesign:PackIcon Kind="Menu" />
                 </Button>
 
 

@@ -313,6 +313,12 @@
   <ItemGroup>
     <Resource Include="Images\icon_Shopping.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomePicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomePicture.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0-ci2405\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0-ci2405\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -51,7 +51,6 @@
                         <StackPanel Grid.Column="1" >
                             <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="דירוג המוצר:"/>
                             <materialDesign:RatingBar   x:Name="ProductRatingBar"  Value="{Binding sp.rating, Mode=TwoWay}"   />
-                            <!--<materialDesign:RatingBar  x:Name="BasicRatingBar"  Value="3"  ValueChanged="BasicRatingBar_ValueChanged" />-->
                         </StackPanel>
                     </Grid>
 
@@ -75,7 +74,7 @@
                 <StackPanel>
                     <Label HorizontalAlignment="Left" Margin="0 10 10 22" FontSize="15"  Foreground="DarkSlateGray" Content="בחר קטגוריה:"/>
 
-                    <ListBox  HorizontalAlignment="Center" SelectedIndex="{Binding p.category, Mode=TwoWay, Converter={StaticResource enumToIntConvertor} }" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox  HorizontalAlignment="Center" SelectedIndex="{Binding p.category, Mode=TwoWay, Converter={StaticResource enumToIntConvertor}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel IsItemsHost="True" />

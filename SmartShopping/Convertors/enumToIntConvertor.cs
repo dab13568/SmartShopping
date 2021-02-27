@@ -16,7 +16,7 @@ namespace SmartShopping.Convertors
             if (value != null)
                 
             return (int)value;
-            return 0;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
