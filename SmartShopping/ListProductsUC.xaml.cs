@@ -43,11 +43,7 @@ namespace SmartShopping
             int index = ListViewProducts.Items.IndexOf(button.DataContext);
             ScannedProduct s = new BLimp().Get_all_ScannedProducts()[index];
             MessageBox.Show(s.rating.ToString());
-            s.rating = 4;
-
-
-            DAL.Repository rep = new DAL.Repository();
-            rep.update_ScannedProduct(s);
+           
 
 
             EditProduct ep = new EditProduct(ref s);

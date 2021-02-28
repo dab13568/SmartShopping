@@ -135,13 +135,6 @@ namespace BE
             //if(PropertyChanged!=null)
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public void ClearPropertyChanged() { InvocationList = PropertyChanged.GetInvocationList(); PropertyChanged = null; }
-        public void RestorePropertyChanged()
-        {
-            foreach (var item in InvocationList)
-            {
-                PropertyChanged += (PropertyChangedEventHandler)item;
-            }
-        }
+       
     }
 }

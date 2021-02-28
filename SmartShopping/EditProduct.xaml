@@ -33,7 +33,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1" >
                             <Label HorizontalAlignment="Left" Margin="0 10 10 0" FontSize="15"  Foreground="DarkSlateGray" Content="דירוג המוצר:"/>
-                            <materialDesign:RatingBar ValueChanged="ProductRatingBar_ValueChanged"  x:Name="ProductRatingBar"  Value="{Binding rating}"   />
+                            <materialDesign:RatingBar ValueChanged="ProductRatingBar_ValueChanged"  x:Name="ProductRatingBar"  Value="{Binding rating, Mode=TwoWay}"   />
 
                             <!--<materialDesign:RatingBar  x:Name="BasicRatingBar"  Value="3"  ValueChanged="BasicRatingBar_ValueChanged" />-->
                         </StackPanel>
