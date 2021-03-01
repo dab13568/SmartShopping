@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
+                if (product.imageUrl == "")
+                    product.imageUrl = "pack://application:,,,/Images/defaultImg.jpg";
                 context.products.Add(product);
                 context.SaveChanges();
             } 
@@ -77,7 +80,7 @@ namespace DAL
             return result;
         }
 
-        public List<ScannedProduct> Get_all_Scans()
+        public ObservableCollection<ScannedProduct> Get_all_Scans()
         {
             //call drive
             List<ScannedProduct> result = new List<ScannedProduct>();
@@ -85,7 +88,7 @@ namespace DAL
             {
                 result = (from p in context.scans select p).ToList<ScannedProduct>();
             }
-            return result;
+            return new ObservableCollection<ScannedProduct>(result); ;
         }
 
         public List<Store> get_all_Stores()
@@ -97,8 +100,9 @@ namespace DAL
         {
             using (var context = new ProductDB())
             {
-                var old = context.products.Find(product.num);
+                var old = context.products.Find(product.productID);
                 old.name = product.name;
+                old.num = product.num;
                 old.imageUrl = product.imageUrl;
                 old.category = product.category;
                 context.SaveChanges();
@@ -128,78 +132,5 @@ namespace DAL
             }
             return result;
         }
-        public List<ScannedProduct> getCurrentDayScannedProducts(DateTime dt)
-        {
-            List<ScannedProduct> result;
-            //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
-            using (var context = new ProductDB())
-            {
-                result = (from p in context.scans where p.dateScan.ToShortDateString().Equals(dt.ToShortDateString()) select p).ToList<ScannedProduct>();
-            }
-            return result;
-        }
-        public List<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime dt2)
-        {
-            List<ScannedProduct> result;
-            //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
-            using (var context = new ProductDB())
-            {
-                result = (from p in context.scans where p.dateScan.Date>=dt1 && p.dateScan.Date<=dt2 select p).ToList<ScannedProduct>();
-            }
-            return result;
-
-        }
-        public int getOccurrencesOfNameInScansList(List<ScannedProduct> scans, string name)
-        {
-            int count=0;
-            using (var context = new ProductDB())
-            {
-                foreach(var scan in scans)
-                {
-
-                    if (name.Equals(context.products.FirstOrDefault(value => value.num == scan.productNo).name))
-                        count++;
-                }
-            }
-            return count;
-        }
-
-        public Dictionary<string, int> getProductsByDayStatistic(DateTime dt)
-        {
-            Dictionary<string, int> dict=new Dictionary<string, int>();
-            string name = "";
-            int count;
-            using (var context = new ProductDB())
-            {
-                foreach (var productNum in (from p in context.scans where p.dateScan.Date == dt.Date select p.productNo).ToList<int>())
-                {
-                    name = context.products.FirstOrDefault(value => value.num == productNum).name;
-                    count= getOccurrencesOfNameInScansList( (from p in context.scans where p.dateScan.Date == dt.Date select p).ToList<ScannedProduct>(),name);
-                    dict.Add(name, count);
-                }
-            }
-            return dict;
-        }
-
-
-        public Dictionary<string, int> getProductsBy2DaysStatistic(DateTime dt1,DateTime dt2)
-        {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-            string name = "";
-            int count;
-            using (var context = new ProductDB())
-            {
-                foreach (var productNum in getScannedProductBetween2Days(dt1,dt2))
-                {
-                    name = context.products.FirstOrDefault(value => value.num == productNum).name;
-                    count = getOccurrencesOfNameInScansList((from p in context.scans where p.dateScan.Date == dt.Date select p).ToList<ScannedProduct>(), name);
-                    dict.Add(name, count);
-                }
-            }
-            return dict;
-        }
-
-
     }
-
 }

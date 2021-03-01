@@ -120,11 +120,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Convertors\enumToIntConvertor.cs" />
+    <Compile Include="Convertors\indexInProductListToCategory.cs" />
     <Compile Include="Convertors\indexInProductListToImage.cs" />
     <Compile Include="Convertors\indexInProductListToName.cs" />
-    <Compile Include="EditProduct.xaml.cs">
+    <Compile Include="EditProductWindow\EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditProductWindow\EditProductCMD.cs" />
+    <Compile Include="EditProductWindow\EditProductVM.cs" />
     <Compile Include="HomeUserControlMVVM\HomeUserControlV.xaml.cs">
       <DependentUpon>HomeUserControlV.xaml</DependentUpon>
     </Compile>
@@ -133,10 +137,11 @@
       <DependentUpon>LastProductsUserControlV.xaml</DependentUpon>
     </Compile>
     <Compile Include="LastProductsUC\LastProductsUserControlVM.cs" />
-    <Compile Include="ListedVM.cs" />
-    <Compile Include="ListProductsUC.xaml.cs">
+    <Compile Include="ListProductsUCMVVM\ListProductsUC.xaml.cs">
       <DependentUpon>ListProductsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListProductsUCMVVM\ListProductsVM.cs" />
+    <Compile Include="ListProductsUCMVVM\LoadEditProductCMD.cs" />
     <Compile Include="MainWindowMVVM\LastProductsCMD.cs" />
     <Compile Include="MainWindowMVVM\LoadHomeCMD.cs" />
     <Compile Include="MainWindowMVVM\MainWindowVM.cs" />
@@ -174,7 +179,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditProduct.xaml">
+    <Page Include="EditProductWindow\EditProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,7 +191,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListProductsUC.xaml">
+    <Page Include="ListProductsUCMVVM\ListProductsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,6 +309,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\defaultImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_Shopping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomePicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomePicture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0-ci2405\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0-ci2405\build\MaterialDesignThemes.targets')" />

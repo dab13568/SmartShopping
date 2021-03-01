@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
 using System.Windows.Threading;
+using System.Collections.ObjectModel;
 
 namespace SmartShopping.LastProductsUC
 {
-    public class LastProductsUserControlVM : ListedVM<ScannedProduct>, INotifyPropertyChanged
+    public class LastProductsUserControlVM :  INotifyPropertyChanged
     {
         private readonly BackgroundWorker worker = new BackgroundWorker();
 
@@ -41,8 +42,8 @@ namespace SmartShopping.LastProductsUC
             }
         }
 
-        private List<ScannedProduct> _SourceList;
-        public override List<ScannedProduct> SourceList
+        private ObservableCollection<ScannedProduct> _SourceList;
+        public  ObservableCollection<ScannedProduct> SourceList
         {
             get { return _SourceList; }
             set
@@ -54,9 +55,7 @@ namespace SmartShopping.LastProductsUC
 
        
         public LastProductsUserControlV View;
-
-
-        public LastProductsUserControlVM(LastProductsUserControlV view, List<ScannedProduct> scannedProduct)
+        public LastProductsUserControlVM(LastProductsUserControlV view, ObservableCollection<ScannedProduct> scannedProduct)
         {
             this.View = view;
             worker.DoWork += worker_DoWork;
@@ -65,12 +64,10 @@ namespace SmartShopping.LastProductsUC
 
         }
 
-        private ListProductsUC uc;
 
-        public LastProductsUserControlVM(LastProductsUserControlV view, ListProductsUC uc)
+        public LastProductsUserControlVM(LastProductsUserControlV view)
         {
             this.View = view;
-            this.uc = uc;
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
 
@@ -89,7 +86,6 @@ namespace SmartShopping.LastProductsUC
         {
             VisibilityProgressBar = Visibility.Collapsed; 
             VisibilityListProducts = Visibility.Visible;
-            uc.SetDataContext(this);
         }
 
         // INotifyPropertyChanged implementaion

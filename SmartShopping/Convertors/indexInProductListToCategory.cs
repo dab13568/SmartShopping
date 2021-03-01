@@ -9,19 +9,20 @@ using System.Windows.Data;
 
 namespace SmartShopping.Convertors
 {
-    class indexInProductListToImage : IValueConverter
+    class indexInProductListToCategory : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string img= new BLimp().getImageUrlByProductId((int)value);
-            if (img != null && img != "")
-                return img;
-            return "pack://application:,,,/Images/defaultImg.png";
+            string cat = new BLimp().getCategoryStringByProductId((int)value);
+            if (cat != null && cat != "")
+                return "היא "+cat ;
+            return "חסרה במערכת. ";
         }
+    
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using BL;
+﻿using BE;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,19 +9,19 @@ using System.Windows.Data;
 
 namespace SmartShopping.Convertors
 {
-    class indexInProductListToImage : IValueConverter
+    public class enumToIntConvertor : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string img= new BLimp().getImageUrlByProductId((int)value);
-            if (img != null && img != "")
-                return img;
-            return "pack://application:,,,/Images/defaultImg.png";
+            if (value != null)
+                
+            return (int)value;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return null;
+            return (Category)value;
         }
     }
 }

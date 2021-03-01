@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:SmartShopping.PurchaseHistoryUC"
-             xmlns:SmartShopping="clr-namespace:SmartShopping" x:Class="SmartShopping.PurchaseHistoryUC.PurchaseHistoryV"
+             xmlns:SmartShopping="clr-namespace:SmartShopping" xmlns:SmartShopping1="clr-namespace:SmartShopping.ListProductsUCMVVM" x:Class="SmartShopping.PurchaseHistoryUC.PurchaseHistoryV"
             FlowDirection="RightToLeft"
              mc:Ignorable="d" 
              VerticalAlignment="Stretch"
@@ -32,8 +32,9 @@
                 <TextBlock Text="חפש" />
             </Button>
         </Grid>
+        <ProgressBar x:Name="progressBarListProduct" Grid.Row="1" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
 
-        <SmartShopping:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>
+        <SmartShopping1:ListProductsUC Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listHistoryUC"/>
 
         <!--<StackPanel Grid.Row="1" Margin="0 0 9 0" Orientation="Horizontal" FlowDirection="RightToLeft">
             <SmartShopping:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>

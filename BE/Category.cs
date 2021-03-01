@@ -8,10 +8,10 @@ namespace BE
 {
     public enum Category
     {
-        food,
-        drinks,
-        hygene,
-        clothes,
-        electronics
+        אוכל,
+        שתיה,
+        הגיינה,
+        ביגוד,
+        אלקטרוניקה
     }
 }

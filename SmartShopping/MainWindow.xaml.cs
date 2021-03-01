@@ -67,16 +67,17 @@ namespace SmartShopping
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-           
+        {    
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
+            
         }
 
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            
 
         }
 
@@ -84,6 +85,8 @@ namespace SmartShopping
         {
             HomeUserControlV Home = new HomeUserControlV();
             CurrnetUserControl = Home;
+            ButtonOpenMenu.Foreground = Brushes.White;
+            ButtonCloseMenu.Foreground = Brushes.White;
             closeMenuStoryBoard();
         }
 
@@ -91,6 +94,8 @@ namespace SmartShopping
         {
             LastProductsUserControlV LP = new LastProductsUserControlV();
             CurrnetUserControl = LP;
+            ButtonOpenMenu.Foreground = Brushes.Black;
+            ButtonCloseMenu.Foreground = Brushes.Black;
             closeMenuStoryBoard();
         }
         
@@ -98,6 +103,8 @@ namespace SmartShopping
         {
             PurchaseHistoryV PH = new PurchaseHistoryV();
             CurrnetUserControl = PH;
+            ButtonOpenMenu.Foreground = Brushes.Black;
+            ButtonCloseMenu.Foreground = Brushes.Black;
             closeMenuStoryBoard();
         }
 
@@ -106,12 +113,16 @@ namespace SmartShopping
         {
             PurchasedTogetherUserControlV PT = new PurchasedTogetherUserControlV();
             CurrnetUserControl = PT;
+            ButtonOpenMenu.Foreground = Brushes.Black;
+            ButtonCloseMenu.Foreground = Brushes.Black;
             closeMenuStoryBoard();
         }
         internal void LoadStatisticsView()
         {
             StatisticsUserControlV S = new StatisticsUserControlV();
             CurrnetUserControl = S;
+            ButtonOpenMenu.Foreground = Brushes.Black;
+            ButtonCloseMenu.Foreground = Brushes.Black;
             closeMenuStoryBoard();
         }
 
@@ -120,6 +131,8 @@ namespace SmartShopping
         {
             RecommendedShoppingUserControlV RS = new RecommendedShoppingUserControlV();
             CurrnetUserControl = RS;
+            ButtonOpenMenu.Foreground = Brushes.Black;
+            ButtonCloseMenu.Foreground = Brushes.Black;
             closeMenuStoryBoard();
         }
         public void closeMenuStoryBoard()

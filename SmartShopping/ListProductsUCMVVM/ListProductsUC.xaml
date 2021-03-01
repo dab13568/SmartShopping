@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SmartShopping.ListProductsUC"
+﻿<UserControl x:Class="SmartShopping.ListProductsUCMVVM.ListProductsUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,6 +8,8 @@
              mc:Ignorable="d" >
 
     <UserControl.Resources>
+        <local1:indexInProductListToCategory  x:Key="indexInProductListToCategory" />
+
         <local1:indexInProductListToImage  x:Key="indexToImageConvertor" />
         <local1:indexInProductListToName  x:Key="indexToNameConvertor" />
     </UserControl.Resources>
@@ -23,27 +25,26 @@
                                 <RowDefinition  Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <!--<Image Source="{Binding imageUrl}"   Height="140"   Width="196" Stretch="UniformToFill" />-->
                             <Image Source="{Binding productNo,  Converter={StaticResource indexToImageConvertor}}"
                                                     Height="140"   Width="196" Stretch="UniformToFill" />
                             <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" FontWeight="Bold" Text="{Binding productNo,  Converter={StaticResource indexToNameConvertor}}"/>
-                                    <materialDesign:RatingBar  Foreground="#000d33"  Margin="0 0 0 4" Grid.Column="1" HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating, Mode=TwoWay}"  IsReadOnly="True" />
-                                </Grid>
-                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
+                                <materialDesign:RatingBar  Foreground="#000d33"  HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" />
+
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  FontWeight="Bold" Text="{Binding productNo, Mode=TwoWay, Converter={StaticResource indexToNameConvertor} ,UpdateSourceTrigger=PropertyChanged}"/>
+
+                                
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding productNo, Mode=TwoWay, Converter={StaticResource indexInProductListToCategory} ,UpdateSourceTrigger=PropertyChanged,StringFormat='קטגוריית המוצר {0} '}"  />
+
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=amount,StringFormat='קנית סך הכל {0} פריטים'}"  />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=store,StringFormat='נקנה ב{0} '}"  />
 
                             </StackPanel>
                             <StackPanel  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal" Margin="8">
-
+                                
                                 <Button x:Name="editProductButton" Click="editProductButton_Click"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">
+
+                                    <!--<Button x:Name="editProductButton" Command="EditProductView" CommandParameter="{Binding Path=(ItemsControl.AlternationIndex)}"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">-->
                                     <materialDesign:PackIcon Kind="Pencil" />
                                 </Button>
 

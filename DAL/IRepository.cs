@@ -1,6 +1,7 @@
 ﻿using BE;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace DAL
 {
     interface IRepository
     {
-        List<ScannedProduct> Get_all_Scans();
+        ObservableCollection<ScannedProduct> Get_all_Scans();
         List<Product> Get_all_Products();
         List<Store> get_all_Stores();
 

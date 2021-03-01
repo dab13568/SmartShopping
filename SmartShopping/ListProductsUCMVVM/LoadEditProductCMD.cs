@@ -5,18 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SmartShopping.MainWindowMVVM
+namespace SmartShopping.ListProductsUCMVVM
 {
-    class LastProductsCMD : ICommand
+    class LoadEditProductCMD : ICommand
     {
+        private ListProductsVM VM;
 
-        private MainWindowVM VM;
-
-        public LastProductsCMD()
-        {
-        }
-
-        public LastProductsCMD(MainWindowVM VM)
+        public LoadEditProductCMD(ListProductsVM VM)
         {
             this.VM = VM;
         }
@@ -34,7 +29,8 @@ namespace SmartShopping.MainWindowMVVM
 
         public void Execute(object parameter)
         {
-            VM.LoadLastProductsView();
+            int index = (int)parameter;
+            VM.LoadEditProductView(index);
         }
     }
 }
