@@ -70,14 +70,14 @@ namespace DAL
             }
         }
 
-        public List<Product> Get_all_Products()
+        public ObservableCollection<Product> Get_all_Products()
         {
             List<Product> result = new List<Product>();
             using (var context = new ProductDB())
             {
                 result = (from p in context.products select p).ToList<Product>();
             }
-            return result;
+            return new ObservableCollection<Product>(result);
         }
 
         public ObservableCollection<ScannedProduct> Get_all_Scans()
@@ -88,10 +88,10 @@ namespace DAL
             {
                 result = (from p in context.scans select p).ToList<ScannedProduct>();
             }
-            return new ObservableCollection<ScannedProduct>(result); ;
+            return new ObservableCollection<ScannedProduct>(result) ;
         }
 
-        public List<Store> get_all_Stores()
+        public ObservableCollection<Store> get_all_Stores()
         {
             throw new NotImplementedException();
         }
@@ -132,5 +132,258 @@ namespace DAL
             }
             return result;
         }
+
+        public ObservableCollection<ScannedProduct> getCurrentDayScannedProducts(DateTime dt)
+        {
+            List<ScannedProduct> result;
+            //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
+            using (var context = new ProductDB())
+            {
+                result = (from p in context.scans where p.dateScan.ToShortDateString().Equals(dt.ToShortDateString()) select p).ToList<ScannedProduct>();
+            }
+            return new ObservableCollection<ScannedProduct>(result);
+        }
+        public ObservableCollection<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime dt2)
+        {
+            List<ScannedProduct> result;
+            //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
+            using (var context = new ProductDB())
+            {
+                result = (from p in context.scans where p.dateScan.Date >= dt1 && p.dateScan.Date <= dt2 select p).ToList<ScannedProduct>();
+            }
+            return new ObservableCollection<ScannedProduct>(result);
+
+        }
+        public int getOccurrencesOfNameInScansList(List<ScannedProduct> scans, string name)
+        {
+            int count = 0;
+            using (var context = new ProductDB())
+            {
+                foreach (var scan in scans)
+                {
+
+                    if (name.Equals(context.products.FirstOrDefault(value => value.num == scan.productNo).name))
+                        count++;
+                }
+            }
+            return count;
+        }
+
+        public Dictionary<string, int> getProductsByDayStatistic(DateTime dt)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            string name = "";
+            using (var context = new ProductDB())
+            {
+                foreach (var productNum in (from p in context.scans where p.dateScan.Date == dt.Date select p.productNo).ToList<int>())
+                {
+                    name = context.products.FirstOrDefault(value => value.num == productNum).name;
+                    if (!dict.ContainsKey(name))
+                        dict[name] = 0;
+                    dict[name]++;
+                }
+            }
+            return dict;
+        }
+
+        public Dictionary<string, int> getCategoryByDayStatistic(DateTime dt)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            string name = "";
+            using (var context = new ProductDB())
+            {
+                foreach (var productNum in (from p in context.scans where p.dateScan.Date == dt.Date select p.productNo).ToList<int>())
+                {
+                    name = context.products.FirstOrDefault(value => value.num == productNum).category.ToString();
+                    if (!dict.ContainsKey(name))
+                        dict[name] = 0;
+                    dict[name]++;
+                }
+            }
+            return dict;
+        }
+
+        public Dictionary<string, int> getStoresByDayStatistic(DateTime dt)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            using (var context = new ProductDB())
+            {
+                foreach (var product in (from p in context.scans where p.dateScan.Date == dt.Date select p).ToList<ScannedProduct>())
+                {
+                    //name = context.products.FirstOrDefault(value => value.num == productNum)..ToString();
+                    if (!dict.ContainsKey(product.store))
+                        dict[product.store] = 0;
+                    dict[product.store]++;
+                }
+            }
+            return dict;
+        }
+
+        public float getCostByDayStatistic(DateTime dt)
+        {
+            float cost=0;
+            using (var context = new ProductDB())
+            {
+                foreach (var product in (from p in context.scans where p.dateScan.Date == dt.Date select p).ToList<ScannedProduct>())
+                {
+                    cost += product.cost * product.amount;
+                }
+            }
+            return cost;
+        }
+
+
+        public Dictionary<string, int> getProductsBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            string name ;
+            
+            using (var context = new ProductDB())
+            {
+                foreach (var product in getScannedProductBetween2Days(dt1, dt2))
+                {
+                    
+                    name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+
+                    if (!dict.ContainsKey(name))
+                        dict[name] = 0;
+                    dict[name]++;
+                }
+            }
+            return dict;
+        }
+
+        public Dictionary<string, int> getCategoryBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            string name;
+
+            using (var context = new ProductDB())
+            {
+                foreach (var product in getScannedProductBetween2Days(dt1, dt2))
+                {
+
+                   name = context.products.FirstOrDefault(value => value.num == product.productNo).category.ToString();
+
+                    if (!dict.ContainsKey(name))
+                        dict[name] = 0;
+                    dict[name]++;
+                }
+            }
+            return dict;
+        }
+
+        public Dictionary<string, int> getStoresBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+
+            using (var context = new ProductDB())
+            {
+                foreach (var product in getScannedProductBetween2Days(dt1, dt2))
+                {
+
+                    //name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+
+                    if (!dict.ContainsKey(product.store))
+                        dict[product.store] = 0;
+                    dict[product.store]++;
+                }
+            }
+            return dict;
+        }
+
+
+        public float getCostBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        {
+            float cost = 0;
+            
+            using (var context = new ProductDB())
+            {
+                foreach (var product in getScannedProductBetween2Days(dt1, dt2))
+                {
+
+                    //name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+
+                    cost += product.cost * product.amount;
+                }
+            }
+            return cost;
+        }
+
+
+        public Dictionary<string, int> getProductsByMonthStatistic(DateTime dt)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            string name = "";
+
+            using (var context = new ProductDB())
+            {
+                
+                foreach (var product in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
+                {
+                    name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+                    if (!dict.ContainsKey(name))
+                        dict[name] = 0;
+                    dict[name]++;
+                }
+            }
+            return dict;
+        }
+        public Dictionary<string, int> getCategoryByMonthStatistic(DateTime dt)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            string name;
+
+            using (var context = new ProductDB())
+            {
+                foreach (var product in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
+                {
+
+                    name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+
+                    if (!dict.ContainsKey(name))
+                        dict[name] = 0;
+                    dict[name]++;
+                }
+            }
+            return dict;
+        }
+
+        public Dictionary<string, int> getStoresByMonthStatistic(DateTime dt)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+
+            using (var context = new ProductDB())
+            {
+                foreach (var product in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
+                {
+
+                    //name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+
+                    if (!dict.ContainsKey(product.store))
+                        dict[product.store] = 0;
+                    dict[product.store]++;
+                }
+            }
+            return dict;
+        }
+
+        public float getCostByMonthStatistic(DateTime dt)
+        {
+            float cost = 0;
+
+            using (var context = new ProductDB())
+            {
+                foreach (var product in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
+                {
+
+                    //name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+
+                    cost += product.cost * product.amount;
+                }
+            }
+            return cost;
+        }
+
     }
 }

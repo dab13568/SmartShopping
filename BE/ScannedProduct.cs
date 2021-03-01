@@ -13,12 +13,12 @@ namespace BE
         private int _productNo;
         private string _store;
         private DateTime _dateScan;
-        private float? _cost;
-        private int? _amount;
+        private float _cost;
+        private int _amount;
         private int? _rating;
         private Delegate[] InvocationList;
 
-        public ScannedProduct(int no,string store,DateTime time,float? cost,int? amount)
+        public ScannedProduct(int no,string store,DateTime time,float cost,int amount)
         { 
             this._store = store;
             this._dateScan = time;
@@ -58,7 +58,7 @@ namespace BE
             }
         }
 
-        public int? amount
+        public int amount
         {
             get { return _amount; }
             set { _amount = value;
@@ -112,7 +112,7 @@ namespace BE
                 OnPropertyChanged("dateScan");
             }
         }
-        public float? cost
+        public float cost
         {
             get { return _cost; }
             set

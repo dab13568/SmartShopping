@@ -12,12 +12,12 @@ namespace BL
 {
     public class BLimp
     {
-        //public List<Product> GetLastProducts()
-        //{
-        //    //return new List<Product> { new Product(2,"fish",@"ssdasd",Category.food), new Product(7,"meat",@"eergdfg",Category.hygene) };
-        //    //return new Reposetory().Get_all_Products();
-        //}
+        public Repository rep;
+        public BLimp()
+        {
+            rep = new Repository();
 
+        }
         public void update_Product(Product product)
         {
             if (product !=null)
@@ -30,23 +30,24 @@ namespace BL
                 new Repository().update_ScannedProduct(sp);
         }
 
-        public List<Product> Get_all_Products()
+        public ObservableCollection<Product> Get_all_Products()
         {
-            return new Repository().Get_all_Products();
+            return rep.Get_all_Products();
         }
         public ObservableCollection<ScannedProduct> Get_all_ScannedProducts()
         {
-            return new Repository().Get_all_Scans();
+            return rep.Get_all_Scans();
         }
 
         public  void add_product(Product product)
         {
-            new Repository().add_Product(product);
+             rep.add_Product(product);
+            
         }
 
         public void add_ScannedProduct(ScannedProduct scan)
         {
-            new Repository().add_ScannedProduct(scan);
+             rep.add_ScannedProduct(scan);
         }
 
         public string getImageUrlByProductId(int id)
@@ -87,6 +88,68 @@ namespace BL
                 result = context.products.FirstOrDefault(value => value.num == sp.productNo);
             }
             return result;
+        }
+
+        public ObservableCollection<ScannedProduct> getCurrentDayScannedProducts(DateTime dt)
+        {
+            return rep.getCurrentDayScannedProducts(dt);
+        }
+        public ObservableCollection<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime dt2)
+        {
+            return rep.getScannedProductBetween2Days(dt1, dt2);
+
+        }
+        public int getOccurrencesOfNameInScansList(List<ScannedProduct> scans, string name)
+        {
+            return rep.getOccurrencesOfNameInScansList(scans, name);
+        }
+        public Dictionary<string, int> getProductsByDayStatistic(DateTime dt)
+        {
+            return rep.getProductsByDayStatistic(dt);
+        }
+        public Dictionary<string,int> getProductsBy2DatesStatistic(DateTime dt1, DateTime dt2)
+        {
+            return rep.getProductsBy2DaysStatistic(dt1, dt2);
+        }
+        public Dictionary<string, int> getProductsByMonthStatistic(DateTime dt)
+        {
+            return rep.getProductsByMonthStatistic(dt);
+        }
+        public Dictionary<string, int> getCategoryByDayStatistic(DateTime dt)
+        {
+            return rep.getCategoryByDayStatistic(dt);
+        }
+        public Dictionary<string, int> getCategotyBy2DatesStatistic(DateTime dt1,DateTime dt2)
+        {
+            return rep.getCategoryBy2DaysStatistic(dt1,dt2);
+        }
+        public Dictionary<string, int> getCategotyByMonthStatistic(DateTime dt1)
+        {
+            return rep.getCategoryByMonthStatistic(dt1);
+        }
+        public Dictionary<string, int> getStoresByDayStatistic(DateTime dt1)
+        {
+            return rep.getStoresByDayStatistic(dt1);
+        }
+        public Dictionary<string, int> getStoresBy2DatesStatistic(DateTime dt1,DateTime dt2)
+        {
+            return rep.getStoresBy2DaysStatistic(dt1,dt2);
+        }
+        public Dictionary<string, int> getStoresByMonthStatistic(DateTime dt1)
+        {
+            return rep.getStoresByMonthStatistic(dt1);
+        }
+        public float getCostByDayStatistic(DateTime dt1)
+        {
+            return rep.getCostByDayStatistic(dt1);
+        }
+        public float getCostBy2DatesStatistic(DateTime dt1,DateTime dt2)
+        {
+            return rep.getCostBy2DaysStatistic(dt1,dt2);
+        }
+        public float getCostByMonthStatistic(DateTime dt1)
+        {
+            return rep.getCostByMonthStatistic(dt1);
         }
     }
 }

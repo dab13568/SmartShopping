@@ -11,8 +11,8 @@ namespace DAL
     interface IRepository
     {
         ObservableCollection<ScannedProduct> Get_all_Scans();
-        List<Product> Get_all_Products();
-        List<Store> get_all_Stores();
+        ObservableCollection<Product> Get_all_Products();
+        ObservableCollection<Store> get_all_Stores();
 
         void add_Product(Product product);
         void add_ScannedProduct(ScannedProduct scan);
