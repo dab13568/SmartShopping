@@ -30,9 +30,17 @@ namespace SmartShopping.HomeUserControlMVVM
     /// </summary>
     public partial class HomeUserControlV : UserControl
     {
+        HomeUserControlVM VM;
         public HomeUserControlV()
         {
             InitializeComponent();
+            VM= new HomeUserControlVM(this);
+            DataContext = VM;
+        }
+
+        private void UrlButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(VM.InfUrl);         
         }
     }
 }
