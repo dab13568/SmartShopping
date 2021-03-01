@@ -28,15 +28,11 @@
                 <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 40 0 0" FontWeight="Bold" Text="{Binding currentTime, Mode=TwoWay}" FontSize="50" Foreground="White"/>
 
                 <TextBlock TextWrapping="WrapWithOverflow"  HorizontalAlignment="Center" FontWeight="DemiBold"  Margin="0 30 0 30"   Text="{Binding currentHelloMessage}" FontSize="20" Foreground="White"/>
+                <Button x:Name="UrlButton" Width="100" Background="Transparent" Foreground="White" Content="מידע נוסף"   Style="{StaticResource MaterialDesignRaisedButton}" BorderBrush="white"  materialDesign:ButtonAssist.CornerRadius="10" Click="UrlButton_Click"/>
 
-                
+
             </StackPanel>
-            <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="0 0 0 70">
-            <TextBlock TextWrapping="WrapWithOverflow"  HorizontalAlignment="Center"   Margin="0 30 0 0"   Text="למידע נוסף לחץ כאן:" FontSize="17" Foreground="White"/>
-            <Button x:Name="UrlButton" Width="100" Background="White" Foreground="#00001a"   Style="{StaticResource MaterialDesignRaisedButton}"  materialDesign:ButtonAssist.CornerRadius="10" Click="UrlButton_Click">
-                <TextBlock Text="מידע נוסף" />
-            </Button>
-            </StackPanel>
+           
         </Grid>
         </Grid>
 
