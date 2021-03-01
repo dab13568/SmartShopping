@@ -259,16 +259,16 @@
                 </Grid.RowDefinitions>
 
 
-                <Button Panel.ZIndex="1000" x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
+                <Button FontWeight="bold" Panel.ZIndex="1000" x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
                     <materialDesign:PackIcon Kind="Close" />
                 </Button>
-                <Button Panel.ZIndex="1000" x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonOpenMenu_Click">
+                <Button FontWeight="bold" Panel.ZIndex="1000" x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonOpenMenu_Click">
                     <materialDesign:PackIcon Kind="Menu" />
                 </Button>
 
 
 
-                <Grid x:Name="GridLoadUC" Margin="5" Grid.Row="1" >
+                <Grid x:Name="GridLoadUC" Grid.Row="1" >
                     <Grid.Effect>
                         <DropShadowEffect BlurRadius="20" Color="WhiteSmoke" ShadowDepth="1"/>
                     </Grid.Effect>

@@ -129,9 +129,11 @@
     </Compile>
     <Compile Include="EditProductWindow\EditProductCMD.cs" />
     <Compile Include="EditProductWindow\EditProductVM.cs" />
+    <Compile Include="HomeUserControlMVVM\HomeUserControlM.cs" />
     <Compile Include="HomeUserControlMVVM\HomeUserControlV.xaml.cs">
       <DependentUpon>HomeUserControlV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HomeUserControlMVVM\HomeUserControlVM.cs" />
     <Compile Include="LastProductsUC\LastProductsUserControlM.cs" />
     <Compile Include="LastProductsUC\LastProductsUserControlV.xaml.cs">
       <DependentUpon>LastProductsUserControlV.xaml</DependentUpon>
