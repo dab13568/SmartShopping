@@ -90,9 +90,9 @@ namespace BL
             return result;
         }
 
-        public ObservableCollection<ScannedProduct> getCurrentDayScannedProducts(DateTime dt)
+        public ObservableCollection<ScannedProduct> getCurrentDayScannedProducts()
         {
-            return rep.getCurrentDayScannedProducts(dt);
+            return rep.getCurrentDayScannedProducts(DateTime.Now);
         }
         public ObservableCollection<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime dt2)
         {

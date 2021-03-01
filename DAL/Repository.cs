@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,12 +36,15 @@ namespace DAL
                     add_Product(new Product(scan.productNo, "", "", null));
 
                 }
-                var arr2 = (from p in context.scans where p.productNo == scan.productNo && p.store.Equals(scan.store) &&  (0==scan.dateScan.Date.CompareTo(p.dateScan.Date)) select p).ToList<ScannedProduct>();
-                if(arr2.Count!=0)
+                var temp = context.scans.FirstOrDefault(value => value.productNo == scan.productNo && value.store.Equals(scan.store) && (DbFunctions.TruncateTime(scan.dateScan) == (DbFunctions.TruncateTime(value.dateScan))));
+                if(temp!=null)
                 {
-                    arr2.ElementAt(0).amount++;
+                    temp.amount++;
+                    context.SaveChanges();
+
+                   // update_ScannedProduct(temp);
                 }
-                if (arr2.Count == 0)
+                if (temp == null)
                 {
                     context.scans.Add(scan);
                     context.SaveChanges();
