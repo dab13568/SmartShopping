@@ -170,6 +170,7 @@
       <DependentUpon>RecommendedShoppingUserControlV.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecommendedShoppingUC\RecommendedShoppingUserControlVM.cs" />
+    <Compile Include="StatisticsUC\changeViewStatisticsCMD.cs" />
     <Compile Include="StatisticsUC\StatisticsUserControlV.xaml.cs">
       <DependentUpon>StatisticsUserControlV.xaml</DependentUpon>
     </Compile>

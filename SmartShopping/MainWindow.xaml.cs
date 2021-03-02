@@ -56,7 +56,8 @@ namespace SmartShopping
         {
             InitializeComponent();
             this.DataContext = new MainWindowVM(this);
-            LoadHomeView();
+            LoadHomeView();  
+
         }
 
 

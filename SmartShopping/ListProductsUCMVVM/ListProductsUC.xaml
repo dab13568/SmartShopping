@@ -26,7 +26,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Image Source="{Binding productNo,  Converter={StaticResource indexToImageConvertor}}"
-                                                    Height="140"   Width="196" Stretch="UniformToFill" />
+                                                    Height="140"   Width="196" Stretch="Uniform" />
                             <StackPanel Grid.Row="1" Margin="8 24 8 0">
                                 <materialDesign:RatingBar  Foreground="#000d33"  HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" />
 
