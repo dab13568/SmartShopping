@@ -137,7 +137,7 @@ namespace DAL
             return result;
         }
         
-        public Dictionary<string,float> getStatisticData(int subject,int timePeriod,DateTime dt1, DateTime? dt2)
+        public Dictionary<string,float> getStatisticData(int subject,int timePeriod,DateTime? dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict=new Dictionary<string, float>();
             switch(subject)
@@ -160,7 +160,7 @@ namespace DAL
                         case 2:
                             dict = getCategoryBy2DaysStatistic(dt1, dt2); break;
                         case 1:
-                            dict = getCategoryByMonthStatistic(dt1); break;
+                            dict = getCategoryByMonthStatistic(dt1 ?? DateTime.MaxValue); break;
 
                     }
                     break;
@@ -168,11 +168,11 @@ namespace DAL
                     switch (timePeriod)
                     {
                         case 0:
-                            dict = getStoresByDayStatistic(dt1); break;
+                            dict = getStoresByDayStatistic(dt1 ?? DateTime.MaxValue); break;
                         case 2:
-                            dict = getStoresBy2DaysStatistic(dt1, dt2); break;
+                            dict = getStoresBy2DaysStatistic(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue); break;
                         case 1:
-                            dict = getStoresByMonthStatistic(dt1); break;
+                            dict = getStoresByMonthStatistic(dt1 ?? DateTime.MaxValue); break;
 
                     }
                     break;
@@ -182,7 +182,7 @@ namespace DAL
                         case 0:
                             dict = getCostByDayStatistic(); break;
                         case 2:
-                            dict = getCostBy2DaysStatistic(dt1, (DateTime)dt2); break;
+                            dict = getCostBy2DaysStatistic(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue); break;
                         case 1:
                             dict = getCostByMonthStatistic(); break;
 
@@ -206,7 +206,7 @@ namespace DAL
             }
             return new ObservableCollection<ScannedProduct>(result);
         }
-        public ObservableCollection<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime? dt2)
+        public ObservableCollection<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime dt2)
         {
             List<ScannedProduct> result;
             //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
@@ -232,7 +232,7 @@ namespace DAL
             return count;
         }
 
-        public Dictionary<string, float> getProductsByDayStatistic(DateTime dt)
+        public Dictionary<string, float> getProductsByDayStatistic(DateTime? dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             string name = "";
@@ -249,7 +249,7 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, float> getCategoryByDayStatistic(DateTime dt)
+        public Dictionary<string, float> getCategoryByDayStatistic(DateTime? dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             string name = "";
@@ -298,14 +298,14 @@ namespace DAL
         }
 
 
-        public Dictionary<string, float> getProductsBy2DaysStatistic(DateTime dt1, DateTime? dt2)
+        public Dictionary<string, float> getProductsBy2DaysStatistic(DateTime? dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             string name ;
             
             using (var context = new ProductDB())
             {
-                foreach (var product in getScannedProductBetween2Days(dt1, dt2))
+                foreach (var product in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
                 {
                     
                     name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
@@ -318,14 +318,14 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime dt1, DateTime? dt2)
+        public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime? dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             string name;
 
             using (var context = new ProductDB())
             {
-                foreach (var product in getScannedProductBetween2Days(dt1, dt2))
+                foreach (var product in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
                 {
 
                    name = context.products.FirstOrDefault(value => value.num == product.productNo).category.ToString();
@@ -338,7 +338,7 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, float> getStoresBy2DaysStatistic(DateTime dt1, DateTime? dt2)
+        public Dictionary<string, float> getStoresBy2DaysStatistic(DateTime dt1, DateTime dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
 
@@ -388,7 +388,7 @@ namespace DAL
         }
 
 
-        public Dictionary<string, float> getProductsByMonthStatistic(DateTime dt)
+        public Dictionary<string, float> getProductsByMonthStatistic(DateTime? dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             string name = "";
@@ -396,7 +396,7 @@ namespace DAL
             using (var context = new ProductDB())
             {
                 
-                foreach (var product in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
+                foreach (var product in (from p in context.scans where p.dateScan.Month == ((DateTime)dt).Month select p).ToList<ScannedProduct>())
                 {
                     name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
                     if (!dict.ContainsKey(name))

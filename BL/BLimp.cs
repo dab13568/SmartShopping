@@ -104,7 +104,7 @@ namespace BL
             return rep.getOccurrencesOfNameInScansList(scans, name);
         }
 
-        public Dictionary<string, float> getStatisticData(int subject, int timePeriod, DateTime dt1, DateTime? dt2=null)
+        public Dictionary<string, float> getStatisticData(int subject, int timePeriod, DateTime? dt1=null, DateTime? dt2=null)
         {
             return rep.getStatisticData(subject, timePeriod, dt1, dt2);
         }
