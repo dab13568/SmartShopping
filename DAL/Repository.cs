@@ -137,53 +137,53 @@ namespace DAL
             return result;
         }
         
-        public Dictionary<string,float> getStatisticData(string subject,string timePeriod,DateTime dt1, DateTime dt2)
+        public Dictionary<string,float> getStatisticData(int subject,int timePeriod,DateTime dt1, DateTime dt2)
         {
-            Dictionary<string, float> dict;
+            Dictionary<string, float> dict=new Dictionary<string, float>();
             switch(subject)
             {
-                case "product": switch(timePeriod)
+                case 0: switch(timePeriod)
                     {
-                        case "day":
+                        case 0:
                             dict= getProductsByDayStatistic(dt1); break;
-                        case "days":
+                        case 2:
                             dict= getProductsBy2DaysStatistic(dt1, dt2);break;
-                        case "month":
+                        case 1:
                             dict = getProductsByMonthStatistic(dt1); break;
                         
                     } break;
-                case "category":
+                case 1:
                     switch (timePeriod)
                     {
-                        case "day":
+                        case 0:
                             dict = getCategoryByDayStatistic(dt1); break;
-                        case "days":
+                        case 2:
                             dict = getCategoryBy2DaysStatistic(dt1, dt2); break;
-                        case "month":
+                        case 1:
                             dict = getCategoryByMonthStatistic(dt1); break;
 
                     }
                     break;
-                case "stores":
+                case 2:
                     switch (timePeriod)
                     {
-                        case "day":
+                        case 0:
                             dict = getStoresByDayStatistic(dt1); break;
-                        case "days":
+                        case 2:
                             dict = getStoresBy2DaysStatistic(dt1, dt2); break;
-                        case "month":
+                        case 1:
                             dict = getStoresByMonthStatistic(dt1); break;
 
                     }
                     break;
-                case "cost":
+                case 3:
                     switch (timePeriod)
                     {
-                        case "day":
+                        case 0:
                             dict = getCostByDayStatistic(); break;
-                        case "days":
+                        case 2:
                             dict = getCostBy2DaysStatistic(dt1, dt2); break;
-                        case "month":
+                        case 1:
                             dict = getCostByMonthStatistic(); break;
 
                     }
