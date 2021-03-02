@@ -103,6 +103,9 @@ namespace BL
         {
             return rep.getOccurrencesOfNameInScansList(scans, name);
         }
+
+         
+
         public Dictionary<string, int> getProductsByDayStatistic(DateTime dt)
         {
             return rep.getProductsByDayStatistic(dt);
@@ -139,17 +142,17 @@ namespace BL
         {
             return rep.getStoresByMonthStatistic(dt1);
         }
-        public float getCostByDayStatistic(DateTime dt1)
+        public Dictionary<string,float> getCostByDayStatistic()
         {
-            return rep.getCostByDayStatistic(dt1);
+            return rep.getCostByDayStatistic();
         }
-        public float getCostBy2DatesStatistic(DateTime dt1,DateTime dt2)
+        public Dictionary<string, float> getCostBy2DatesStatistic(DateTime dt1,DateTime dt2)
         {
             return rep.getCostBy2DaysStatistic(dt1,dt2);
         }
-        public float getCostByMonthStatistic(DateTime dt1)
+        public Dictionary<string,float> getCostByMonthStatistic()
         {
-            return rep.getCostByMonthStatistic(dt1);
+            return rep.getCostByMonthStatistic();
         }
     }
 }

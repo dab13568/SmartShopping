@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,29 +19,32 @@ namespace DAL
             using (var context = new ProductDB())
             {
                 if (product.imageUrl == "")
-                    product.imageUrl = "pack://application:,,,/Images/defaultImg.jpg";
+                    product.imageUrl = "pack://application:,,,/Images/defaultImg.png";
                 context.products.Add(product);
                 context.SaveChanges();
             } 
         }
 
-        public void add_ScannedProduct(ScannedProduct scan   )
+        public void add_ScannedProduct(ScannedProduct scan)
         {
             using (var context = new ProductDB())
             {
-               
-                var arr=(from p in context.products where p.num==scan.productNo select p ).ToList<Product>();
+
+                var arr = (from p in context.products where p.num == scan.productNo select p).ToList<Product>();
                 if (arr.Count == 0)
                 {
                     add_Product(new Product(scan.productNo, "", "", null));
 
                 }
-                var arr2 = (from p in context.scans where p.productNo == scan.productNo && p.store.Equals(scan.store) &&  (0==scan.dateScan.Date.CompareTo(p.dateScan.Date)) select p).ToList<ScannedProduct>();
-                if(arr2.Count!=0)
+                var temp = context.scans.FirstOrDefault(value => value.productNo == scan.productNo && value.store.Equals(scan.store) && (DbFunctions.TruncateTime(scan.dateScan) == (DbFunctions.TruncateTime(value.dateScan))));
+                if (temp != null)
                 {
-                    arr2.ElementAt(0).amount++;
+                    temp.amount++;
+                    context.SaveChanges();
+
+                    // update_ScannedProduct(temp);
                 }
-                if (arr2.Count == 0)
+                if (temp == null)
                 {
                     context.scans.Add(scan);
                     context.SaveChanges();
@@ -219,17 +223,20 @@ namespace DAL
             return dict;
         }
 
-        public float getCostByDayStatistic(DateTime dt)
+        public Dictionary<string,float> getCostByDayStatistic()
         {
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             float cost=0;
             using (var context = new ProductDB())
             {
-                foreach (var product in (from p in context.scans where p.dateScan.Date == dt.Date select p).ToList<ScannedProduct>())
+                foreach (var product in context.scans)
                 {
-                    cost += product.cost * product.amount;
+                    if (!dict.ContainsKey(product.dateScan.DayOfWeek.ToString()))
+                        dict[product.dateScan.DayOfWeek.ToString()] = 0;
+                    dict[product.dateScan.DayOfWeek.ToString()] += product.cost * product.amount;
                 }
             }
-            return cost;
+            return dict;
         }
 
 
@@ -293,21 +300,33 @@ namespace DAL
         }
 
 
-        public float getCostBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string,float> getCostBy2DaysStatistic(DateTime dt1, DateTime dt2)
         {
-            float cost = 0;
+            Dictionary<string, float> dict = new Dictionary<string, float>();
+            double period = Math.Floor((dt2-dt1).TotalDays/6);
             
             using (var context = new ProductDB())
             {
                 foreach (var product in getScannedProductBetween2Days(dt1, dt2))
                 {
-
+                    DateTime fixedDt = dt1.AddDays(Math.Ceiling(Math.Ceiling((product.dateScan - dt1).TotalDays / 6) * period));
+                    if(fixedDt>dt2)
+                    {
+                        if (!dict.ContainsKey(dt2.ToShortDateString()))
+                            dict[dt2.ToShortDateString()] = 0;
+                        dict[dt2.ToShortDateString()] += product.cost * product.amount;
+                    }
+                    else
+                    {
+                        if (!dict.ContainsKey(fixedDt.ToShortDateString()))
+                            dict[fixedDt.ToShortDateString()] = 0;
+                        dict[fixedDt.ToShortDateString()] += product.cost * product.amount;
+                    }
                     //name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
 
-                    cost += product.cost * product.amount;
                 }
             }
-            return cost;
+            return dict;
         }
 
 
@@ -368,21 +387,23 @@ namespace DAL
             return dict;
         }
 
-        public float getCostByMonthStatistic(DateTime dt)
+        public Dictionary<string,float> getCostByMonthStatistic()
         {
-            float cost = 0;
+            Dictionary<string, float> dict = new Dictionary<string, float>();
+            
+            
 
             using (var context = new ProductDB())
             {
-                foreach (var product in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
+                foreach (var product in context.scans)
                 {
 
-                    //name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
-
-                    cost += product.cost * product.amount;
+                    if (!dict.ContainsKey(product.dateScan.ToString("MMMM")))
+                        dict[product.dateScan.ToString("MMMM")] = 0;
+                    dict[product.dateScan.ToString("MMMM")] += product.cost * product.amount;
                 }
             }
-            return cost;
+            return dict;
         }
 
     }
