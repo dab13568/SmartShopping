@@ -136,6 +136,65 @@ namespace DAL
             }
             return result;
         }
+        
+        public Dictionary<string,float> getStatisticData(string subject,string timePeriod,DateTime dt1, DateTime dt2)
+        {
+            Dictionary<string, float> dict;
+            switch(subject)
+            {
+                case "product": switch(timePeriod)
+                    {
+                        case "day":
+                            dict= getProductsByDayStatistic(dt1); break;
+                        case "days":
+                            dict= getProductsBy2DaysStatistic(dt1, dt2);break;
+                        case "month":
+                            dict = getProductsByMonthStatistic(dt1); break;
+                        
+                    } break;
+                case "category":
+                    switch (timePeriod)
+                    {
+                        case "day":
+                            dict = getCategoryByDayStatistic(dt1); break;
+                        case "days":
+                            dict = getCategoryBy2DaysStatistic(dt1, dt2); break;
+                        case "month":
+                            dict = getCategoryByMonthStatistic(dt1); break;
+
+                    }
+                    break;
+                case "stores":
+                    switch (timePeriod)
+                    {
+                        case "day":
+                            dict = getStoresByDayStatistic(dt1); break;
+                        case "days":
+                            dict = getStoresBy2DaysStatistic(dt1, dt2); break;
+                        case "month":
+                            dict = getStoresByMonthStatistic(dt1); break;
+
+                    }
+                    break;
+                case "cost":
+                    switch (timePeriod)
+                    {
+                        case "day":
+                            dict = getCostByDayStatistic(); break;
+                        case "days":
+                            dict = getCostBy2DaysStatistic(dt1, dt2); break;
+                        case "month":
+                            dict = getCostByMonthStatistic(); break;
+
+                    }
+                    break;
+                    
+            }
+            return dict;
+        }
+
+
+
 
         public ObservableCollection<ScannedProduct> getCurrentDayScannedProducts(DateTime dt)
         {
@@ -153,7 +212,7 @@ namespace DAL
             //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
             using (var context = new ProductDB())
             {
-                result = (from p in context.scans where p.dateScan.Date >= dt1 && p.dateScan.Date <= dt2 select p).ToList<ScannedProduct>();
+                result = (from p in context.scans where DbFunctions.TruncateTime(p.dateScan) >= DbFunctions.TruncateTime(dt1) && DbFunctions.TruncateTime(p.dateScan) <= DbFunctions.TruncateTime(dt2)  select p).ToList<ScannedProduct>();
             }
             return new ObservableCollection<ScannedProduct>(result);
 
@@ -173,13 +232,13 @@ namespace DAL
             return count;
         }
 
-        public Dictionary<string, int> getProductsByDayStatistic(DateTime dt)
+        public Dictionary<string, float> getProductsByDayStatistic(DateTime dt)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             string name = "";
             using (var context = new ProductDB())
             {
-                foreach (var productNum in (from p in context.scans where p.dateScan.Date == dt.Date select p.productNo).ToList<int>())
+                foreach (var productNum in (from p in context.scans where DbFunctions.TruncateTime(p.dateScan)== DbFunctions.TruncateTime(dt) select p.productNo).ToList<int>())
                 {
                     name = context.products.FirstOrDefault(value => value.num == productNum).name;
                     if (!dict.ContainsKey(name))
@@ -190,13 +249,13 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, int> getCategoryByDayStatistic(DateTime dt)
+        public Dictionary<string, float> getCategoryByDayStatistic(DateTime dt)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             string name = "";
             using (var context = new ProductDB())
             {
-                foreach (var productNum in (from p in context.scans where p.dateScan.Date == dt.Date select p.productNo).ToList<int>())
+                foreach (var productNum in (from p in context.scans where DbFunctions.TruncateTime(p.dateScan) == DbFunctions.TruncateTime(dt) select p.productNo).ToList<int>())
                 {
                     name = context.products.FirstOrDefault(value => value.num == productNum).category.ToString();
                     if (!dict.ContainsKey(name))
@@ -207,12 +266,12 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, int> getStoresByDayStatistic(DateTime dt)
+        public Dictionary<string, float> getStoresByDayStatistic(DateTime dt)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             using (var context = new ProductDB())
             {
-                foreach (var product in (from p in context.scans where p.dateScan.Date == dt.Date select p).ToList<ScannedProduct>())
+                foreach (var product in (from p in context.scans where DbFunctions.TruncateTime(p.dateScan) == DbFunctions.TruncateTime(dt) select p).ToList<ScannedProduct>())
                 {
                     //name = context.products.FirstOrDefault(value => value.num == productNum)..ToString();
                     if (!dict.ContainsKey(product.store))
@@ -226,7 +285,6 @@ namespace DAL
         public Dictionary<string,float> getCostByDayStatistic()
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            float cost=0;
             using (var context = new ProductDB())
             {
                 foreach (var product in context.scans)
@@ -240,9 +298,9 @@ namespace DAL
         }
 
 
-        public Dictionary<string, int> getProductsBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string, float> getProductsBy2DaysStatistic(DateTime dt1, DateTime dt2)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             string name ;
             
             using (var context = new ProductDB())
@@ -260,9 +318,9 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, int> getCategoryBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime dt1, DateTime dt2)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             string name;
 
             using (var context = new ProductDB())
@@ -280,9 +338,9 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, int> getStoresBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string, float> getStoresBy2DaysStatistic(DateTime dt1, DateTime dt2)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
 
             using (var context = new ProductDB())
             {
@@ -330,9 +388,9 @@ namespace DAL
         }
 
 
-        public Dictionary<string, int> getProductsByMonthStatistic(DateTime dt)
+        public Dictionary<string, float> getProductsByMonthStatistic(DateTime dt)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             string name = "";
 
             using (var context = new ProductDB())
@@ -348,9 +406,9 @@ namespace DAL
             }
             return dict;
         }
-        public Dictionary<string, int> getCategoryByMonthStatistic(DateTime dt)
+        public Dictionary<string, float> getCategoryByMonthStatistic(DateTime dt)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
             string name;
 
             using (var context = new ProductDB())
@@ -368,9 +426,9 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, int> getStoresByMonthStatistic(DateTime dt)
+        public Dictionary<string, float> getStoresByMonthStatistic(DateTime dt)
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, float> dict = new Dictionary<string, float>();
 
             using (var context = new ProductDB())
             {

@@ -106,39 +106,39 @@ namespace BL
 
          
 
-        public Dictionary<string, int> getProductsByDayStatistic(DateTime dt)
+        public Dictionary<string, float> getProductsByDayStatistic(DateTime dt)
         {
             return rep.getProductsByDayStatistic(dt);
         }
-        public Dictionary<string,int> getProductsBy2DatesStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string,float> getProductsBy2DatesStatistic(DateTime dt1, DateTime dt2)
         {
             return rep.getProductsBy2DaysStatistic(dt1, dt2);
         }
-        public Dictionary<string, int> getProductsByMonthStatistic(DateTime dt)
+        public Dictionary<string, float> getProductsByMonthStatistic(DateTime dt)
         {
             return rep.getProductsByMonthStatistic(dt);
         }
-        public Dictionary<string, int> getCategoryByDayStatistic(DateTime dt)
+        public Dictionary<string, float> getCategoryByDayStatistic(DateTime dt)
         {
             return rep.getCategoryByDayStatistic(dt);
         }
-        public Dictionary<string, int> getCategotyBy2DatesStatistic(DateTime dt1,DateTime dt2)
+        public Dictionary<string, float> getCategotyBy2DatesStatistic(DateTime dt1,DateTime dt2)
         {
             return rep.getCategoryBy2DaysStatistic(dt1,dt2);
         }
-        public Dictionary<string, int> getCategotyByMonthStatistic(DateTime dt1)
+        public Dictionary<string, float> getCategotyByMonthStatistic(DateTime dt1)
         {
             return rep.getCategoryByMonthStatistic(dt1);
         }
-        public Dictionary<string, int> getStoresByDayStatistic(DateTime dt1)
+        public Dictionary<string, float> getStoresByDayStatistic(DateTime dt1)
         {
             return rep.getStoresByDayStatistic(dt1);
         }
-        public Dictionary<string, int> getStoresBy2DatesStatistic(DateTime dt1,DateTime dt2)
+        public Dictionary<string, float> getStoresBy2DatesStatistic(DateTime dt1,DateTime dt2)
         {
             return rep.getStoresBy2DaysStatistic(dt1,dt2);
         }
-        public Dictionary<string, int> getStoresByMonthStatistic(DateTime dt1)
+        public Dictionary<string, float> getStoresByMonthStatistic(DateTime dt1)
         {
             return rep.getStoresByMonthStatistic(dt1);
         }
