@@ -19,7 +19,7 @@ namespace DAL
             using (var context = new ProductDB())
             {
                 if (product.imageUrl == "")
-                    product.imageUrl = "pack://application:,,,/Images/defaultImg.jpg";
+                    product.imageUrl = "pack://application:,,,/Images/defaultImg.png";
                 context.products.Add(product);
                 context.SaveChanges();
             } 
