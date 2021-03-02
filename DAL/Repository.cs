@@ -235,15 +235,15 @@ namespace DAL
         public Dictionary<string, float> getProductsByDayStatistic(DateTime? dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            string name = "";
+            //string name = "";
             using (var context = new ProductDB())
             {
-                foreach (var productNum in (from p in context.scans where DbFunctions.TruncateTime(p.dateScan)== DbFunctions.TruncateTime(dt) select p.productNo).ToList<int>())
+                foreach (var productScan in (from p in context.scans where DbFunctions.TruncateTime(p.dateScan)== DbFunctions.TruncateTime(dt) select p).ToList<ScannedProduct>())
                 {
-                    name = context.products.FirstOrDefault(value => value.num == productNum).name;
-                    if (!dict.ContainsKey(name))
-                        dict[name] = 0;
-                    dict[name]++;
+                    var product = context.products.FirstOrDefault(value => value.num ==productScan.productNo );
+                    if (!dict.ContainsKey(product.name))
+                        dict[product.name] = 0;
+                    dict[product.name] += productScan.amount;
                 }
             }
             return dict;
@@ -252,15 +252,15 @@ namespace DAL
         public Dictionary<string, float> getCategoryByDayStatistic(DateTime? dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            string name = "";
+            //string name = "";
             using (var context = new ProductDB())
             {
-                foreach (var productNum in (from p in context.scans where DbFunctions.TruncateTime(p.dateScan) == DbFunctions.TruncateTime(dt) select p.productNo).ToList<int>())
+                foreach (var productScan in (from p in context.scans where DbFunctions.TruncateTime(p.dateScan) == DbFunctions.TruncateTime(dt) select p).ToList<ScannedProduct>())
                 {
-                    name = context.products.FirstOrDefault(value => value.num == productNum).category.ToString();
-                    if (!dict.ContainsKey(name))
-                        dict[name] = 0;
-                    dict[name]++;
+                    var product= context.products.FirstOrDefault(value => value.num == productScan.productNo);
+                    if (!dict.ContainsKey(product.category.ToString()))
+                        dict[product.category.ToString()] = 0;
+                    dict[product.category.ToString()]+=productScan.amount;
                 }
             }
             return dict;
@@ -276,7 +276,7 @@ namespace DAL
                     //name = context.products.FirstOrDefault(value => value.num == productNum)..ToString();
                     if (!dict.ContainsKey(product.store))
                         dict[product.store] = 0;
-                    dict[product.store]++;
+                    dict[product.store]+=product.amount;
                 }
             }
             return dict;
@@ -301,18 +301,18 @@ namespace DAL
         public Dictionary<string, float> getProductsBy2DaysStatistic(DateTime? dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            string name ;
+            //string name ;
             
             using (var context = new ProductDB())
             {
-                foreach (var product in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
+                foreach (var productScan in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
                 {
                     
-                    name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+                    var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
 
-                    if (!dict.ContainsKey(name))
-                        dict[name] = 0;
-                    dict[name]++;
+                    if (!dict.ContainsKey(product.name))
+                        dict[product.name] = 0;
+                    dict[product.name]+=productScan.amount;
                 }
             }
             return dict;
@@ -321,18 +321,18 @@ namespace DAL
         public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime? dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            string name;
+            //string name;
 
             using (var context = new ProductDB())
             {
-                foreach (var product in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
+                foreach (var productScan in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
                 {
 
-                   name = context.products.FirstOrDefault(value => value.num == product.productNo).category.ToString();
+                    var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
 
-                    if (!dict.ContainsKey(name))
-                        dict[name] = 0;
-                    dict[name]++;
+                    if (!dict.ContainsKey(product.category.ToString()))
+                        dict[product.category.ToString()] = 0;
+                    dict[product.category.ToString()]+= productScan.amount;
                 }
             }
             return dict;
@@ -351,7 +351,7 @@ namespace DAL
 
                     if (!dict.ContainsKey(product.store))
                         dict[product.store] = 0;
-                    dict[product.store]++;
+                    dict[product.store]+=product.amount;
                 }
             }
             return dict;
@@ -391,17 +391,16 @@ namespace DAL
         public Dictionary<string, float> getProductsByMonthStatistic(DateTime? dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            string name = "";
 
             using (var context = new ProductDB())
             {
                 
-                foreach (var product in (from p in context.scans where p.dateScan.Month == ((DateTime)dt).Month select p).ToList<ScannedProduct>())
+                foreach (var productScan in (from p in context.scans where p.dateScan.Month == ((DateTime)dt).Month select p).ToList<ScannedProduct>())
                 {
-                    name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
-                    if (!dict.ContainsKey(name))
-                        dict[name] = 0;
-                    dict[name]++;
+                    var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
+                    if (!dict.ContainsKey(product.name))
+                        dict[product.name] = 0;
+                    dict[product.name]+=productScan.amount;
                 }
             }
             return dict;
@@ -409,18 +408,17 @@ namespace DAL
         public Dictionary<string, float> getCategoryByMonthStatistic(DateTime dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            string name;
 
             using (var context = new ProductDB())
             {
-                foreach (var product in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
+                foreach (var productScan in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
                 {
 
-                    name = context.products.FirstOrDefault(value => value.num == product.productNo).name;
+                    var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
 
-                    if (!dict.ContainsKey(name))
-                        dict[name] = 0;
-                    dict[name]++;
+                    if (!dict.ContainsKey(product.name))
+                        dict[product.name] = 0;
+                    dict[product.name]+=productScan.amount;
                 }
             }
             return dict;
@@ -439,7 +437,7 @@ namespace DAL
 
                     if (!dict.ContainsKey(product.store))
                         dict[product.store] = 0;
-                    dict[product.store]++;
+                    dict[product.store]+=product.amount;
                 }
             }
             return dict;
