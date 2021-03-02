@@ -137,7 +137,7 @@ namespace DAL
             return result;
         }
         
-        public Dictionary<string,float> getStatisticData(int subject,int timePeriod,DateTime dt1, DateTime dt2)
+        public Dictionary<string,float> getStatisticData(int subject,int timePeriod,DateTime dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict=new Dictionary<string, float>();
             switch(subject)
@@ -182,7 +182,7 @@ namespace DAL
                         case 0:
                             dict = getCostByDayStatistic(); break;
                         case 2:
-                            dict = getCostBy2DaysStatistic(dt1, dt2); break;
+                            dict = getCostBy2DaysStatistic(dt1, (DateTime)dt2); break;
                         case 1:
                             dict = getCostByMonthStatistic(); break;
 
@@ -206,7 +206,7 @@ namespace DAL
             }
             return new ObservableCollection<ScannedProduct>(result);
         }
-        public ObservableCollection<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime dt2)
+        public ObservableCollection<ScannedProduct> getScannedProductBetween2Days(DateTime dt1, DateTime? dt2)
         {
             List<ScannedProduct> result;
             //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
@@ -298,7 +298,7 @@ namespace DAL
         }
 
 
-        public Dictionary<string, float> getProductsBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string, float> getProductsBy2DaysStatistic(DateTime dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             string name ;
@@ -318,7 +318,7 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             string name;
@@ -338,7 +338,7 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, float> getStoresBy2DaysStatistic(DateTime dt1, DateTime dt2)
+        public Dictionary<string, float> getStoresBy2DaysStatistic(DateTime dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
 
