@@ -19,38 +19,29 @@
 
         <StackPanel Background="#f1edf5" Grid.Column="0" >
             <TextBlock Margin="0 60 0 6" Text="אני רוצה לראות סטטיסטיקה של:" FontSize="12">
-                <TextBlock.BitmapEffect>
-                    <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="3" Opacity=".5" Softness="9" />
-                </TextBlock.BitmapEffect> 
             </TextBlock>
 
-            <StackPanel VerticalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="4">
+            <StackPanel VerticalAlignment="Center" Background="White" Orientation="Horizontal" Margin="4">
                 <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" IsChecked="True" Content="מוצר" />
                 <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  IsChecked="False" Content="קטגוריה" />
                 <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="חנות" />
                 <RadioButton   Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="עלות" />
             </StackPanel>
-                
+
 
             <TextBlock Margin="0 40 0 6" Text="לפי:" FontSize="12">
-                <TextBlock.BitmapEffect>
-                    <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="3" Opacity=".5" Softness="9" />
-                </TextBlock.BitmapEffect>
             </TextBlock>
 
-            <StackPanel VerticalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="4">
+            <StackPanel VerticalAlignment="Center" Background="White" Orientation="Horizontal" Margin="4">
                 <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" IsChecked="True" Content="יום" />
                 <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  IsChecked="False" Content="שבוע" />
                 <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="חודש" />
             </StackPanel>
 
-            <TextBlock Margin="0 40 0 6" Text="סוג דיאגרמה" FontSize="12">
-                <TextBlock.BitmapEffect>
-                    <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="3" Opacity=".5" Softness="9" />
-                </TextBlock.BitmapEffect>
+            <TextBlock Margin="0 40 0 6" Text="סוג דיאגרמה:" FontSize="12" HorizontalAlignment="Right" Width="355">
             </TextBlock>
 
-            <StackPanel VerticalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="4">
+            <StackPanel VerticalAlignment="Center" Background="White" Orientation="Horizontal" Margin="4">
                 <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" IsChecked="True" Content="מקלות" />
                 <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  IsChecked="False" Content="עוגה" />
                 <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="גרף" />

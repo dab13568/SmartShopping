@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,20 @@ namespace SmartShopping.StatisticsUC
     {
         public StatisticsUserControlV View;
 
+        private string _topic;
+        private string _time;
+        private string _type;
+        public string topic
+        { 
+            get { return _topic; }
+            set
+            {
+                _topic = value; 
+
+            }
+        }
+        public string time { get { return _time; } set { _time = value; } }  
+        public string type { get { return _type; } set { _type = value; } }
         public StatisticsUserControlVM(StatisticsUserControlV view)
         {
             this.View = view;
@@ -17,6 +32,8 @@ namespace SmartShopping.StatisticsUC
             AddSlice("watermelon", 3);
             AddSlice("orange", 4);
         }
+
+        public SeriesCollection ChartData { get; }
 
         private Dictionary<string, double> _slice = new Dictionary<string, double>();
 
@@ -29,6 +46,11 @@ namespace SmartShopping.StatisticsUC
         public void AddSlice(string slicename, double slicevalue)
         {
             slice.Add(slicename, slicevalue);
+        }
+
+        public void changeView()
+        {
+
         }
     }
 }

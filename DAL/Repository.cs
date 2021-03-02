@@ -143,7 +143,7 @@ namespace DAL
             //value.dateScan.ToShortDateString().Equals(dt.ToShortDateString())
             using (var context = new ProductDB())
             {
-                result = (from p in context.scans where p.dateScan.ToShortDateString().Equals(dt.ToShortDateString()) select p).ToList<ScannedProduct>();
+                result = (from p in context.scans where DbFunctions.TruncateTime(p.dateScan)==DbFunctions.TruncateTime(dt) select p).ToList<ScannedProduct>();
             }
             return new ObservableCollection<ScannedProduct>(result);
         }
