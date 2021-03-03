@@ -18,7 +18,7 @@ namespace BE
         private int? _rating;
         private Delegate[] InvocationList;
 
-        public ScannedProduct(int no,string store,DateTime time,float cost,int amount)
+        public ScannedProduct(int no,string store,DateTime time,float cost,int amount=1)
         { 
             this._store = store;
             this._dateScan = time;

@@ -145,9 +145,9 @@ namespace BL
         {
             return rep.getStoresByMonthStatistic(dt1);
         }
-        public Dictionary<string,float> getCostByDayStatistic()
+        public Dictionary<string,float> getCostByDayStatistic(DateTime dt1)
         {
-            return rep.getCostByDayStatistic();
+            return rep.getCostByDayStatistic( dt1);
         }
         public Dictionary<string, float> getCostBy2DatesStatistic(DateTime dt1,DateTime dt2)
         {

@@ -160,7 +160,7 @@ namespace DAL
                         case 2:
                             dict = getCategoryBy2DaysStatistic(dt1, dt2); break;
                         case 1:
-                            dict = getCategoryByMonthStatistic(dt1 ?? DateTime.MaxValue); break;
+                            dict = getCategoryByMonthStatistic(dt1 ?? DateTime.Now); break;
 
                     }
                     break;
@@ -168,11 +168,11 @@ namespace DAL
                     switch (timePeriod)
                     {
                         case 0:
-                            dict = getStoresByDayStatistic(dt1 ?? DateTime.MaxValue); break;
+                            dict = getStoresByDayStatistic(dt1 ?? DateTime.Now); break;
                         case 2:
-                            dict = getStoresBy2DaysStatistic(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue); break;
+                            dict = getStoresBy2DaysStatistic(dt1 ?? DateTime.Now, dt2 ?? DateTime.Now); break;
                         case 1:
-                            dict = getStoresByMonthStatistic(dt1 ?? DateTime.MaxValue); break;
+                            dict = getStoresByMonthStatistic(dt1 ?? DateTime.Now); break;
 
                     }
                     break;
@@ -180,9 +180,9 @@ namespace DAL
                     switch (timePeriod)
                     {
                         case 0:
-                            dict = getCostByDayStatistic(); break;
+                            dict = getCostByDayStatistic(dt1 ?? DateTime.Now); break;
                         case 2:
-                            dict = getCostBy2DaysStatistic(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue); break;
+                            dict = getCostBy2DaysStatistic(dt1 ?? DateTime.Now, dt2 ?? DateTime.Now); break;
                         case 1:
                             dict = getCostByMonthStatistic(); break;
 
@@ -282,21 +282,39 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string,float> getCostByDayStatistic()
+        //public Dictionary<string,float> getCostByDayStatistic()
+        //{
+        //    Dictionary<string, float> dict = new Dictionary<string, float>();
+        //    using (var context = new ProductDB())
+        //    {
+
+        //        foreach (var product in context.scans)
+        //        {
+        //            if (!dict.ContainsKey(product.dateScan.DayOfWeek.ToString()))
+        //                dict[product.dateScan.DayOfWeek.ToString()] = 0;
+        //            dict[product.dateScan.DayOfWeek.ToString()] += product.cost * product.amount;
+        //        }
+        //    }
+        //    return dict;
+        //}
+        public Dictionary<string, float> getCostByDayStatistic(DateTime dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
             using (var context = new ProductDB())
             {
+
                 foreach (var product in context.scans)
                 {
-                    if (!dict.ContainsKey(product.dateScan.DayOfWeek.ToString()))
-                        dict[product.dateScan.DayOfWeek.ToString()] = 0;
-                    dict[product.dateScan.DayOfWeek.ToString()] += product.cost * product.amount;
+                    if (DbFunctions.TruncateTime(product.dateScan) == DbFunctions.TruncateTime(dt))
+                    {
+                        if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek)+","+ DbFunctions.TruncateTime(dt)))
+                            dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + DbFunctions.TruncateTime(dt)] = 0;
+                        dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + DbFunctions.TruncateTime(dt)] += product.cost * product.amount;
+                    }
                 }
             }
             return dict;
         }
-
 
         public Dictionary<string, float> getProductsBy2DaysStatistic(DateTime? dt1, DateTime? dt2)
         {
@@ -305,7 +323,7 @@ namespace DAL
             
             using (var context = new ProductDB())
             {
-                foreach (var productScan in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
+                foreach (var productScan in getScannedProductBetween2Days(dt1 ?? DateTime.Now, dt2 ?? DateTime.Now))
                 {
                     
                     var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
@@ -325,7 +343,7 @@ namespace DAL
 
             using (var context = new ProductDB())
             {
-                foreach (var productScan in getScannedProductBetween2Days(dt1 ?? DateTime.MaxValue, dt2 ?? DateTime.MaxValue))
+                foreach (var productScan in getScannedProductBetween2Days(dt1 ?? DateTime.Now, dt2 ?? DateTime.Now))
                 {
 
                     var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
