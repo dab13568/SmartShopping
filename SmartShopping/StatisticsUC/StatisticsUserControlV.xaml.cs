@@ -27,23 +27,23 @@ namespace SmartShopping.StatisticsUC
         {
             InitializeComponent();
 
-            Func<ChartPoint, string> labelPoint = chartPoint =>
-                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+            //Func<ChartPoint, string> labelPoint = chartPoint =>
+            //    string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 
-            foreach (var n in (new StatisticsUserControlVM(this)).slice)
-            {
-                PieChartProducts.Series.Add(new PieSeries
-                {
-                    Title = n.Key,
-                    Values = new ChartValues<double> { n.Value },
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                }) ;
+            //foreach (var n in (new StatisticsUserControlVM(this)).slice)
+            //{
+            //    PieChartProducts.Series.Add(new PieSeries
+            //    {
+            //        Title = n.Key,
+            //        Values = new ChartValues<double> { n.Value },
+            //        DataLabels = true,
+            //        LabelPoint = labelPoint
+            //    }) ;
                 
-            }
+            //}
 
 
-            DataContext = this;
+            DataContext = new StatisticsUserControlVM(this);
         }
 
         public Func<ChartPoint, string> PointLabel { get; set; }
