@@ -59,25 +59,25 @@ namespace SmartShopping
             LoadHomeView();
 
 
-            DAL.Repository rep = new DAL.Repository();
+            //DAL.Repository rep = new DAL.Repository();
 
-            rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now, 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(127, "Mega", DateTime.Now, 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(126, "Osher-Ad", DateTime.Now, 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(125, "Osher-Ad", DateTime.Now, 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now, 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(130, "Mega", DateTime.Now, 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(40), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(20), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now.AddDays(50), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now.AddDays(20), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(20), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(90), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(130), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now, 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(130), 25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(2),25, 3));
-            rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(40), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now, 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(127, "Mega", DateTime.Now, 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(126, "Osher-Ad", DateTime.Now, 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(125, "Osher-Ad", DateTime.Now, 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now, 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(130, "Mega", DateTime.Now, 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(40), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(20), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now.AddDays(50), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now.AddDays(20), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(20), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(90), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(130), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now, 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(130), 25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(2),25, 3));
+            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(40), 25, 3));
 
 
 

@@ -120,10 +120,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Convertors\boolToVisibilityConvertor.cs" />
     <Compile Include="Convertors\enumToIntConvertor.cs" />
     <Compile Include="Convertors\indexInProductListToCategory.cs" />
     <Compile Include="Convertors\indexInProductListToImage.cs" />
     <Compile Include="Convertors\indexInProductListToName.cs" />
+    <Compile Include="Convertors\RadioBoolToIntConverter.cs" />
     <Compile Include="EditProductWindow\EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
     </Compile>
@@ -171,6 +173,7 @@
     </Compile>
     <Compile Include="RecommendedShoppingUC\RecommendedShoppingUserControlVM.cs" />
     <Compile Include="StatisticsUC\changeViewStatisticsCMD.cs" />
+    <Compile Include="StatisticsUC\StatisticsUserControlM.cs" />
     <Compile Include="StatisticsUC\StatisticsUserControlV.xaml.cs">
       <DependentUpon>StatisticsUserControlV.xaml</DependentUpon>
     </Compile>
