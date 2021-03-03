@@ -305,11 +305,11 @@ namespace DAL
 
                 foreach (var product in context.scans)
                 {
-                    if (DbFunctions.TruncateTime(product.dateScan) == DbFunctions.TruncateTime(dt))
+                    if (product.dateScan.Date== dt.Date)
                     {
-                        if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek)+","+ DbFunctions.TruncateTime(dt)))
-                            dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + DbFunctions.TruncateTime(dt)] = 0;
-                        dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + DbFunctions.TruncateTime(dt)] += product.cost * product.amount;
+                        if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek)+","+ dt.ToShortDateString()))
+                            dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + dt.ToShortDateString()] = 0;
+                        dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + dt.ToShortDateString()] += product.cost * product.amount;
                     }
                 }
             }
