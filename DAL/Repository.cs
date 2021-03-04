@@ -184,7 +184,7 @@ namespace DAL
                         case 2:
                             dict = getCostBy2DaysStatistic(dt1 ?? DateTime.Now, dt2 ?? DateTime.Now); break;
                         case 1:
-                            dict = getCostByMonthStatistic(); break;
+                            dict = getCostByMonthStatistic(dt1 ?? DateTime.Now); break;
 
                     }
                     break;
@@ -307,9 +307,9 @@ namespace DAL
                 {
                     if (product.dateScan.Date== dt.Date)
                     {
-                        if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek)+","+ dt.ToShortDateString()))
-                            dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + dt.ToShortDateString()] = 0;
-                        dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek) + "," + dt.ToShortDateString()] += product.cost * product.amount;
+                        if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)+","+ dt.ToShortDateString()))
+                            dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek) + "," + dt.ToShortDateString()] = 0;
+                        dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek) + "," + dt.ToShortDateString()] += product.cost * product.amount;
                     }
                 }
             }
@@ -434,9 +434,9 @@ namespace DAL
 
                     var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
 
-                    if (!dict.ContainsKey(product.name))
-                        dict[product.name] = 0;
-                    dict[product.name]+=productScan.amount;
+                    if (!dict.ContainsKey(product.category.ToString()))
+                        dict[product.category.ToString()] = 0;
+                    dict[product.category.ToString()] +=productScan.amount;
                 }
             }
             return dict;
@@ -461,24 +461,68 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string,float> getCostByMonthStatistic()
+        public Dictionary<string, float> getCostByMonthStatistic(DateTime dt)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
-            
-            
+
+
 
             using (var context = new ProductDB())
             {
                 foreach (var product in context.scans)
                 {
-
-                    if (!dict.ContainsKey(product.dateScan.ToString("MMMM")))
-                        dict[product.dateScan.ToString("MMMM")] = 0;
-                    dict[product.dateScan.ToString("MMMM")] += product.cost * product.amount;
+                    if (product.dateScan.Month == dt.Month && product.dateScan.Year == dt.Year)
+                    {
+                        if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)))
+                            dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)] = 0;
+                        dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)] += product.cost * product.amount;
+                    }
                 }
             }
             return dict;
         }
+
+
+        //public Dictionary<string, float> getCostByMonthStatistic(DateTime dt)
+        //{
+        //    Dictionary<string, float> dict = new Dictionary<string, float>();
+
+
+
+        //    using (var context = new ProductDB())
+        //    {
+        //        foreach (var product in context.scans)
+        //        {
+        //            if (product.dateScan.Month == dt.Month && product.dateScan.Year == dt.Year)
+        //            {
+        //                if (!dict.ContainsKey("week" +(((product.dateScan.Day-1)/7)+1)))
+        //                    dict["week" + (((product.dateScan.Day - 1) / 7) + 1)] = 0;
+        //                dict["week" + (((product.dateScan.Day - 1) / 7) + 1)] += product.cost * product.amount;
+        //            }
+        //        }
+        //    }
+        //    return dict;
+        //}
+
+
+        //public Dictionary<string,float> getCostByMonthStatistic()
+        //{
+        //    Dictionary<string, float> dict = new Dictionary<string, float>();
+
+
+
+        //    using (var context = new ProductDB())
+        //    {
+        //        foreach (var product in context.scans)
+        //        {
+
+        //            if (!dict.ContainsKey(product.dateScan.ToString("MMMM")))
+        //                dict[product.dateScan.ToString("MMMM")] = 0;
+        //            dict[product.dateScan.ToString("MMMM")] += product.cost * product.amount;
+        //        }
+        //    }
+        //    return dict;
+        //}
 
     }
 }

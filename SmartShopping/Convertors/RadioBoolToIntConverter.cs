@@ -10,6 +10,7 @@ namespace SmartShopping.Convertors
 {
     class RadioBoolToIntConverter : IValueConverter
     {
+        int lastclick;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             int integer = (int)value;
@@ -22,8 +23,12 @@ namespace SmartShopping.Convertors
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((bool)value)
+            {
+                lastclick = int.Parse(parameter.ToString());
                 return parameter;
-            return -1;
+            }
+                
+            return lastclick;
         }
     }
 }

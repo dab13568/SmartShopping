@@ -40,9 +40,9 @@
 
             <StackPanel Background="White">
                 <StackPanel VerticalAlignment="Center"  Orientation="Horizontal" Margin="4">
-                    <RadioButton x:Name="DayDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" Content="יום" />
-                    <RadioButton x:Name="monthDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"   Content="חודש" />
-                    <RadioButton x:Name="rangeDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"   Content="טווח תאריכים" />
+                    <RadioButton GroupName="dfg" x:Name="DayDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" Content="יום" />
+                    <RadioButton GroupName="dfg" x:Name="monthDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"   Content="חודש" />
+                    <RadioButton GroupName="dfg" x:Name="rangeDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"   Content="טווח תאריכים" />
                 </StackPanel>
                 <StackPanel  Visibility="{Binding IsChecked, ElementName=rangeDate, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0 0 0 5"   Orientation="Horizontal" FlowDirection="RightToLeft" >
                     <DatePicker SelectedDate="{Binding firstDate}" Name="startDate" Text="" Width="142"  materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך התחלתי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
