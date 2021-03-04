@@ -23,17 +23,17 @@
             <ColumnDefinition Width="355"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <lvc:PieChart Series="{Binding ChartData}" Grid.Column="1" Name="PieChartProducts" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}"/>
+        <lvc:PieChart Margin="0 0 0 6" Series="{Binding ChartData}" Grid.Column="1" Name="PieChartProducts" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}"/>
 
         <StackPanel Background="#f1edf5" Grid.Column="0" >
             <TextBlock Margin="0 60 0 6" Text="אני רוצה לראות סטטיסטיקה של:" FontSize="12">
             </TextBlock>
 
             <StackPanel VerticalAlignment="Center" Background="White" Orientation="Horizontal" Margin="4">
-                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2"  Content="מוצר" />
-                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  Content="קטגוריה" />
-                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"    Content="חנות" />
-                <RadioButton GroupName="abc"  IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=3}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"    Content="עלות" />
+                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"  Content="מוצר" />
+                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"  Content="קטגוריה" />
+                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"  Content="חנות" />
+                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=3}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"  Content="עלות" />
             </StackPanel>
 
             <TextBlock Margin="0 40 0 6" Text="לפי:" FontSize="12"/>
