@@ -27,7 +27,7 @@ namespace SmartShopping.Convertors
                 lastclick = int.Parse(parameter.ToString());
                 return parameter;
             }
-                
+
             return lastclick;
         }
     }
