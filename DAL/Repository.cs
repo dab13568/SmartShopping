@@ -431,7 +431,7 @@ namespace DAL
             {
                 foreach (var productScan in (from p in context.scans where p.dateScan.Month == dt.Month select p).ToList<ScannedProduct>())
                 {
-
+                    
                     var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
 
                     if (!dict.ContainsKey(product.category.ToString()))
