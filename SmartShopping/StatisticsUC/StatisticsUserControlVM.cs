@@ -153,8 +153,9 @@ namespace SmartShopping.StatisticsUC
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
+        public void OnPropertyChanged(string propertyName)
         {
+            
             if (propertyName == "slice")
                 refreshChart();
 

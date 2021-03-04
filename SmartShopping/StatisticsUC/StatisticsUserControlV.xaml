@@ -29,11 +29,11 @@
             <TextBlock Margin="0 60 0 6" Text="אני רוצה לראות סטטיסטיקה של:" FontSize="12">
             </TextBlock>
 
-            <StackPanel VerticalAlignment="Center" Background="White" Orientation="Horizontal" Margin="4">
-                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2"  Content="מוצר" />
-                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  Content="קטגוריה" />
-                <RadioButton GroupName="abc" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"    Content="חנות" />
-                <RadioButton GroupName="abc"  IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=3}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"    Content="עלות" />
+            <StackPanel  VerticalAlignment="Center" Background="White" Orientation="Horizontal" Margin="4">
+                <RadioButton x:Name="productRadio" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2"  Content="מוצר" />
+                <RadioButton x:Name="catgoryRadio" IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  Content="קטגוריה" />
+                <RadioButton x:Name="storeRadio"   IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"    Content="חנות" />
+                <RadioButton x:Name="costRadio"    IsChecked="{Binding Path=topic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=3}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"    Content="עלות" />
             </StackPanel>
 
             <TextBlock Margin="0 40 0 6" Text="לפי:" FontSize="12"/>
