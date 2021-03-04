@@ -21,8 +21,8 @@ namespace SmartShopping.Convertors
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if((bool)value)
-            return parameter;
+            if ((bool)value)
+                return parameter;
             return -1;
         }
     }
