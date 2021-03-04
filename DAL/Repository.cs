@@ -434,9 +434,9 @@ namespace DAL
 
                     var product = context.products.FirstOrDefault(value => value.num == productScan.productNo);
 
-                    if (!dict.ContainsKey(product.name))
-                        dict[product.name] = 0;
-                    dict[product.name]+=productScan.amount;
+                    if (!dict.ContainsKey(product.category.ToString()))
+                        dict[product.category.ToString()] = 0;
+                    dict[product.category.ToString()] += productScan.amount;
                 }
             }
             return dict;
