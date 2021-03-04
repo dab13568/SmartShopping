@@ -465,7 +465,7 @@ namespace DAL
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
 
-
+            
 
             using (var context = new ProductDB())
             {
