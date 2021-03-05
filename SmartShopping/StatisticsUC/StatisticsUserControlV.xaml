@@ -23,7 +23,35 @@
             <ColumnDefinition Width="355"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <lvc:PieChart Margin="0 0 0 6" Series="{Binding ChartData}" Grid.Column="1" Name="PieChartProducts" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}"/>
+        <lvc:PieChart Visibility="{Binding ElementName=PieRadio, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0 0 0 6" Series="{Binding PieChartData}" Grid.Column="1" Name="PieChartProducts" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}"/>
+        <Grid   Margin="0 0 0 6" Grid.Column="1" FlowDirection="LeftToRight">
+            <lvc:CartesianChart Visibility="{Binding ElementName=LineRadio, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" x:Name="LineChart" Series="{Binding LineChartData}" LegendLocation="Right" >
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis x:Name="yAxis"  Title="כמויות" Foreground="Black" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="מוצרים"   Foreground="Black" Labels="{Binding Labels}"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </Grid>
+        <!--<StackPanel Grid.Column="1" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center">
+        <ProgressBar  x:Name="progressBarListProduct"  Width="80" Height="80" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
+        <Label HorizontalAlignment="Center" Margin="0 7 0 0" Content="טוען נתונים..."/>
+        </StackPanel>-->
+        <Grid   Margin="0 0 0 6" Grid.Column="1" FlowDirection="LeftToRight">
+            <lvc:CartesianChart Visibility="{Binding ElementName=SticksRadio, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" x:Name="SticksChart" Series="{Binding SticksChartData}" LegendLocation="Right" >
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis x:Name="yAxisSticks"  Title="כמויות" Foreground="Black" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="מוצרים"   Foreground="Black" Labels="{Binding Labels}"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </Grid>
+
+
+
+
 
         <StackPanel Background="#f1edf5" Grid.Column="0" >
             <TextBlock Margin="0 60 0 6" Text="אני רוצה לראות סטטיסטיקה של:" FontSize="12">
@@ -37,18 +65,21 @@
             </StackPanel>
 
             <TextBlock Margin="0 40 0 6" Text="לפי:" FontSize="12"/>
-
             <StackPanel Background="White">
                 <StackPanel VerticalAlignment="Center"  Orientation="Horizontal" Margin="4">
                     <RadioButton GroupName="dfg" x:Name="DayDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" Content="יום" />
                     <RadioButton GroupName="dfg" x:Name="monthDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"   Content="חודש" />
                     <RadioButton GroupName="dfg" x:Name="rangeDate" IsChecked="{Binding Path=time, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2"   Content="טווח תאריכים" />
                 </StackPanel>
+                
                 <StackPanel  Visibility="{Binding IsChecked, ElementName=rangeDate, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0 0 0 5"   Orientation="Horizontal" FlowDirection="RightToLeft" >
                     <DatePicker SelectedDate="{Binding firstDate}" Name="startDate" Text="" Width="142"  materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך התחלתי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                     <materialDesign:PackIcon Kind="MinusThick" VerticalAlignment="Center" Margin="20 0 0 0" />
                     <DatePicker Name="endDate" SelectedDate="{Binding secondDate}" Width="135" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך סופי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                 </StackPanel>
+                <Label x:Name="InvalidDates" Visibility="Collapsed" Foreground="red" Content="תאריכים לא חוקיים!"/>
+
+
                 <StackPanel   Margin="0 0 0 5"   Orientation="Horizontal" FlowDirection="RightToLeft" >
                     <StackPanel.Visibility>
                         <MultiBinding Converter="{StaticResource boolToVisibilityConvertor}">
@@ -57,17 +88,17 @@
                         </MultiBinding>
                     </StackPanel.Visibility>
                     <DatePicker Name="OneDatePicker" SelectedDate="{Binding OneDate}" Text="" Width="150"  materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="בחר תאריך" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                 </StackPanel>
-               
+                </StackPanel>
+
             </StackPanel>
 
             <TextBlock Margin="0 40 0 6" Text="סוג דיאגרמה:" FontSize="12" HorizontalAlignment="Right" Width="355">
             </TextBlock>
 
             <StackPanel VerticalAlignment="Center" Background="White" Orientation="Horizontal" Margin="4">
-                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2" IsChecked="True" Content="מקלות" />
-                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  IsChecked="False" Content="עוגה" />
-                <RadioButton  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" IsChecked="False"   Content="גרף" />
+                <RadioButton GroupName="xyz" x:Name="PieRadio" IsChecked="{Binding Path=type, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=0}"   Style="{StaticResource MaterialDesignTabRadioButton}"   Margin="2"  Content="עוגה" />
+                <RadioButton GroupName="xyz" x:Name="LineRadio" IsChecked="{Binding Path=type, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1}"  Style="{StaticResource MaterialDesignTabRadioButton}"  Margin="2"  Content="גרף" />
+                <RadioButton GroupName="xyz" x:Name="SticksRadio" IsChecked="{Binding Path=type, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2}"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="2" Content="מקלות" />
             </StackPanel>
         </StackPanel>
     </Grid>

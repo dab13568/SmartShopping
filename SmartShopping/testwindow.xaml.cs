@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace SmartShopping
 {
@@ -22,19 +24,40 @@ namespace SmartShopping
         public testwindow()
         {
             InitializeComponent();
-            //var image = new Image();
-            //var fullFilePath = @"http://drive.google.com/uc?export=view&id=1o7dRUMWsmpHvQxjELjCmJQ_tRg0wL7iA";
-            //DAL.googleDriveConnection drive = new DAL.googleDriveConnection();
-            //testTB.Text = drive.Initiallize();
-            //BitmapImage bitmap = new BitmapImage();
-            //bitmap.BeginInit();
-            //bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-            //bitmap.EndInit();
+            SeriesCollection = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Series 1",
+                    Values = new ChartValues<double> { 4, 6, 5, 2 ,7 }
+                },
+                new LineSeries
+                {
+                    Title = "Series 2",
+                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 }
+                }
+            };
 
-            //image.Source = bitmap;
-            //testGrid.Children.Add(image);
-            DAL.GoogleDriveApi drive = new DAL.GoogleDriveApi();
-            drive.Connect();
+            Labels = new List<string> { "Jan", "Feb", "Mar", "Apr", "May" };
+            YFormatter = value => value.ToString("C");
+
+            //modifying the series collection will animate and update the chart 
+            SeriesCollection.Add(new LineSeries
+            {
+                Values = new ChartValues<double> { 5, 3, 2, 4 },
+                LineSmoothness =0.5  //straight lines, 1 really smooth lines
+            });
+
+            //modifying any series values will also animate and update the chart
+            SeriesCollection[2].Values.Add(5d);
+
+            DataContext = this;
         }
+
+        public SeriesCollection SeriesCollection { get; set; }
+        public List<string> Labels { get; set; }
+        public Func<double, string> YFormatter { get; set; }
+
     }
+
 }

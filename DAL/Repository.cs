@@ -461,33 +461,11 @@ namespace DAL
             return dict;
         }
 
-        public Dictionary<string, float> getCostByMonthStatistic(DateTime dt)
-        {
-            Dictionary<string, float> dict = new Dictionary<string, float>();
-
-            
-
-            using (var context = new ProductDB())
-            {
-                foreach (var product in context.scans)
-                {
-                    if (product.dateScan.Month == dt.Month && product.dateScan.Year == dt.Year)
-                    {
-                        if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)))
-                            dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)] = 0;
-                        dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)] += product.cost * product.amount;
-                    }
-                }
-            }
-            return dict;
-        }
-
-
         //public Dictionary<string, float> getCostByMonthStatistic(DateTime dt)
         //{
         //    Dictionary<string, float> dict = new Dictionary<string, float>();
 
-
+            
 
         //    using (var context = new ProductDB())
         //    {
@@ -495,14 +473,36 @@ namespace DAL
         //        {
         //            if (product.dateScan.Month == dt.Month && product.dateScan.Year == dt.Year)
         //            {
-        //                if (!dict.ContainsKey("week" +(((product.dateScan.Day-1)/7)+1)))
-        //                    dict["week" + (((product.dateScan.Day - 1) / 7) + 1)] = 0;
-        //                dict["week" + (((product.dateScan.Day - 1) / 7) + 1)] += product.cost * product.amount;
+        //                if (!dict.ContainsKey(new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)))
+        //                    dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)] = 0;
+        //                dict[new System.Globalization.CultureInfo("he-IL").DateTimeFormat.GetDayName(product.dateScan.DayOfWeek)] += product.cost * product.amount;
         //            }
         //        }
         //    }
         //    return dict;
         //}
+
+
+        public Dictionary<string, float> getCostByMonthStatistic(DateTime dt)
+        {
+            Dictionary<string, float> dict = new Dictionary<string, float>();
+
+
+
+            using (var context = new ProductDB())
+            {
+                foreach (var product in context.scans)
+                {
+                    if (product.dateScan.Month == dt.Month && product.dateScan.Year == dt.Year)
+                    {
+                        if (!dict.ContainsKey("week" +(((product.dateScan.Day-1)/7)+1)))
+                            dict["week" + (((product.dateScan.Day - 1) / 7) + 1)] = 0;
+                        dict["week" + (((product.dateScan.Day - 1) / 7) + 1)] += product.cost * product.amount;
+                    }
+                }
+            }
+            return dict;
+        }
 
 
         //public Dictionary<string,float> getCostByMonthStatistic()
