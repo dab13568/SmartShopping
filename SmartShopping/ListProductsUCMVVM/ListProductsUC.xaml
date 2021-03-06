@@ -38,14 +38,20 @@
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=amount,StringFormat='קנית סך הכל {0} פריטים'}"  />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=store,StringFormat='נקנה ב{0} '}"  />
-
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding Path=dateScan, StringFormat=d}"/>
                             </StackPanel>
                             <StackPanel  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal" Margin="8">
-                                
-                                <Button x:Name="editProductButton" Click="editProductButton_Click"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">
+
+                                <Button Margin="5 0" x:Name="editProductButton" Click="editProductButton_Click"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">
 
                                     <!--<Button x:Name="editProductButton" Command="EditProductView" CommandParameter="{Binding Path=(ItemsControl.AlternationIndex)}"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">-->
                                     <materialDesign:PackIcon Kind="Pencil" />
+                                </Button>
+
+                                <!--<Button x:Name="DeleteProductButton" Command="{Binding DeleteProductCMD}" CommandParameter="{Binding Path=(ItemsControl.AlternationIndex)}" Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="מחק מוצר">-->
+                                <Button Margin="5 0" x:Name="DeleteProductButton" Click="DeleteProductButton_Click" Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="DarkRed" ToolTip="מחק מוצר">
+
+                                    <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                 </Button>
 
                             </StackPanel>

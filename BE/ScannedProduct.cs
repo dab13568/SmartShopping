@@ -108,6 +108,7 @@ namespace BE
             get { return _dateScan; }
             set
             {
+                string s=_dateScan.ToShortDateString();
                 _dateScan = value;
                 OnPropertyChanged("dateScan");
             }

@@ -1,4 +1,5 @@
 ﻿using BE;
+using SmartShopping.ListProductsUCMVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace SmartShopping.PurchaseHistoryUC
 {
@@ -22,6 +24,7 @@ namespace SmartShopping.PurchaseHistoryUC
                 OnPropertyChanged("SourceList");
             }
         }
+        //public ICommand DeleteProductCMD { get { return new LoadDeleteProductCMD(this); } }
 
         public PurchaseHistoryV View;
         public PurchaseHistoryVM(PurchaseHistoryV view)
@@ -32,14 +35,13 @@ namespace SmartShopping.PurchaseHistoryUC
             worker.RunWorkerAsync();
         }
 
-
         public void changeView()
         {
 
             if (firstDate != null && secondDate != null && firstDate <= secondDate)
             {
 
-                SourceList = new PurchaseHistoryM().GetPurchaseHistoryList();
+                SourceList = new PurchaseHistoryM().GetPurchaseHistoryList(firstDate,secondDate);
             }
             if (firstDate > secondDate)
                 View.InvalidDates.Visibility = Visibility.Visible;
@@ -70,7 +72,7 @@ namespace SmartShopping.PurchaseHistoryUC
             }
         }
 
-        private DateTime _firstDate = DateTime.Now;
+        private DateTime _firstDate = DateTime.Now.AddDays(-14);
         public DateTime firstDate
         {
             get { return _firstDate; }
@@ -93,16 +95,12 @@ namespace SmartShopping.PurchaseHistoryUC
         }
 
 
-
-
-
-
         private readonly BackgroundWorker worker = new BackgroundWorker();
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             VisibilityProgressBar = Visibility.Visible;
             VisibilityListProducts = Visibility.Collapsed;
-            SourceList = new PurchaseHistoryM().GetPurchaseHistoryList();
+            SourceList = new PurchaseHistoryM().GetPurchaseHistoryList(firstDate,secondDate);
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

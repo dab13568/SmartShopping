@@ -145,6 +145,7 @@
       <DependentUpon>ListProductsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListProductsUCMVVM\ListProductsVM.cs" />
+    <Compile Include="ListProductsUCMVVM\LoadDeleteProductCMD.cs" />
     <Compile Include="ListProductsUCMVVM\LoadEditProductCMD.cs" />
     <Compile Include="MainWindowMVVM\LastProductsCMD.cs" />
     <Compile Include="MainWindowMVVM\LoadHomeCMD.cs" />

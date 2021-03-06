@@ -52,5 +52,16 @@ namespace SmartShopping.ListProductsUCMVVM
             ListViewProducts.ItemsSource = new BLimp().Get_all_ScannedProducts();
 
         }
+
+
+        private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            int index = ListViewProducts.Items.IndexOf(button.DataContext);
+            BLimp bl = new BLimp();
+            bl.delete_ScannedProduct(bl.Get_all_ScannedProducts()[index]);
+            ListViewProducts.ItemsSource = new BLimp().Get_all_ScannedProducts();
+        }
+
     }
 }

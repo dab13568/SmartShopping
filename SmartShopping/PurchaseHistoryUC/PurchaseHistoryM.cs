@@ -12,9 +12,9 @@ namespace SmartShopping.PurchaseHistoryUC
         {
         }
 
-        internal ObservableCollection<ScannedProduct> GetPurchaseHistoryList()
+        internal ObservableCollection<ScannedProduct> GetPurchaseHistoryList(DateTime first,DateTime last)
         {
-            return new BLimp().Get_all_ScannedProducts(); ;
+            return new BLimp().getScannedProductBetween2Days(first,last);
         }
     }
 }

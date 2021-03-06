@@ -18,22 +18,17 @@
         </Grid.RowDefinitions>
 
         <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="DarkSlateGray" Content="כאן תוכל לראות את היסטוריית הקניות שלך בטווח של זמן"/>
-        <Grid Grid.Row="2" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0"  Orientation="Horizontal" FlowDirection="RightToLeft" >
-                <DatePicker SelectedDate="{Binding firstDate}" Margin="20 0 0 0" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך התחלתי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                <materialDesign:PackIcon Kind="MinusThick" VerticalAlignment="Center" Margin="20 0 0 0" />
-                <DatePicker SelectedDate="{Binding secondDate}" Margin="20 0 0 0" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך סופי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                <Label x:Name="InvalidDates" Visibility="Collapsed" Foreground="red" Content="תאריכים לא חוקיים!"/>
+       
+            <StackPanel HorizontalAlignment="Center" Grid.Row="2"  Orientation="Horizontal" FlowDirection="RightToLeft" >
+
+            <DatePicker SelectedDate="{Binding firstDate}"  Width="160" materialDesign:HintAssist.HelperTextFontSize="30" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך התחלתי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                <materialDesign:PackIcon Kind="MinusThick" VerticalAlignment="Center" Margin="20 0" />
+            <DatePicker SelectedDate="{Binding secondDate}" materialDesign:HintAssist.HelperTextFontSize="30" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך סופי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                <Label VerticalAlignment="Center" x:Name="InvalidDates" Visibility="Collapsed" Foreground="red" Content="תאריכים לא חוקיים!"/>
 
             </StackPanel>
-            <Button Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Width="120" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right"  Margin="0 0 20 0" materialDesign:ButtonAssist.CornerRadius="10" Background="DimGray">
-                <TextBlock Text="חפש" />
-            </Button>
-        </Grid>
+           
+        
         <ProgressBar x:Name="progressBarListProduct" Grid.Row="1" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
 
         <SmartShopping1:ListProductsUC Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listHistoryUC"/>

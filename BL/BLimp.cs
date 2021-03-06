@@ -21,13 +21,17 @@ namespace BL
         public void update_Product(Product product)
         {
             if (product !=null)
-            new Repository().update_Product(product); 
+            rep.update_Product(product); 
         }
 
         public void update_ScannedProduct(ScannedProduct sp)
         {
             if (sp != null)
-                new Repository().update_ScannedProduct(sp);
+                rep.update_ScannedProduct(sp);
+        }
+        public void delete_ScannedProduct(ScannedProduct s)
+        {
+            rep.delete_ScannedProduct(s);
         }
 
         public ObservableCollection<Product> Get_all_Products()

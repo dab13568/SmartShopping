@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,14 +8,15 @@ using System.Windows.Input;
 
 namespace SmartShopping.ListProductsUCMVVM
 {
-    class LoadEditProductCMD : ICommand
+    class LoadDeleteProductCMD : ICommand
     {
         private ListProductsVM VM;
 
-        public LoadEditProductCMD(ListProductsVM VM)
+        public LoadDeleteProductCMD(ListProductsVM VM)
         {
             this.VM = VM;
         }
+
 
         public event EventHandler CanExecuteChanged
         {
@@ -25,13 +27,14 @@ namespace SmartShopping.ListProductsUCMVVM
         public bool CanExecute(object parameter)
         {
             return true;
+
         }
 
         public void Execute(object parameter)
         {
-            int index = (int)parameter;
-            VM.LoadEditProductView(index);
-
+            BLimp bl = new BLimp();
+            bl.delete_ScannedProduct(bl.Get_all_ScannedProducts()[(int)parameter]);
+            VM.DeleteProduct();
         }
     }
 }
