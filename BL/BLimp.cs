@@ -153,6 +153,12 @@ namespace BL
         {
             return rep.getCostBy2DaysStatistic(dt1,dt2);
         }
+
+        public void connectSqlServer()
+        {
+            ScannedProduct s= rep.connectSqlServer();
+        }
+
         public Dictionary<string,float> getCostByMonthStatistic(DateTime dt)
         {
             return rep.getCostByMonthStatistic(dt);

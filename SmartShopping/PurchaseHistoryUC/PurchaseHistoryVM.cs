@@ -24,16 +24,6 @@ namespace SmartShopping.PurchaseHistoryUC
         }
 
         public PurchaseHistoryV View;
-
-        public PurchaseHistoryVM(PurchaseHistoryV view, ObservableCollection<ScannedProduct> products)
-        {
-            this.View = view;
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            SourceList = products;
-
-        }
-
         public PurchaseHistoryVM(PurchaseHistoryV view)
         {
             this.View = view;
@@ -42,6 +32,19 @@ namespace SmartShopping.PurchaseHistoryUC
             worker.RunWorkerAsync();
         }
 
+
+        public void changeView()
+        {
+
+            if (firstDate != null && secondDate != null && firstDate <= secondDate)
+            {
+
+                SourceList = new PurchaseHistoryM().GetPurchaseHistoryList();
+            }
+            if (firstDate > secondDate)
+                View.InvalidDates.Visibility = Visibility.Visible;
+            else View.InvalidDates.Visibility = Visibility.Collapsed;
+        }
 
         private Visibility _VisibilityProgressBar;
         public Visibility VisibilityProgressBar
@@ -66,6 +69,34 @@ namespace SmartShopping.PurchaseHistoryUC
 
             }
         }
+
+        private DateTime _firstDate = DateTime.Now;
+        public DateTime firstDate
+        {
+            get { return _firstDate; }
+            set
+            {
+                _firstDate = value;
+                OnPropertyChanged("firstDate");
+            }
+        }
+
+        private DateTime _secondDate = DateTime.Now;
+        public DateTime secondDate
+        {
+            get { return _secondDate; }
+            set
+            {
+                _secondDate = value;
+                OnPropertyChanged("firstDate");
+            }
+        }
+
+
+
+
+
+
         private readonly BackgroundWorker worker = new BackgroundWorker();
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -82,6 +113,11 @@ namespace SmartShopping.PurchaseHistoryUC
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (propertyName == "firstDate" || propertyName == "secondDate")
+                changeView();
+            else PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

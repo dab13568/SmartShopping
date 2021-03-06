@@ -193,8 +193,16 @@ namespace DAL
             return dict;
         }
 
-
-
+        public ScannedProduct connectSqlServer()
+        {
+            ScannedProduct res = new ScannedProduct() ;
+            using (var db = new ProductDB())
+            {
+                if(db.scans!=null)
+                res= db.scans.FirstOrDefault(value=> value.Id>=0);
+            }
+            return res;
+        }
 
         public ObservableCollection<ScannedProduct> getCurrentDayScannedProducts(DateTime dt)
         {

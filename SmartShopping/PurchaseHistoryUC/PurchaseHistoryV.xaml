@@ -24,9 +24,11 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0"  Orientation="Horizontal" FlowDirection="RightToLeft" >
-                <DatePicker Margin="20 0 0 0" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך התחלתי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                <DatePicker SelectedDate="{Binding firstDate}" Margin="20 0 0 0" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך התחלתי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                 <materialDesign:PackIcon Kind="MinusThick" VerticalAlignment="Center" Margin="20 0 0 0" />
-                <DatePicker Margin="20 0 0 0" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך סופי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                <DatePicker SelectedDate="{Binding secondDate}" Margin="20 0 0 0" Width="160" materialDesign:HintAssist.HintOpacity="0.9" materialDesign:HintAssist.Hint="תאריך סופי" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                <Label x:Name="InvalidDates" Visibility="Collapsed" Foreground="red" Content="תאריכים לא חוקיים!"/>
+
             </StackPanel>
             <Button Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Width="120" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right"  Margin="0 0 20 0" materialDesign:ButtonAssist.CornerRadius="10" Background="DimGray">
                 <TextBlock Text="חפש" />

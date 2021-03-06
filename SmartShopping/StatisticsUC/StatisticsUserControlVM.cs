@@ -14,7 +14,6 @@ namespace SmartShopping.StatisticsUC
 {
     class StatisticsUserControlVM : INotifyPropertyChanged
     {
-        private readonly BackgroundWorker worker = new BackgroundWorker();
 
         public StatisticsUserControlV View;
 
@@ -51,8 +50,7 @@ namespace SmartShopping.StatisticsUC
         public StatisticsUserControlVM(StatisticsUserControlV view)
         {
             this.View = view;
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+           
         }
 
        
@@ -171,36 +169,6 @@ namespace SmartShopping.StatisticsUC
 
             }
         }
-
-        //private void worker_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    if ((int)e.Argument == 2)
-        //        slice = new StatisticsUserControlM().getStatisticData(topic, time, firstDate, secondDate);
-        //    else slice = new StatisticsUserControlM().getStatisticData(topic, time, OneDate);
-
-
-        //    VisibilityProgressBar = Visibility.Visible;
-        //}
-
-        //private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    VisibilityProgressBar = Visibility.Collapsed;
-        //}
-
-
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            VisibilityProgressBar = Visibility.Visible;
-            slice = new StatisticsUserControlM().getStatisticData(topic, time, OneDate,secondDate);
-        }
-
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            VisibilityProgressBar = Visibility.Collapsed;
-
-        }
-
-
         public void LoadChart()
         {
             switch (type)

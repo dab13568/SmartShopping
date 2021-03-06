@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BE;
+using BL;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -28,6 +31,7 @@ namespace SmartShopping.HomeUserControlMVVM
             {
                 return Tuple.Create("לילה טוב!", "במערכת המלצת הקניות שלנו כבר השתמשת? במערכת זו אנו מספקים לך רשימת קניות, שבנויה מאלגורתמים חכמים מתחום הלמידת מכונה.", "https://he.wikipedia.org/wiki/%D7%9C%D7%9E%D7%99%D7%93%D7%AA_%D7%9E%D7%9B%D7%95%D7%A0%D7%94");
             }
+
         }
     }
 }

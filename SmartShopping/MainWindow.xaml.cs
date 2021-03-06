@@ -24,6 +24,8 @@ using System.ComponentModel;
 using SmartShopping.RecommendedShoppingUC;
 using System.IO;
 using SmartShopping.PurchasedTogetherUC;
+using System.Collections.ObjectModel;
+using BL;
 
 namespace SmartShopping
 {
@@ -46,7 +48,7 @@ namespace SmartShopping
             }
         }
 
-       
+
 
 
         private UserControl _currnetUserControl;
@@ -58,6 +60,7 @@ namespace SmartShopping
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
 
+            new BLimp().connectSqlServer();
 
             //DAL.Repository rep = new DAL.Repository();
 
