@@ -193,6 +193,74 @@ namespace DAL
             return dict;
         }
 
+        public List<(float, float)> getCouplesOfProductForProductRecommendation()
+        {
+            List<(float, float)> result = new List<(float, float)>();
+            List<ScannedProduct> dbList;
+            using (var db = new ProductDB())
+            {
+                dbList = db.scans.ToList<ScannedProduct>();
+                for(int i=0; i< dbList.Count()-1;i++)
+                {
+                    for(int j=i+1;j<= dbList.Count()-1;j++)
+                    {
+                        if(Math.Abs(dbList[i].dateScan.Subtract(dbList[j].dateScan).TotalHours)<=1 && dbList[i].productNo!=dbList[j].productNo)
+                        {
+                            result.Add((dbList[i].productNo, dbList[j].productNo));
+                        }
+
+                    }
+                }
+            }
+            return result;
+        }
+
+        public Dictionary<DateTime,List<int>> getAllpurchasesIds(DateTime dt1)
+        {
+            Dictionary<DateTime, List<int>> res = new Dictionary<DateTime, List<int>>();
+            List<ScannedProduct> tempScans = new List<ScannedProduct>();
+
+
+            using (var db = new ProductDB())
+            {
+                tempScans = db.scans.ToList();
+                for (int i = 0; i < tempScans.Count() ; i++)
+                {
+                    if (tempScans[i].dateScan.DayOfWeek == dt1.DayOfWeek)
+                    {
+                        if (!res.ContainsKey(tempScans[i].dateScan))
+                            res[tempScans[i].dateScan] = new List<int>();
+                        res[tempScans[i].dateScan].Add(tempScans[i].productNo);
+                    }
+                }
+            }
+            return res;
+        }
+
+        public List<(int, int)> getCouplesOfProductForDayRecommendation(DateTime dt1)
+        {
+            List<(int, int)> result = new List<(int, int)>();
+
+            using (var db = new ProductDB())
+            {
+                for (int i = 0; i < db.scans.Count() - 1; i++)
+                {
+                    if (DbFunctions.TruncateTime(db.scans.Skip(i).First().dateScan) == DbFunctions.TruncateTime(dt1))
+                    {
+                        for (int j = i + 1; j <= db.scans.Count() - 1; j++)
+                        {
+                            if (Math.Abs(db.scans.Skip(i).First().dateScan.Subtract(db.scans.Skip(j).First().dateScan).TotalHours) <= 1)
+                            {
+                                result.Add((db.scans.Skip(i).First().productNo, db.scans.Skip(j).First().productNo));
+                            }
+
+                        }
+                    }
+                }
+            }
+            return result;
+
+        }
         public ScannedProduct connectSqlServer()
         {
             ScannedProduct res = new ScannedProduct() ;
@@ -511,7 +579,15 @@ namespace DAL
             }
             return dict;
         }
-
+        public Product getProductById(int id)
+        {
+            Product res = new Product();
+            using (var context = new ProductDB())
+            {
+                res=context.products.FirstOrDefault(value => value.num == id);
+            }
+            return res;
+        }
 
         //public Dictionary<string,float> getCostByMonthStatistic()
         //{

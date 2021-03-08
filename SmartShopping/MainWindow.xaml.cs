@@ -62,6 +62,7 @@ namespace SmartShopping
 
             new BLimp().connectSqlServer();
 
+            //new MachineLearning().execute();
             //DAL.Repository rep = new DAL.Repository();
 
             //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now, 25, 3));
