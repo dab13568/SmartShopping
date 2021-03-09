@@ -1,4 +1,5 @@
 ﻿using BE;
+using SmartShopping.EditProductWindow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace SmartShopping.LastProductsUC
         {
             InitializeComponent();
             DataContext = new LastProductsUserControlVM(this);
+        }
+
+        public void loadEditProductView(EditProduct ep)
+        {
+            ep.ShowDialog();
         }
     }
 }

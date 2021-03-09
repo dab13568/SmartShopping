@@ -27,7 +27,7 @@
     Background="#000d33" Content="PDF-הורד כ" />
             </Grid>
         </Grid>
-        <SmartShopping1:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>
+        <!--<SmartShopping1:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>-->
 
     </Grid>
 </UserControl>

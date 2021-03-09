@@ -1,4 +1,6 @@
-﻿using BL;
+﻿using BE;
+using BL;
+using SmartShopping.LastProductsUC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,9 @@ namespace SmartShopping.ListProductsUCMVVM
 {
     class LoadDeleteProductCMD : ICommand
     {
-        private ListProductsVM VM;
+        private LastProductsUserControlVM VM;
 
-        public LoadDeleteProductCMD(ListProductsVM VM)
+        public LoadDeleteProductCMD(LastProductsUserControlVM VM)
         {
             this.VM = VM;
         }
@@ -32,9 +34,10 @@ namespace SmartShopping.ListProductsUCMVVM
 
         public void Execute(object parameter)
         {
+            ScannedProduct s = (ScannedProduct)parameter;
             BLimp bl = new BLimp();
-            bl.delete_ScannedProduct(bl.Get_all_ScannedProducts()[(int)parameter]);
-            VM.DeleteProduct();
+            bl.delete_ScannedProduct(s);
+            VM.worker.RunWorkerAsync();
         }
     }
 }
