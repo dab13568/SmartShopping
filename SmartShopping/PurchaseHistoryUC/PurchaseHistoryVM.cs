@@ -1,4 +1,6 @@
 ﻿using BE;
+using BL;
+using SmartShopping.EditProductWindow;
 using SmartShopping.ListProductsUCMVVM;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ using System.Windows.Input;
 
 namespace SmartShopping.PurchaseHistoryUC
 {
-    class PurchaseHistoryVM : INotifyPropertyChanged
+    class PurchaseHistoryVM : INotifyPropertyChanged, ILoadEditWindow
     {
         private ObservableCollection<ScannedProduct> _SourceList;
         public ObservableCollection<ScannedProduct> SourceList
@@ -24,7 +26,9 @@ namespace SmartShopping.PurchaseHistoryUC
                 OnPropertyChanged("SourceList");
             }
         }
-        //public ICommand DeleteProductCMD { get { return new LoadDeleteProductCMD(this); } }
+        public ICommand EditProductView  { get { return new LoadEditProductCMD(this); } }
+
+        
 
         public PurchaseHistoryV View;
         public PurchaseHistoryVM(PurchaseHistoryV view)
@@ -94,6 +98,11 @@ namespace SmartShopping.PurchaseHistoryUC
             }
         }
 
+        public void LoadEditProductView(EditProduct ep)
+        {
+            View.loadEditProductView(ep);
+        }
+
 
         private readonly BackgroundWorker worker = new BackgroundWorker();
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -108,6 +117,8 @@ namespace SmartShopping.PurchaseHistoryUC
             VisibilityProgressBar = Visibility.Collapsed;
             VisibilityListProducts = Visibility.Visible;
         }
+
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

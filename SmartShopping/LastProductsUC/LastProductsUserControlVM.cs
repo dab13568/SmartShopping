@@ -10,12 +10,15 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using SmartShopping.ListProductsUCMVVM;
+using SmartShopping.EditProductWindow;
 
 namespace SmartShopping.LastProductsUC
 {
-    public class LastProductsUserControlVM :  INotifyPropertyChanged
+    public class LastProductsUserControlVM :  INotifyPropertyChanged, ILoadEditWindow
     {
-        private readonly BackgroundWorker worker = new BackgroundWorker();
+        public readonly BackgroundWorker worker = new BackgroundWorker();
 
         private Visibility _VisibilityProgressBar;
         public Visibility  VisibilityProgressBar
@@ -25,6 +28,18 @@ namespace SmartShopping.LastProductsUC
             {
                 _VisibilityProgressBar = value;
                 OnPropertyChanged("VisibilityProgressBar");
+
+            }
+        }
+
+        private Visibility _VisibilityLabelNothingToShow;
+        public Visibility VisibilityLabelNothingToShow
+        {
+            get { return _VisibilityLabelNothingToShow; }
+            set
+            {
+                _VisibilityLabelNothingToShow = value;
+                OnPropertyChanged("VisibilityLabelNothingToShow");
 
             }
         }
@@ -50,10 +65,16 @@ namespace SmartShopping.LastProductsUC
             {
                 _SourceList = value;
                 OnPropertyChanged("SourceList");
+                if (_SourceList.Count == 0) 
+                    VisibilityLabelNothingToShow = Visibility.Visible;
+                else VisibilityLabelNothingToShow = Visibility.Collapsed;
             }
         }
 
-       
+        public ICommand EditProductView { get { return new LoadEditProductCMD(this); } }
+        public ICommand DeleteProductView { get { return new LoadDeleteProductCMD(this); } }
+
+
         public LastProductsUserControlV View;
         public LastProductsUserControlVM(LastProductsUserControlV view, ObservableCollection<ScannedProduct> scannedProduct)
         {
@@ -64,6 +85,11 @@ namespace SmartShopping.LastProductsUC
 
         }
 
+
+        public void LoadEditProductView(EditProduct ep)
+        {
+            View.loadEditProductView(ep);
+        }
 
         public LastProductsUserControlVM(LastProductsUserControlV view)
         {
@@ -91,5 +117,7 @@ namespace SmartShopping.LastProductsUC
         // INotifyPropertyChanged implementaion
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+
+        
     }
 }

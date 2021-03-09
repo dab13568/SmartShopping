@@ -10,7 +10,7 @@ using System.Windows.Data;
 
 namespace SmartShopping.Convertors
 {
-    class indexInProductListToName : IValueConverter
+    public class indexInProductListToName : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

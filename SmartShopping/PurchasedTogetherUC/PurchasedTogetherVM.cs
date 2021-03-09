@@ -1,6 +1,7 @@
 ﻿using BE;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,18 @@ namespace SmartShopping.PurchasedTogetherUC
 {
     class PurchasedTogetherVM : INotifyPropertyChanged
     {
-        private List<Product> _SourceList;
-        public List<Product> SourceList
+        
+        public PurchasedTogetherUserControlV View;
+
+        public PurchasedTogetherVM(PurchasedTogetherUserControlV view, ObservableCollection<ScannedProduct> products)
+        {
+            this.View = view;
+            SourceList = products;
+
+        }
+
+        private ObservableCollection<ScannedProduct> _SourceList;
+        public ObservableCollection<ScannedProduct> SourceList
         {
             get { return _SourceList; }
             set
@@ -20,20 +31,10 @@ namespace SmartShopping.PurchasedTogetherUC
                 OnPropertyChanged("SourceList");
             }
         }
-
-        public PurchasedTogetherUserControlV View;
-
-        public PurchasedTogetherVM(PurchasedTogetherUserControlV view, List<Product> products)
-        {
-            this.View = view;
-            SourceList = products;
-
-        }
-
         public PurchasedTogetherVM(PurchasedTogetherUserControlV view)
         {
             this.View = view;
-            SourceList = new PurchaseTogetherM().GetPurchaseTogetherList();
+            //SourceList = new PurchaseTogetherM().GetPurchaseTogetherList();
         }
 
 

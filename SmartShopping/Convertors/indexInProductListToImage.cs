@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace SmartShopping.Convertors
 {
-    class indexInProductListToImage : IValueConverter
+    public class indexInProductListToImage : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

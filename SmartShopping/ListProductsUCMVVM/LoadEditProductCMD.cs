@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using SmartShopping.EditProductWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +11,9 @@ namespace SmartShopping.ListProductsUCMVVM
 {
     class LoadEditProductCMD : ICommand
     {
-        private ListProductsVM VM;
+        private ILoadEditWindow VM;
 
-        public LoadEditProductCMD(ListProductsVM VM)
+        public LoadEditProductCMD(ILoadEditWindow VM)
         {
             this.VM = VM;
         }
@@ -29,8 +31,9 @@ namespace SmartShopping.ListProductsUCMVVM
 
         public void Execute(object parameter)
         {
-            int index = (int)parameter;
-            VM.LoadEditProductView(index);
+            ScannedProduct s = (ScannedProduct)parameter;
+            EditProduct ep = new EditProduct(ref s);
+            VM.LoadEditProductView(ep);
 
         }
     }

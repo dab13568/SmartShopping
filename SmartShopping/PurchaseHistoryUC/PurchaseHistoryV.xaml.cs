@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BL;
+using SmartShopping.EditProductWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,11 @@ namespace SmartShopping.PurchaseHistoryUC
         {
             InitializeComponent();
             DataContext = new PurchaseHistoryVM(this);
+        }
+
+        public void loadEditProductView(EditProduct ep)
+        {
+            ep.ShowDialog();
         }
     }
 }

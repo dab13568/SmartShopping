@@ -6,14 +6,20 @@
  
              xmlns:local="clr-namespace:SmartShopping.LastProductsUC"
              xmlns:convert="clr-namespace:SmartShopping.Convertors"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:SmartShopping="clr-namespace:SmartShopping.ListProductsUCMVVM"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                          xmlns:local1="clr-namespace:SmartShopping.Convertors"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
              FlowDirection="RightToLeft"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
+
+    <UserControl.Resources>
+        <local1:indexInProductListToCategory  x:Key="indexInProductListToCategory" />
+
+        <local1:indexInProductListToImage  x:Key="indexToImageConvertor" />
+        <local1:indexInProductListToName  x:Key="indexToNameConvertor" />
+    </UserControl.Resources>
    
     <Grid >
         <Grid.RowDefinitions>
@@ -25,7 +31,63 @@
             <Label HorizontalAlignment="Center" FontSize="13" VerticalAlignment="Center" Foreground="DarkSlateGray" Content="כאן מופיעים כל המוצרים שרכשת ב24 שעות האחרונות. באפשרותך לתקן/להסיר/לערוך אותם. השינויים יישמרו אוטומטית במערכת."/>
         </StackPanel>
         <ProgressBar x:Name="progressBarListProduct" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
-        <SmartShopping:ListProductsUC Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FlowDirection="RightToLeft" Grid.Row="1" x:Name="lastProductListUC"/>
+        <!--<SmartShopping:ListProductsUC Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FlowDirection="RightToLeft" Grid.Row="1" x:Name="lastProductListUC"/>-->
+        <Label VerticalAlignment="Center" Visibility="{Binding VisibilityLabelNothingToShow}" Grid.Row="1" Foreground="Gray" FontSize="24" HorizontalAlignment="Center" Margin="0 20 0 0" Content="אין מוצרים חדשים להציג..."/>
+        <ScrollViewer Grid.Row="1"  Width="Auto" Height="Auto"  FlowDirection="RightToLeft"  x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
+            <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList, Mode=TwoWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140" />
+                                    <RowDefinition  Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding productNo,  Converter={StaticResource indexToImageConvertor}}"
+                                                    Height="140"   Width="196" Stretch="Uniform" />
+                                <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                                    <materialDesign:RatingBar  Foreground="#000d33"  HorizontalAlignment="Right" x:Name="ReadOnlyRatingBar"   Value="{Binding rating, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" />
+
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  FontWeight="Bold" Text="{Binding productNo, Mode=TwoWay, Converter={StaticResource indexToNameConvertor} ,UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding productNo, Mode=TwoWay, Converter={StaticResource indexInProductListToCategory} ,UpdateSourceTrigger=PropertyChanged,StringFormat='קטגוריית המוצר {0} '}"  />
+
+                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
+                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=amount,StringFormat='קנית סך הכל {0} פריטים'}"  />
+                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=store,StringFormat='נקנה ב{0} '}"  />
+                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding Path=dateScan, StringFormat=d}"/>
+                                </StackPanel>
+                                <StackPanel  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal" Margin="8">
+
+                                    <Button Margin="5 0" x:Name="editProductButton" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.EditProductView}" CommandParameter="{Binding}" Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">
+
+                                        <!--<Button x:Name="editProductButton" Command="EditProductView" CommandParameter="{Binding Path=(ItemsControl.AlternationIndex)}"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="ערוך פרטי מוצר">-->
+                                        <materialDesign:PackIcon Kind="Pencil" />
+                                    </Button>
+
+                                    <!--<Button x:Name="DeleteProductButton" Command="{Binding DeleteProductCMD}" CommandParameter="{Binding Path=(ItemsControl.AlternationIndex)}" Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="#000d33" ToolTip="מחק מוצר">-->
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.DeleteProductView}" CommandParameter="{Binding}" Margin="5 0" x:Name="DeleteProductButton"  Width="50" Height="50"  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"  Background="DarkRed" ToolTip="מחק מוצר">
+
+                                        <materialDesign:PackIcon Foreground="White" Kind="Delete" />
+                                    </Button>
+
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+
+
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
 
     </Grid>
 </UserControl>
