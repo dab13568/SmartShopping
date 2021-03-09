@@ -33,6 +33,7 @@
             </ComboBox>
         </StackPanel>
         <ProgressBar x:Name="progressBarListProduct" Grid.Row="2" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
+        <Label VerticalAlignment="Center" Visibility="{Binding VisibilityLabelNothingToShow}" Grid.Row="2" Foreground="Gray" FontSize="24" HorizontalAlignment="Center" Margin="0 20 0 0" Content="אין מוצרים חדשים להציג..."/>
 
         <ScrollViewer Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FlowDirection="RightToLeft" Grid.Row="2"  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
             <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding ProbabilityDict, Mode=TwoWay}">

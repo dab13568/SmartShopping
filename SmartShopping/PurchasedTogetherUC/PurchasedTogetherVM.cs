@@ -45,7 +45,7 @@ namespace SmartShopping.PurchasedTogetherUC
 
         public readonly BackgroundWorker worker = new BackgroundWorker();
 
-        private Visibility _VisibilityProgressBar;
+        private Visibility _VisibilityProgressBar=Visibility.Collapsed;
         public Visibility VisibilityProgressBar
         {
             get { return _VisibilityProgressBar; }
@@ -58,7 +58,7 @@ namespace SmartShopping.PurchasedTogetherUC
         }
 
 
-        private Visibility _VisibilityLabelNothingToShow;
+        private Visibility _VisibilityLabelNothingToShow=Visibility.Collapsed;
         public Visibility VisibilityLabelNothingToShow
         {
             get { return _VisibilityLabelNothingToShow; }

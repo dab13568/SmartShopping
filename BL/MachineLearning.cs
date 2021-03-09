@@ -227,7 +227,7 @@ namespace BL
                         let p = engine.Predict(
                            new ProductCouple()
                            {
-                               ProductID = 129,
+                               ProductID = id,
                                CombinedProductID = (uint)m
                            })
                         orderby p.Score descending
