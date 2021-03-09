@@ -195,17 +195,22 @@ double minSupportPct, int minItemSetLength, int maxItemSetLength)
         {
             var collectionOfSets = rep.getAllpurchasesIdsForDayReccomendation(dt);
             List<Product> products = new List<Product>();
-            List<int[]> productsIdSetsRec = GetFrequentItemSets(rep.getSizeOfProducts(),
-          collectionOfSets, 0.3, 2, GetLongestTransaction(collectionOfSets));
+            List<int[]> productsIdSetsRec = GetFrequentItemSets(rep.getSizeOfProducts()+1,
+          collectionOfSets, 0.2, 2, GetLongestTransaction(collectionOfSets));
             foreach (var ProductsIdSet in productsIdSetsRec)
             {
-               
+                var kuku = ProductsIdSet.First<int>();
+                //Product firstP=rep.getProductById(kuku);
+                if (ProductsIdSet.All(value => rep.isInScannedProductInDay(value, dt)))
+                {
                     for (int i = 0; i < ProductsIdSet.Length; i++)
                     {
+                        
                         Product p = rep.getProductById(ProductsIdSet[i]);
-                        if (!products.Any(value=>value.num==p.num))
+                        if (!products.Any(value => value.num == p.num))
                             products.Add(p);
                     }
+                }
             }
             //friends.Remove(product);
             return products;

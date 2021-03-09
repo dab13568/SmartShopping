@@ -62,7 +62,11 @@ namespace SmartShopping
 
             new BLimp().connectSqlServer();
 
-            //new MachineLearning().getReccomendationByDay(DateTime.Now.AddDays(-6));
+            var kuku= new MachineLearning().getReccomendationByDay(DateTime.Now.AddDays(-7));
+            foreach(var x in kuku)
+            {
+                Console.WriteLine(x);
+            }
             //DAL.Repository rep = new DAL.Repository();
 
             //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now, 25, 3));

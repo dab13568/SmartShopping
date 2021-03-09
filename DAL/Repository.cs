@@ -228,13 +228,12 @@ namespace DAL
                 tempScans = db.scans.ToList();
                 for (int i = 0; i < tempScans.Count() ; i++)
                 {
-                    if (tempScans[i].dateScan.DayOfWeek == dt1.DayOfWeek)
-                    {
-                        if (!dict.ContainsKey(tempScans[i].dateScan))
-                            dict[tempScans[i].dateScan] = new List<int>();
-                        dict[tempScans[i].dateScan].Add(tempScans[i].productNo);
+                    
+                        if (!dict.ContainsKey(tempScans[i].dateScan.Date))
+                            dict[tempScans[i].dateScan.Date] = new List<int>();
+                        dict[tempScans[i].dateScan.Date].Add(tempScans[i].Id);
                         //dict[tempScans[i].dateScan].Sort();
-                    }
+                    
                 }
             }
             foreach (KeyValuePair<DateTime, List<int>> entry in dict)
@@ -246,12 +245,21 @@ namespace DAL
             }
                 return res;
         }
+
+        public bool isInScannedProductInDay(int value, DateTime dt)
+        {
+            using (var context = new ProductDB())
+            {
+                ScannedProduct p = context.scans.Find(value);
+                return p.dateScan.DayOfWeek == dt.DayOfWeek;
+            }
+        }
         public int getSizeOfProducts()
         {
             int size;
             using (var context = new ProductDB())
             {
-                size = context.products.Count();
+                size = context.scans.Count();
             }
             return size;
         }
@@ -602,7 +610,8 @@ namespace DAL
             Product res = new Product();
             using (var context = new ProductDB())
             {
-                res=context.products.FirstOrDefault(value => value.num == id);
+                var scannedProduct = context.scans.Find(id);
+                res=context.products.First(value=> value.num==scannedProduct.productNo);
             }
             return res;
         }
