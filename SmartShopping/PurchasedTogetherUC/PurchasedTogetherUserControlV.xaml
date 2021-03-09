@@ -22,12 +22,12 @@
         <StackPanel Grid.Row="1"  Grid.Column="0" Margin="5">
             
         <Label Margin="0 10 0 0" FontSize="10" Foreground="DarkSlateGray" Content="הכנס שם מוצר:"/>
-            
 
-            <ComboBox ItemsSource="{Binding **}"  Width="200" HorizontalAlignment="Left"  materialDesign:HintAssist.Hint="חיפוש"  materialDesign:HintAssist.HintOpacity=".30" IsEditable="True">
+
+            <ComboBox SelectedItem="{Binding Path=SelectedObject,Mode=TwoWay}"    ItemsSource="{Binding SourceList}"  Width="200" HorizontalAlignment="Left"  materialDesign:HintAssist.Hint="חיפוש"  materialDesign:HintAssist.HintOpacity=".40" IsEditable="True">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding **}"></TextBlock>
+                        <TextBlock Text="{Binding name}"></TextBlock>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>

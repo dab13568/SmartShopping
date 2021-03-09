@@ -14,15 +14,15 @@ namespace SmartShopping.PurchasedTogetherUC
         
         public PurchasedTogetherUserControlV View;
 
-        public PurchasedTogetherVM(PurchasedTogetherUserControlV view, ObservableCollection<ScannedProduct> products)
+        public PurchasedTogetherVM(PurchasedTogetherUserControlV view, ObservableCollection<Product> products)
         {
             this.View = view;
             SourceList = products;
 
         }
 
-        private ObservableCollection<ScannedProduct> _SourceList;
-        public ObservableCollection<ScannedProduct> SourceList
+        private ObservableCollection<Product> _SourceList;
+        public ObservableCollection<Product> SourceList
         {
             get { return _SourceList; }
             set
@@ -34,9 +34,19 @@ namespace SmartShopping.PurchasedTogetherUC
         public PurchasedTogetherVM(PurchasedTogetherUserControlV view)
         {
             this.View = view;
-            //SourceList = new PurchaseTogetherM().GetPurchaseTogetherList();
+            SourceList = new PurchaseTogetherM().GetPurchaseTogetherList();
         }
 
+        private Product _SelectedProduct;
+        public Product SelectedProduct
+        {
+            get { return _SelectedProduct; }
+            set
+            {
+                _SelectedProduct = value;
+                OnPropertyChanged("SelectedProduct");
+            }
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

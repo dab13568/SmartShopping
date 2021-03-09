@@ -76,7 +76,7 @@ namespace BE
 
         public override string ToString()
         {
-            return productID + "  " + num + "     " + name;
+            return  name;
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
