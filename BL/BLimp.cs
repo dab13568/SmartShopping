@@ -167,5 +167,11 @@ namespace BL
         {
             return rep.getCostByMonthStatistic(dt);
         }
+
+        public Dictionary<Product, float> getProbabilityDidt(int id)
+        {
+            return new MachineLearning().execute(id);
+        }
+
     }
 }

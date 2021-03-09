@@ -16,9 +16,14 @@ namespace SmartShopping.PurchasedTogetherUC
 
         }
 
-        internal ObservableCollection<Product> GetPurchaseTogetherList()
+        public ObservableCollection<Product> GetProductList()
         {
             return new BLimp().Get_all_Products();
+        }
+
+        public Dictionary<Product, float> getProbabilityDidt(int id)
+        {
+            return new BLimp().getProbabilityDidt(id);
         }
     }
 }

@@ -32,8 +32,10 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
+        <ProgressBar x:Name="progressBarListProduct" Grid.Row="2" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
+
         <ScrollViewer Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FlowDirection="RightToLeft" Grid.Row="2"  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
-            <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList, Mode=TwoWay}">
+            <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding ProbabilityDict, Mode=TwoWay}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
