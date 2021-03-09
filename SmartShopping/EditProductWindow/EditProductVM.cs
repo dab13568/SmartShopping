@@ -13,6 +13,7 @@ namespace SmartShopping.EditProductWindow
 {
     public class EditProductVM: INotifyPropertyChanged
     {
+        BLimp bl=new BLimp();
         public EditProduct View;
 
         public Product _p;
@@ -21,8 +22,7 @@ namespace SmartShopping.EditProductWindow
             get { return _p; }
             set
             {
-                Product temp_p = value;
-                _p = temp_p;
+                _p = value;
                 OnPropertyChanged("p");
             }
         }
@@ -33,8 +33,7 @@ namespace SmartShopping.EditProductWindow
             get { return _sp; }
             set
             {
-                ScannedProduct s = value;
-                _sp = s;
+                 _sp= value;
                 OnPropertyChanged("sp");
             }
         }
@@ -71,7 +70,14 @@ namespace SmartShopping.EditProductWindow
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (propertyName == "p" )
+                bl.update_Product(p);
+            if ( propertyName == "sp")
+                bl.update_ScannedProduct(sp);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
     }
 }

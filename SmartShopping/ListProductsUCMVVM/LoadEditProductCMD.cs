@@ -1,4 +1,5 @@
 ﻿using BE;
+using BL;
 using SmartShopping.EditProductWindow;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,6 @@ namespace SmartShopping.ListProductsUCMVVM
             ScannedProduct s = (ScannedProduct)parameter;
             EditProduct ep = new EditProduct(ref s);
             VM.LoadEditProductView(ep);
-
         }
     }
 }

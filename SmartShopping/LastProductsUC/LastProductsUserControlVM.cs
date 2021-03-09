@@ -89,6 +89,7 @@ namespace SmartShopping.LastProductsUC
         public void LoadEditProductView(EditProduct ep)
         {
             View.loadEditProductView(ep);
+            worker.RunWorkerAsync();
         }
 
         public LastProductsUserControlVM(LastProductsUserControlV view)

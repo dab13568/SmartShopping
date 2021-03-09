@@ -411,7 +411,7 @@ double minSupportPct, int minItemSetLength, int maxItemSetLength)
                         let p = engine.Predict(
                            new ProductCouple()
                            {
-                               ProductID = 129,
+                               ProductID = id,
                                CombinedProductID = (uint)m
                            })
                         orderby p.Score descending

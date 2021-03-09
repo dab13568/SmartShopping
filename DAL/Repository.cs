@@ -74,6 +74,7 @@ namespace DAL
             }
         }
 
+        
         public ObservableCollection<Product> Get_all_Products()
         {
             List<Product> result = new List<Product>();
@@ -204,7 +205,7 @@ namespace DAL
                 {
                     for(int j=i+1;j<= dbList.Count()-1;j++)
                     {
-                        if(Math.Abs(dbList[i].dateScan.Subtract(dbList[j].dateScan).TotalHours)<=1 && dbList[i].productNo!=dbList[j].productNo)
+                        if(Math.Abs(dbList[i].dateScan.Subtract(dbList[j].dateScan).TotalHours)<=3 && dbList[i].productNo!=dbList[j].productNo)
                         {
                             result.Add((dbList[i].productNo, dbList[j].productNo));
                         }
