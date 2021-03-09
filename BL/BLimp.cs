@@ -28,6 +28,7 @@ namespace BL
         {
             if (sp != null)
                 rep.update_ScannedProduct(sp);
+
         }
         public void delete_ScannedProduct(ScannedProduct s)
         {
@@ -168,7 +169,8 @@ namespace BL
             return rep.getCostByMonthStatistic(dt);
         }
 
-        public Dictionary<Product, float> getProbabilityDidt(int id)
+      
+            public Dictionary<Product, float> getProbabilityDidt(int id)
         {
             return new MachineLearning().execute(id);
         }

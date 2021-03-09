@@ -101,6 +101,7 @@ namespace SmartShopping.PurchaseHistoryUC
         public void LoadEditProductView(EditProduct ep)
         {
             View.loadEditProductView(ep);
+            worker.RunWorkerAsync();
         }
 
 
