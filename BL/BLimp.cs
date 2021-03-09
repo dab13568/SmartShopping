@@ -167,5 +167,9 @@ namespace BL
         {
             return rep.getCostByMonthStatistic(dt);
         }
+        public Dictionary<Product,float> getRecommandationByProduct(int id)
+        {
+            return new MachineLearning().execute(id);
+        }
     }
 }

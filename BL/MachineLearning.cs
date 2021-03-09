@@ -42,6 +42,191 @@ namespace BL
         {
             public float Score { get; set; }
         }
+
+        public class ItemSet
+        {
+            public int N; // data items are [0..N-1]
+            public int k; // number of items
+            public int[] data; // ex: [0 2 5]
+            public int hashValue; // "0 2 5" -> 520 (for hashing)
+            public int ct; // num times this occurs in transactions
+            public ItemSet(int N, int[] items, int ct)
+            {
+                this.N = N;
+                this.k = items.Length;
+                this.data = new int[this.k];
+                Array.Copy(items, this.data, items.Length);
+                this.hashValue = ComputeHashValue(items);
+                this.ct = ct;
+            }
+            private static int ComputeHashValue(int[] data)
+            {
+                int value = 0;
+                int multiplier = 1;
+                for (int i = 0; i < data.Length; ++i)
+                {
+                    value = value + (data[i] * multiplier);
+                    multiplier = multiplier * 10;
+                }
+                return value;
+            }
+            public override string ToString()
+            {
+                string s = "{ ";
+                for (int i = 0; i < data.Length; ++i)
+                    s += data[i] + " ";
+                return s + "}" + "   ct = " + ct; ;
+            }
+            public bool IsSubsetOf(int[] trans)
+            {
+                int foundIdx = -1;
+                for (int j = 0; j < this.data.Length; ++j)
+                {
+                    foundIdx = IndexOf(trans, this.data[j], foundIdx + 1);
+                    if (foundIdx == -1) return false;
+                }
+                return true;
+            }
+            private static int IndexOf(int[] array, int item, int startIdx)
+            {
+                for (int i = startIdx; i < array.Length; ++i)
+                {
+                    if (i > item) return -1; // i is past target loc
+                    if (array[i] == item) return i;
+                }
+                return -1;
+            }
+        }
+        public List<int[]> GetFrequentItemSets(int N, List<int[]> transactions,
+double minSupportPct, int minItemSetLength, int maxItemSetLength)
+        {
+            int minSupportCount = (int)(transactions.Count * minSupportPct);
+            Dictionary<int, bool> frequentDict = new Dictionary<int, bool>();
+            List<ItemSet> frequentList = new List<ItemSet>();
+            List<int> validItems = new List<int>();
+            int[] counts = new int[N];
+            for (int i = 0; i < transactions.Count; ++i)
+            {
+                for (int j = 0; j < transactions[i].Length; ++j)
+                {
+                    int v = transactions[i][j];
+                    ++counts[v];
+                }
+            }
+            for (int i = 0; i < counts.Length; ++i)
+            {
+                if (counts[i] >= minSupportCount)
+                {
+                    validItems.Add(i); // i is the item-value
+                    int[] d = new int[1]; // ItemSet ctor wants an array
+                    d[0] = i;
+                    ItemSet ci = new ItemSet(N, d, 1); // size 1, ct 1
+                    frequentList.Add(ci); // it's frequent
+                    frequentDict.Add(ci.hashValue, true); // record
+                } // else skip this item
+            }
+            bool done = false;
+            for (int k = 2; k <= maxItemSetLength && done == false; ++k)
+            {
+                done = true;
+                int numFreq = frequentList.Count;
+                for (int i = 0; i < numFreq; ++i)
+                {
+                    if (frequentList[i].k != k - 1) continue;
+                    for (int j = 0; j < validItems.Count; ++j)
+                    {
+                        int[] newData = new int[k]; // data for a candidate item-set
+                        for (int p = 0; p < k - 1; ++p)
+                            newData[p] = frequentList[i].data[p];
+                        if (validItems[j] <= newData[k - 2]) continue;
+                        newData[k - 1] = validItems[j];
+                        ItemSet ci = new ItemSet(N, newData, -1);
+                        if (frequentDict.ContainsKey(ci.hashValue) == true)
+                            continue;
+                        int ct = CountTimesInTransactions(ci, transactions);
+                        if (ct >= minSupportCount)
+                        {
+                            ci.ct = ct;
+                            frequentList.Add(ci);
+                            frequentDict.Add(ci.hashValue, true);
+                            done = false;
+                        }
+                    } // j
+                } // i
+                validItems.Clear();
+                Dictionary<int, bool> validDict = new Dictionary<int, bool>();
+                for (int idx = 0; idx < frequentList.Count; ++idx)
+                {
+                    if (frequentList[idx].k != k) continue;
+                    for (int j = 0; j < frequentList[idx].data.Length; ++j)
+                    {
+                        int v = frequentList[idx].data[j]; // item
+                        if (validDict.ContainsKey(v) == false)
+                        {
+                            validItems.Add(v);
+                            validDict.Add(v, true);
+                        }
+                    }
+                }
+                validItems.Sort();
+            } // next k
+            List<int[]> result = new List<int[]>();
+            for (int i = 0; i < frequentList.Count; ++i)
+            {
+                if (frequentList[i].k >= minItemSetLength)
+                    result.Add(
+                      frequentList[i].data);
+            }
+            return result;
+        }
+        public int CountTimesInTransactions(ItemSet itemSet,
+  List<int[]> transactions)
+        {
+            int ct = 0;
+            for (int i = 0; i < transactions.Count; ++i)
+            {
+                if (itemSet.IsSubsetOf(transactions[i]) == true)
+                    ++ct;
+            }
+            return ct;
+        }
+
+        public List<Product> getReccomendationByDay(DateTime dt)
+        {
+            var collectionOfSets = rep.getAllpurchasesIdsForDayReccomendation(dt);
+            List<Product> products = new List<Product>();
+            List<int[]> productsIdSetsRec = GetFrequentItemSets(rep.getSizeOfProducts(),
+          collectionOfSets, 0.3, 2, GetLongestTransaction(collectionOfSets));
+            foreach (var ProductsIdSet in productsIdSetsRec)
+            {
+               
+                    for (int i = 0; i < ProductsIdSet.Length; i++)
+                    {
+                        Product p = rep.getProductById(ProductsIdSet[i]);
+                        if (!products.Any(value=>value.num==p.num))
+                            products.Add(p);
+                    }
+            }
+            //friends.Remove(product);
+            return products;
+        }
+
+        public int GetLongestTransaction(List<int[]> collectionOfSets)
+        {
+            int maxSize=0;
+            foreach( var set in collectionOfSets)
+            {
+                if (set.Count() > maxSize)
+                    maxSize = set.Count();
+            }
+            return maxSize;
+        }
+
+
+
+
+
+
         ///// <summary>
         ///// The main entry point of the program.
         ///// </summary>
@@ -220,7 +405,6 @@ namespace BL
             Console.WriteLine();
 
             // the rest of the code goes here....
-
 
             Console.WriteLine("Calculating the top 5 products for product 3...");
             var top5 = (from m in Enumerable.Range(1, 1000)

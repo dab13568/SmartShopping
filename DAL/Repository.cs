@@ -215,11 +215,12 @@ namespace DAL
             return result;
         }
 
-        public Dictionary<DateTime,List<int>> getAllpurchasesIds(DateTime dt1)
+        public List<int[]> getAllpurchasesIdsForDayReccomendation(DateTime dt1)
         {
-            Dictionary<DateTime, List<int>> res = new Dictionary<DateTime, List<int>>();
+            Dictionary<DateTime, List<int>> dict = new Dictionary<DateTime, List<int>>();
             List<ScannedProduct> tempScans = new List<ScannedProduct>();
-
+            List<int[]> res = new List<int[]>();
+            
 
             using (var db = new ProductDB())
             {
@@ -228,15 +229,31 @@ namespace DAL
                 {
                     if (tempScans[i].dateScan.DayOfWeek == dt1.DayOfWeek)
                     {
-                        if (!res.ContainsKey(tempScans[i].dateScan))
-                            res[tempScans[i].dateScan] = new List<int>();
-                        res[tempScans[i].dateScan].Add(tempScans[i].productNo);
+                        if (!dict.ContainsKey(tempScans[i].dateScan))
+                            dict[tempScans[i].dateScan] = new List<int>();
+                        dict[tempScans[i].dateScan].Add(tempScans[i].productNo);
+                        //dict[tempScans[i].dateScan].Sort();
                     }
                 }
             }
-            return res;
+            foreach (KeyValuePair<DateTime, List<int>> entry in dict)
+            {
+                entry.Value.Sort();
+                int[] arr = entry.Value.ToArray();
+                
+                res.Add(arr);
+            }
+                return res;
         }
-
+        public int getSizeOfProducts()
+        {
+            int size;
+            using (var context = new ProductDB())
+            {
+                size = context.products.Count();
+            }
+            return size;
+        }
         public List<(int, int)> getCouplesOfProductForDayRecommendation(DateTime dt1)
         {
             List<(int, int)> result = new List<(int, int)>();
