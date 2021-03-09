@@ -7,27 +7,80 @@
              xmlns:SmartShopping="clr-namespace:SmartShopping"  
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:SmartShopping1="clr-namespace:SmartShopping.ListProductsUCMVVM"
              mc:Ignorable="d" 
+             FlowDirection="RightToLeft"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="76"/>
 
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
         <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="DarkSlateGray" Content="רשימת הקניות המומלצת עבורך:"/>
-        <Grid Grid.Row="2" >
-            <Grid Width="124">
-                <Button
+        
+        <!--<SmartShopping1:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>-->
+        <StackPanel Grid.Row="1"  Margin="8,0">
+
+            <Label Margin="0 7 0 0" FontSize="15" Foreground="DarkSlateGray" Content="בחר יום:"/>
+
+
+            <ComboBox SelectedItem="{Binding Path=SelectedProduct,Mode=TwoWay}"    ItemsSource="{Binding SourceList}"  Width="200" HorizontalAlignment="Left"  materialDesign:HintAssist.Hint="יום"  materialDesign:HintAssist.HintOpacity=".50" IsEditable="True">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding name}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+
+        <ProgressBar x:Name="progressBarListProduct" Grid.Row="2" Visibility="{Binding Path= VisibilityProgressBar , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="70" Height="70" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="0"  IsIndeterminate="True" />
+        <Label VerticalAlignment="Center" Visibility="{Binding VisibilityLabelNothingToShow}" Grid.Row="2" Foreground="Gray" FontSize="24" HorizontalAlignment="Center" Margin="0 20 0 0" Content="אין רשימה מוצעת עבור יום זה..."/>
+
+        <ScrollViewer Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FlowDirection="RightToLeft" Grid.Row="2"  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
+            <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding ProbabilityDict, Mode=TwoWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card UniformCornerRadius="10" Margin="8" Width="200">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140" />
+                                    <RowDefinition  Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Path=Key.imageUrl}" Height="140"   Width="196" Stretch="Uniform" />
+                                <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold" Text="{Binding Path=Key.name}"/>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+
+
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+
+
+
+
+
+
+
+        <Grid Width="124" Grid.Row="3" >
+            <Button
     Style="{StaticResource MaterialDesignRaisedButton}"
     materialDesign:ButtonProgressAssist.Value="0.5"
     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
     materialDesign:ButtonProgressAssist.IsIndeterminate="True"
     Background="#000d33" Content="PDF-הורד כ" />
-            </Grid>
         </Grid>
-        <!--<SmartShopping1:ListProductsUC  FlowDirection="RightToLeft" Grid.Row="1" x:Name="listUC"/>-->
-
     </Grid>
 </UserControl>
