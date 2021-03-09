@@ -49,7 +49,6 @@ namespace SmartShopping.PurchasedTogetherUC
         }
 
 
-        public load
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
