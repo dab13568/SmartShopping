@@ -32,6 +32,44 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
+        <ScrollViewer Visibility="{Binding Path= VisibilityListProducts  , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FlowDirection="RightToLeft" Grid.Row="2"  Width="Auto" Height="Auto"    x:Name="scrollViewerProductList"  VerticalScrollBarVisibility="Auto">
+            <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding SourceList, Mode=TwoWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140" />
+                                    <RowDefinition  Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Path=Key.imageUrl}"
+                                                    Height="140"   Width="196" Stretch="Uniform" />
+                                <StackPanel Grid.Row="1" Margin="8 24 8 0">
+
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold" Text="{Binding Path=Key.name}"/>
+
+
+                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=Key.category,StringFormat='קטגוריית המוצר {0} '}"  />
+
+
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=Value, StringFormat='הסתברות קניה: {0}'}"/>
+                                </StackPanel>
+                                
+                            </Grid>
+                        </materialDesign:Card>
+
+
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
         <!--<SmartShopping.ListProductsUCMVVM:ListProductsUC Grid.Row="2"  FlowDirection="RightToLeft"  x:Name="listUC"/>-->
 
     </Grid>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
 using LiveCharts;
 using LiveCharts.Wpf;
 
@@ -21,42 +22,27 @@ namespace SmartShopping
     /// </summary>
     public partial class testwindow : Window
     {
+        private Dictionary<Product, double> _myDict;
+        public Dictionary<Product, double> myDict
+        {
+            get { return _myDict; }
+            set { _myDict = value; }
+        }
+
         public testwindow()
         {
             InitializeComponent();
-            SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Series 1",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,7 }
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 }
-                }
-            };
-
-            Labels = new List<string> { "Jan", "Feb", "Mar", "Apr", "May" };
-            YFormatter = value => value.ToString("C");
-
-            //modifying the series collection will animate and update the chart 
-            SeriesCollection.Add(new LineSeries
-            {
-                Values = new ChartValues<double> { 5, 3, 2, 4 },
-                LineSmoothness =0.5  //straight lines, 1 really smooth lines
-            });
-
-            //modifying any series values will also animate and update the chart
-            SeriesCollection[2].Values.Add(5d);
-
+            
             DataContext = this;
+
+             myDict = new Dictionary<Product, double>
+        {
+            { new Product(123,"אשכולית","pack://application:,,,/Images/defaultImg.png",Category.שתיה), 0.2 },
+            { new Product(123,"תפוז","pack://application:,,,/Images/defaultImg.png",Category.שתיה), 0.54 }        };
+
         }
 
-        public SeriesCollection SeriesCollection { get; set; }
-        public List<string> Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
+
 
     }
 

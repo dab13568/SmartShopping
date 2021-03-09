@@ -49,8 +49,15 @@ namespace SmartShopping.PurchasedTogetherUC
         }
 
 
+        public load
+
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        private void OnPropertyChanged(string propertyName)
+        {
+            if(propertyName == "SourceList")
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); 
+        }
     }
 }
 
