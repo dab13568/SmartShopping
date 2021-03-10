@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="LastDate.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="ScannedProduct.cs" />

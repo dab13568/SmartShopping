@@ -16,7 +16,7 @@ namespace DAL
 
         public DbSet<Product> products { get; set; }
         public DbSet<ScannedProduct> scans { get; set; }
-
+        public DbSet<LastDate> lastDate { get; set; } 
 
     }
 }

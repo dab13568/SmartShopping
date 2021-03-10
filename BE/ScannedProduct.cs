@@ -16,6 +16,7 @@ namespace BE
         private float _cost;
         private int _amount;
         private int? _rating;
+
         private Delegate[] InvocationList;
 
         public ScannedProduct(int no,string store,DateTime time,float cost,int amount=1)

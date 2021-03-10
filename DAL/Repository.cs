@@ -89,6 +89,11 @@ namespace DAL
             return new ObservableCollection<Product>(result);
         }
 
+        public void saveProductFromDrive(ScannedProduct s,string name)
+        {
+            add_ScannedProduct(s, name);
+        }
+
         public ObservableCollection<ScannedProduct> Get_all_Scans()
         {
             //call drive
@@ -131,6 +136,41 @@ namespace DAL
 
                 context.SaveChanges();
             }
+        }
+        public void update_lastDate(DateTime dt)
+        {
+            using (var context = new ProductDB())
+            {
+                var old = context.lastDate.First();
+                old.lastDate = dt.ToString("yyyy-MM-dd HH:mm");
+               
+
+                context.SaveChanges();
+            }
+        }
+
+        public void resetLastDate()
+        {
+            using (var context = new ProductDB())
+            {
+                if (context.lastDate.Count() == 0)
+                {
+                    
+                    var old = context.lastDate.Add(new LastDate());
+
+                    context.SaveChanges();
+                }
+            }
+        }
+        public LastDate getLastDate()
+        {
+            LastDate res;
+            using (var context = new ProductDB())
+            {
+                 res = context.lastDate.FirstOrDefault();
+            }
+            return res;
+
         }
         public string getImageUrlByProductId(int id)
         {
