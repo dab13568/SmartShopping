@@ -24,8 +24,8 @@ namespace DAL
                 context.SaveChanges();
             } 
         }
-
-        public void add_ScannedProduct(ScannedProduct scan)
+        
+        public void add_ScannedProduct(ScannedProduct scan,string name)
         {
             using (var context = new ProductDB())
             {
@@ -33,22 +33,24 @@ namespace DAL
                 var arr = (from p in context.products where p.num == scan.productNo select p).ToList<Product>();
                 if (arr.Count == 0)
                 {
-                    add_Product(new Product(scan.productNo, "", "", null));
+                    add_Product(new Product(scan.productNo, name, "", null));
 
                 }
-                var temp = context.scans.FirstOrDefault(value => value.productNo == scan.productNo && value.store.Equals(scan.store) && (DbFunctions.TruncateTime(scan.dateScan) == (DbFunctions.TruncateTime(value.dateScan))));
-                if (temp != null)
-                {
-                    temp.amount++;
-                    context.SaveChanges();
+                //var temp = context.scans.FirstOrDefault(value => value.productNo == scan.productNo && value.store.Equals(scan.store) && (DbFunctions.TruncateTime(scan.dateScan) == (DbFunctions.TruncateTime(value.dateScan))));
+                //if (temp != null)
+                //{
+                //    temp.amount++;
+                //    context.SaveChanges();
 
-                    // update_ScannedProduct(temp);
-                }
-                if (temp == null)
-                {
-                    context.scans.Add(scan);
-                    context.SaveChanges();
-                }
+                //    // update_ScannedProduct(temp);
+                //}
+                //if (temp == null)
+                //{
+                //    context.scans.Add(scan);
+                //    context.SaveChanges();
+                //}
+                context.scans.Add(scan);
+                context.SaveChanges();
             }
         }
 
@@ -62,6 +64,8 @@ namespace DAL
                 context.SaveChanges();
             }
         }
+
+        
 
         public void delete_ScannedProduct(ScannedProduct scan)
         {
@@ -216,7 +220,7 @@ namespace DAL
             return result;
         }
 
-        public List<int[]> getAllpurchasesIdsForDayReccomendation(DateTime dt1)
+        public List<int[]> getAllpurchasesIdsForDayReccomendation()
         {
             Dictionary<DateTime, List<int>> dict = new Dictionary<DateTime, List<int>>();
             List<ScannedProduct> tempScans = new List<ScannedProduct>();
@@ -246,12 +250,12 @@ namespace DAL
                 return res;
         }
 
-        public bool isInScannedProductInDay(int value, DateTime dt)
+        public bool isInScannedProductInDay(int value, string dt)
         {
             using (var context = new ProductDB())
             {
                 ScannedProduct p = context.scans.Find(value);
-                return p.dateScan.DayOfWeek == dt.DayOfWeek;
+                return p.dateScan.DayOfWeek.ToString() == dt;
             }
         }
         public int getSizeOfProducts()
@@ -259,7 +263,7 @@ namespace DAL
             int size;
             using (var context = new ProductDB())
             {
-                size = context.scans.Count();
+                size = context.scans.ToList().Last().Id;
             }
             return size;
         }
@@ -615,7 +619,27 @@ namespace DAL
             }
             return res;
         }
+        public List<string> getDaysWhichHeBought()
+        {
+            List<string> res = new List<string>();
+            
+            using (var context = new ProductDB())
+            {
+                var scannedProducts = context.scans.ToList();
+                foreach(var element in scannedProducts)
+                {
+                    if(res.Find(value=>value==element.dateScan.DayOfWeek.ToString())==null)
+                    {
+                        res.Add(element.dateScan.DayOfWeek.ToString());
+                    }
+                }
+            }
+            return res;
 
+        }
+
+
+        
         //public Dictionary<string,float> getCostByMonthStatistic()
         //{
         //    Dictionary<string, float> dict = new Dictionary<string, float>();

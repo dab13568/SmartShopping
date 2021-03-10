@@ -60,32 +60,18 @@ namespace SmartShopping
             this.DataContext = new MainWindowVM(this);
             LoadHomeView();
 
-            new BLimp().connectSqlServer();
 
-            var kuku= new MachineLearning().getReccomendationByDay(DateTime.Now.AddDays(-7));
-            foreach(var x in kuku)
-            {
-                Console.WriteLine(x);
-            }
+
             //DAL.Repository rep = new DAL.Repository();
+            //rep.add_ScannedProduct(new ScannedProduct(124, "Osher-Ad", DateTime.Now, 25, 3), "עוגת הבית");
+            //rep.add_ScannedProduct(new ScannedProduct(125, "Osher-Ad", DateTime.Now, 25, 3), "מלפפון ורוד");
+            //rep.add_ScannedProduct(new ScannedProduct(126, "Mega", DateTime.Now, 25, 3), "ביסלי");
+            //rep.add_ScannedProduct(new ScannedProduct(127, "Mega", DateTime.Now, 25, 3), "פסטה");
+            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(-10), 25, 3), "דורדוראנט");
+            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(-5), 25, 3), "");
+            //rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now.AddDays(-2), 25, 3), "מלפפון");
 
-            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now, 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(127, "Mega", DateTime.Now, 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(126, "Osher-Ad", DateTime.Now, 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(125, "Osher-Ad", DateTime.Now, 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now, 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(130, "Mega", DateTime.Now, 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(40), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(128, "Shufersal", DateTime.Now.AddDays(20), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now.AddDays(50), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(129, "Mega", DateTime.Now.AddDays(20), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(20), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(90), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(129, "Shefa", DateTime.Now.AddDays(130), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now, 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(130), 25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(2),25, 3));
-            //rep.add_ScannedProduct(new ScannedProduct(125, "Hiper-Mor", DateTime.Now.AddDays(40), 25, 3));
+            new BLimp().connectSqlServer();
 
 
 

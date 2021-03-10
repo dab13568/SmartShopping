@@ -64,7 +64,7 @@
                                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=cost,StringFormat='מחיר המוצר הוא {0}₪'}"  />
                                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=amount,StringFormat='קנית סך הכל {0} פריטים'}"  />
                                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Path=store,StringFormat='נקנה ב{0} '}"  />
-                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding Path=dateScan, StringFormat=d}"/>
+                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding Path=dateScan}"/>
                                 </StackPanel>
                                 <StackPanel  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal" Margin="8">
 

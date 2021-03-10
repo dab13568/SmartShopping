@@ -191,14 +191,17 @@ double minSupportPct, int minItemSetLength, int maxItemSetLength)
             return ct;
         }
 
-        public List<Product> getReccomendationByDay(DateTime dt)
+        public List<Product> getReccomendationByDay(string dt)
         {
-            var collectionOfSets = rep.getAllpurchasesIdsForDayReccomendation(dt);
+
+            var collectionOfSets = rep.getAllpurchasesIdsForDayReccomendation();
             List<Product> products = new List<Product>();
             List<int[]> productsIdSetsRec = GetFrequentItemSets(rep.getSizeOfProducts()+1,
-          collectionOfSets, 0.2, 2, GetLongestTransaction(collectionOfSets));
+          collectionOfSets, 0.4,2, 5);
+            int cnt = 0;
             foreach (var ProductsIdSet in productsIdSetsRec)
             {
+                cnt++;
                 var kuku = ProductsIdSet.First<int>();
                 //Product firstP=rep.getProductById(kuku);
                 if (ProductsIdSet.All(value => rep.isInScannedProductInDay(value, dt)))

@@ -15,7 +15,7 @@ namespace DAL
         ObservableCollection<Store> get_all_Stores();
 
         void add_Product(Product product);
-        void add_ScannedProduct(ScannedProduct scan);
+        void add_ScannedProduct(ScannedProduct scan,string name);
 
         void update_Product(Product product);
         void update_ScannedProduct(ScannedProduct scan);

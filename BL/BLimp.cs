@@ -50,9 +50,9 @@ namespace BL
             
         }
 
-        public void add_ScannedProduct(ScannedProduct scan)
+        public void add_ScannedProduct(ScannedProduct scan,string name)
         {
-             rep.add_ScannedProduct(scan);
+             rep.add_ScannedProduct(scan,name);
         }
 
         public string getImageUrlByProductId(int id)
@@ -169,10 +169,20 @@ namespace BL
             return rep.getCostByMonthStatistic(dt);
         }
 
-      
-            public Dictionary<Product, float> getProbabilityDidt(int id)
+
+        public Dictionary<Product, float> getProbabilityDidt(int id)
         {
             return new MachineLearning().execute(id);
+        }
+
+        public List<string> getDaysWhichHeBought()
+        {
+            return rep.getDaysWhichHeBought();
+        }
+            public List<Product> getReccomendationByDay(string dt)
+        {
+
+            return new MachineLearning(). getReccomendationByDay(dt);
         }
 
     }
