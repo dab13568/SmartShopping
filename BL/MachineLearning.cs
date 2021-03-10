@@ -196,8 +196,7 @@ double minSupportPct, int minItemSetLength, int maxItemSetLength)
 
             var collectionOfSets = rep.getAllpurchasesIdsForDayReccomendation();
             List<Product> products = new List<Product>();
-            List<int[]> productsIdSetsRec = GetFrequentItemSets(rep.getSizeOfProducts()+1,
-          collectionOfSets, 0.4,2, 5);
+            List<int[]> productsIdSetsRec = GetFrequentItemSets(rep.getSizeOfProducts()+1, collectionOfSets, 0.4,2, 5);
             int cnt = 0;
             foreach (var ProductsIdSet in productsIdSetsRec)
             {
