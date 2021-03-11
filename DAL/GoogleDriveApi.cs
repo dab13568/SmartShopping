@@ -152,7 +152,7 @@ namespace DAL
                         {
                             counter++;
                             Console.WriteLine(file.CreatedTime);
-                            string saveTo = String.Format(@"C:\SmartShoppingProject\SmartShopping\SmartShopping\Images\Barcodes\{0}.png", file.Name+counter.ToString());
+                            string saveTo = String.Format(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\Images\Barcodes\{0}.png", file.Name+counter.ToString());
                             Console.WriteLine("{0} ({1})", file.Name, file.Id);
 
                             DownloadFile(service, file, saveTo);

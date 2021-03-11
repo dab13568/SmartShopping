@@ -1,8 +1,8 @@
-﻿using iTextSharp.text;
+﻿
+using iTextSharp.text;
 using iTextSharp.text.pdf;
-using PdfSharp;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
+
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,10 +36,10 @@ namespace SmartShopping.RecommendedShoppingUC
 
         public void Execute(object parameter)
         {
-            iTextSharp.text.pdf.PdfDocument Doc = new iTextSharp.text.pdf.PdfDocument();
+            Document Doc = new Document(PageSize.LETTER);
 
             //Create our file stream
-            using (FileStream fs = new FileStream(@"C:\SmartShoppingProject\SmartShopping\SmartShopping\PdfFiles" + DateTime.Now.ToString() + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Read))
+            using (FileStream fs = new FileStream(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\PdfFiles"+ ".pdf", FileMode.Create, FileAccess.Write, FileShare.Read))
             {
                 //Bind PDF writer to document and stream
                 PdfWriter writer = PdfWriter.GetInstance(Doc, fs);
@@ -51,7 +51,7 @@ namespace SmartShopping.RecommendedShoppingUC
                 Doc.NewPage();
 
                 //Full path to the Arial file
-                string ARIALUNI_TFF = Path.Combine(@"C:\SmartShoppingProject\Heebo", "Heebo-Regular.ttf");
+                string ARIALUNI_TFF = Path.Combine(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\Fonts\Heebo.ttf");
 
                 //Create a base font object making sure to specify IDENTITY-H
                 BaseFont bf = BaseFont.CreateFont(ARIALUNI_TFF, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
@@ -66,8 +66,18 @@ namespace SmartShopping.RecommendedShoppingUC
                 //Set RTL mode
                 T.RunDirection = PdfWriter.RUN_DIRECTION_RTL;
                 //Add our text
-                T.AddCell(new Phrase("מה קורה", f));
+                T.AddCell(new Phrase("רשימת הקניות המומלצת עבור היום שביקשת הוא כדלהלן:", f));
+                T.AddCell(new Phrase("חביתה", f));
+                T.AddCell(new Phrase("פיצה", f));
+                T.AddCell(new Phrase("", f));
+                T.AddCell(new Phrase("", f));
+                T.AddCell(new Phrase("קנייה מהנה :-)", f));
 
+                 //Add a page  
+           //PdfPageBase page = doc.Pages.Add();  
+  
+           ////Create a pdf grid  
+           //PdfGrid grid = new PdfGrid();
                 //Add table to document
                 Doc.Add(T);
 

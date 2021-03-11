@@ -295,6 +295,8 @@ namespace DAL
             using (var context = new ProductDB())
             {
                 ScannedProduct p = context.scans.Find(value);
+                if (p == null)
+                    return false;
                 return p.dateScan.DayOfWeek.ToString() == dt;
             }
         }
