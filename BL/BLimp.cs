@@ -161,6 +161,8 @@ namespace BL
 
         public void connectSqlServer()
         {
+            rep.resetLastDate();
+            new DAL.GoogleDriveApi().Connect(DateTime.Parse(rep.getLastDate().lastDate));
             ScannedProduct s= rep.connectSqlServer();
         }
 

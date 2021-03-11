@@ -51,6 +51,7 @@ namespace SmartShopping.EditProductWindow
         }
 
         public ICommand closingWindowCommand { get { return new EditProductCMD(this); } }
+        public ICommand LoadImgPickerCommand { get { return new ImagePickerCMD(this); } }
 
 
         public void closingWindow()
@@ -59,7 +60,10 @@ namespace SmartShopping.EditProductWindow
             new BLimp().update_Product(p);
         }
 
-
+        public void loadImgPicker(Microsoft.Win32.OpenFileDialog dlg)
+        {
+            View.loadDialog(dlg);
+        }
 
         public EditProductVM(EditProduct view, ref ScannedProduct s)
         {

@@ -484,6 +484,16 @@ namespace DAL
             return dict;
         }
 
+        public Product getProductByProductNum(int productID)
+        {
+            Product res = new Product();
+            using (var context = new ProductDB())
+            {
+                res = context.products.First(value => value.num ==productID);
+            }
+            return res;
+        }
+
         public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime? dt1, DateTime? dt2)
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
