@@ -17,10 +17,10 @@ namespace BE
         private string _name;
         private string _imageUrl;
 
-        public Product(int num,string name, string url,Category? category)
+        public Product(int num, string name, string url, Category? category)
         {
             //productID = id;
-            this._num= num;
+            this._num = num;
             this._name = name;
             this._imageUrl = url;
             this._category = category;
@@ -52,7 +52,7 @@ namespace BE
                 OnPropertyChanged("num");
             }
         }
-       
+
         public string name
         {
             get { return _name; }
@@ -76,7 +76,7 @@ namespace BE
 
         public override string ToString()
         {
-            return  name;
+            return name;
         }
         public event PropertyChangedEventHandler PropertyChanged;
 

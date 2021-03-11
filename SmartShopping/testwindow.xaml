@@ -8,21 +8,6 @@
         mc:Ignorable="d"
         Title="testwindow" Height="450" Width="800">
     <Grid x:Name="testGrid">
-        <ItemsControl HorizontalAlignment="Center" x:Name="ListViewProducts" ItemsSource="{Binding myDict, Mode=TwoWay}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <materialDesign:Card UniformCornerRadius="6" Margin="8" Width="200">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Image Source="{Binding Path=Key.imageUrl}" Height="140" Grid.Row="0"   Width="196" Stretch="Uniform" />
-                            <TextBlock Text="{Binding Path=Value}" FontSize="30" Grid.Row="1"/>
-                        </Grid>
-                    </materialDesign:Card>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Button Click="Button_Click" Height="50" Width="50"></Button>
     </Grid>
 </Window>

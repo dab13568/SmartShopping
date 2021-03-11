@@ -67,7 +67,7 @@
 
 
         <Grid Width="124" Grid.Row="3" >
-            <Button
+            <Button Command="{Binding loadPdfView}"
     Style="{StaticResource MaterialDesignRaisedButton}"
     materialDesign:ButtonProgressAssist.Value="0.5"
     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"

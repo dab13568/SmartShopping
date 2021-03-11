@@ -6,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace SmartShopping.RecommendedShoppingUC
 {
     class RecommendedShoppingUserControlVM : INotifyPropertyChanged
     {
         public readonly BackgroundWorker worker = new BackgroundWorker();
-
+        bool inProggress = false;
         private Visibility _VisibilityProgressBar = Visibility.Collapsed;
         public Visibility VisibilityProgressBar
         {
@@ -83,6 +84,7 @@ namespace SmartShopping.RecommendedShoppingUC
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
+            inProggress = true;
             VisibilityProgressBar = Visibility.Visible;
             VisibilityListProducts = Visibility.Collapsed;
             if(SelectedDay != null)
@@ -93,14 +95,19 @@ namespace SmartShopping.RecommendedShoppingUC
         {
             VisibilityProgressBar = Visibility.Collapsed;
             VisibilityListProducts = Visibility.Visible;
+            inProggress = false;
         }
 
 
         public void loadRecommendedProducts()
         {
+            if(!inProggress)
             worker.RunWorkerAsync();
 
         }
+
+        public ICommand loadPdfView { get { return new loadPDFrecommendedCMD(this); } }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName) 

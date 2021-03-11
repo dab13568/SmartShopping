@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using BE;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Diagnostics;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
 
 namespace SmartShopping
 {
@@ -22,28 +25,26 @@ namespace SmartShopping
     /// </summary>
     public partial class testwindow : Window
     {
-        private Dictionary<Product, double> _myDict;
-        public Dictionary<Product, double> myDict
-        {
-            get { return _myDict; }
-            set { _myDict = value; }
-        }
+
 
         public testwindow()
         {
             InitializeComponent();
-            
-            DataContext = this;
-
-             myDict = new Dictionary<Product, double>
-        {
-            { new Product(123,"אשכולית","pack://application:,,,/Images/defaultImg.png",Category.שתיה), 0.2 },
-            { new Product(123,"תפוז","pack://application:,,,/Images/defaultImg.png",Category.שתיה), 0.54 }        };
 
         }
 
-
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PdfDocument pdf = new PdfDocument();
+            pdf.Info.Title = "My First PDF";
+            PdfPage pdfPage = pdf.AddPage();
+            XGraphics graph = XGraphics.FromPdfPage(pdfPage);
+            XFont font = new XFont("Verdana", 20, XFontStyle.Bold);
+            graph.DrawString("This is my first PDF document", font, XBrushes.Black, new XRect(0, 50, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopCenter);
+            string pdfFilename = "firstpage.pdf";
+            pdf.Save(pdfFilename);
+            Process.Start(pdfFilename);
+        }
     }
 
 }

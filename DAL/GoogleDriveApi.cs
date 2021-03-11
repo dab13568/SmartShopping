@@ -16,21 +16,21 @@ namespace DAL
 {
     public class GoogleDriveApi
     {
+        int counter;
         public string[] Scopes = { DriveService.Scope.DriveReadonly };
         public  string ApplicationName = "Drive API .NET Quickstart";
         Repository rep;
         public GoogleDriveApi()
         {
             rep = new Repository();
-
+            counter = 100;
         }
-        private  void DownloadFile(Google.Apis.Drive.v3.DriveService service, Google.Apis.Drive.v3.Data.File file, string saveTo)
+        private void  DownloadFile(Google.Apis.Drive.v3.DriveService service, Google.Apis.Drive.v3.Data.File file, string saveTo)
         {
 
-         
+            
             var stream = new System.IO.MemoryStream();
             var request = service.Files.Get(file.Id);
-           
        
             // Add a handler which will be notified on progress changes.
             // It will notify on each chunk download and when the
@@ -70,18 +70,21 @@ namespace DAL
             
             string text= reader.Decode(saveTo);
 
-            string time = saveTo.Substring(saveTo.Length - 1 - 9, 6);
+            string time = saveTo.Substring(saveTo.Length - 1 - 9-3, 6);
             string hour = time.Substring(0, 2);
             string minnutes = time.Substring(2, 2);
             string dayNight = time.Substring(4, 2);
             if (dayNight == "PM")
                 hour = (Int32.Parse(hour) + 12).ToString();
-            DateTime dateTime = DateTime.Parse(saveTo.Substring(69, saveTo.IndexOf("at") - 69) + " " + hour + ":" + minnutes + ":" + "00" + " " + dayNight);
-            string[] str = text.Split(',');
+            int y = saveTo.IndexOf("at") - saveTo.IndexOf("Barcodes") - 10;
+            string x = saveTo.Substring(saveTo.IndexOf("Barcodes") + 9, y);
+            DateTime dateTime = DateTime.Parse(x + " " + hour + ":" + minnutes + ":" + "00" + " " + dayNight);
+            string[] str = text.Split('-');
+            ScannedProduct s = new ScannedProduct(Int32.Parse(str[4]), str[3], dateTime, float.Parse(str[2]), Int32.Parse(str[1]));
+            rep.saveProductFromDrive(s, str[0]);
 
-            ScannedProduct s=new ScannedProduct(Int32.Parse(str[0]), str[1], dateTime, Int32.Parse(str[2]), Int32.Parse(str[3]));
-            rep.saveProductFromDrive(s, str[4]);
-            
+
+
         }
 
         public void Connect(DateTime dt)
@@ -147,17 +150,20 @@ namespace DAL
                         dateTime = dateTime.AddMinutes(minnutes);
                         if (dateTime > dt)
                         {
-                            if (dateTime > maxDate)
-                                maxDate = dateTime;
+                            counter++;
                             Console.WriteLine(file.CreatedTime);
-                            string saveTo = String.Format(@"C:\courses\SmartShopping\SmartShopping\SmartShopping\Images\Barcodes\{0}.png", file.Name);
+                            string saveTo = String.Format(@"C:\SmartShoppingProject\SmartShopping\SmartShopping\Images\Barcodes\{0}.png", file.Name+counter.ToString());
                             Console.WriteLine("{0} ({1})", file.Name, file.Id);
 
                             DownloadFile(service, file, saveTo);
+                            if (dateTime > maxDate)
+                                maxDate = dateTime;
+                            
                         }
                     }
                 }
-                rep.update_lastDate(maxDate);
+                if(maxDate!=DateTime.MinValue)
+                     rep.update_lastDate(maxDate);
             }
             else
             {

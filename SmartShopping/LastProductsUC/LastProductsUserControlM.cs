@@ -18,20 +18,5 @@ namespace SmartShopping.LastProductsUC
             return new BLimp().getCurrentDayScannedProducts();
         }
 
-        internal void SaveChanges(Product product)
-        {
-            try
-            {
-                product.ClearPropertyChanged();
-                BLimp bl = new BLimp();
-                bl.update_Product(product);
-                product.RestorePropertyChanged();
-            }
-            catch (Exception)
-            {
-                throw new Exception("לא ניתן לבצע שינויים כרגע");
-            }
-        }
-
     }
 }
