@@ -36,43 +36,43 @@ namespace SmartShopping.RecommendedShoppingUC
 
         public void Execute(object parameter)
         {
-            iTextSharp.text.pdf.PdfDocument Doc = new iTextSharp.text.pdf.PdfDocument();
+            //iTextSharp.text.pdf.PdfDocument Doc = new iTextSharp.text.pdf.PdfDocument();
 
-            //Create our file stream
-            using (FileStream fs = new FileStream(@"C:\SmartShoppingProject\SmartShopping\SmartShopping\PdfFiles" + DateTime.Now.ToString() + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Read))
-            {
-                //Bind PDF writer to document and stream
-                PdfWriter writer = PdfWriter.GetInstance(Doc, fs);
+            ////Create our file stream
+            //using (FileStream fs = new FileStream(@"C:\SmartShoppingProject\SmartShopping\SmartShopping\PdfFiles" + DateTime.Now.ToString() + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Read))
+            //{
+            //    //Bind PDF writer to document and stream
+            //    PdfWriter writer = PdfWriter.GetInstance(Doc, fs);
 
-                //Open document for writing
-                Doc.Open();
+            //    //Open document for writing
+            //    Doc.Open();
 
-                //Add a page
-                Doc.NewPage();
+            //    //Add a page
+            //    Doc.NewPage();
 
-                //Full path to the Arial file
-                string ARIALUNI_TFF = Path.Combine(@"C:\SmartShoppingProject\Heebo", "Heebo-Regular.ttf");
+            //    //Full path to the Arial file
+            //    string ARIALUNI_TFF = Path.Combine(@"C:\SmartShoppingProject\Heebo", "Heebo-Regular.ttf");
 
-                //Create a base font object making sure to specify IDENTITY-H
-                BaseFont bf = BaseFont.CreateFont(ARIALUNI_TFF, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            //    //Create a base font object making sure to specify IDENTITY-H
+            //    BaseFont bf = BaseFont.CreateFont(ARIALUNI_TFF, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
-                //Create a specific font object
-                iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 12);
+            //    //Create a specific font object
+            //    iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 12);
 
-                //Use a table so that we can set the text direction
-                PdfPTable T = new PdfPTable(1);
-                //Hide the table border
-                T.DefaultCell.BorderWidth = 0;
-                //Set RTL mode
-                T.RunDirection = PdfWriter.RUN_DIRECTION_RTL;
-                //Add our text
-                T.AddCell(new Phrase("מה קורה", f));
+            //    //Use a table so that we can set the text direction
+            //    PdfPTable T = new PdfPTable(1);
+            //    //Hide the table border
+            //    T.DefaultCell.BorderWidth = 0;
+            //    //Set RTL mode
+            //    T.RunDirection = PdfWriter.RUN_DIRECTION_RTL;
+            //    //Add our text
+            //    T.AddCell(new Phrase("מה קורה", f));
 
-                //Add table to document
-                Doc.Add(T);
+            //    //Add table to document
+            //    Doc.Add(T);
 
-                //Close the PDF
-                Doc.Close();
+            //    //Close the PDF
+            //    Doc.Close();
 
 
                 //PdfDocument pdf = new PdfDocument();
@@ -101,8 +101,7 @@ namespace SmartShopping.RecommendedShoppingUC
                 //pdf.Save(pdfFilename);
                 //Process.Start(pdfFilename);
                 ////var client=Trans
-                ///
-            }
+            
         }
     }
 }

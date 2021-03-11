@@ -183,6 +183,7 @@
     </Compile>
     <Compile Include="EditProductWindow\EditProductCMD.cs" />
     <Compile Include="EditProductWindow\EditProductVM.cs" />
+    <Compile Include="EditProductWindow\ImagePickerCMD.cs" />
     <Compile Include="HomeUserControlMVVM\HomeUserControlM.cs" />
     <Compile Include="HomeUserControlMVVM\HomeUserControlV.xaml.cs">
       <DependentUpon>HomeUserControlV.xaml</DependentUpon>
@@ -196,6 +197,7 @@
     <Compile Include="ListProductsUCMVVM\ILoadEditWindow.cs" />
     <Compile Include="ListProductsUCMVVM\LoadDeleteProductCMD.cs" />
     <Compile Include="ListProductsUCMVVM\LoadEditProductCMD.cs" />
+    <Compile Include="MainWindowMVVM\closeMenuCMD.cs" />
     <Compile Include="MainWindowMVVM\LastProductsCMD.cs" />
     <Compile Include="MainWindowMVVM\LoadHomeCMD.cs" />
     <Compile Include="MainWindowMVVM\MainWindowVM.cs" />
@@ -206,6 +208,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MainWindowMVVM\openMenuCMD.cs" />
     <Compile Include="MainWindowMVVM\PurchaseHistoryCMD.cs" />
     <Compile Include="PurchasedTogetherUC\PurchasedTogetherUserControlV.xaml.cs">
       <DependentUpon>PurchasedTogetherUserControlV.xaml</DependentUpon>

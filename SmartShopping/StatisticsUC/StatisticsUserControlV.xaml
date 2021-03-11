@@ -23,7 +23,7 @@
             <ColumnDefinition Width="355"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <lvc:PieChart Visibility="{Binding ElementName=PieRadio, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0 0 0 6" Series="{Binding PieChartData}" Grid.Column="1" Name="PieChartProducts" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}"/>
+        <lvc:PieChart Visibility="{Binding ElementName=PieRadio, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0 0 0 6" Series="{Binding PieChartData}" Grid.Column="1" Name="PieChartProducts" LegendLocation="Bottom"  Hoverable="False" DataTooltip="{x:Null}"/>
         <Grid   Margin="0 0 0 6" Grid.Column="1" FlowDirection="LeftToRight">
             <lvc:CartesianChart Visibility="{Binding ElementName=LineRadio, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" x:Name="LineChart" Series="{Binding LineChartData}" LegendLocation="Right" >
                 <lvc:CartesianChart.AxisY>

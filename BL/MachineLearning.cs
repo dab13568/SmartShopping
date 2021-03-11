@@ -430,7 +430,7 @@ double minSupportPct, int minItemSetLength, int maxItemSetLength)
             {
                 if (t.Score.Equals(float.NaN))
                     break;
-                dict.Add(rep.getProductById(t.ProductID), t.Score);
+                dict.Add(rep.getProductByProductNum(t.ProductID), t.Score);
             }
 
 

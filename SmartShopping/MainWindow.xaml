@@ -103,9 +103,7 @@
                 </TransformGroup>
             </StackPanel.RenderTransform>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center">
-                <Button Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50" Margin="10">
-                    <materialDesign:PackIcon Kind="Settings" Width="40" Height="40"/>
-                </Button>
+               
                 <Button   x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="80" Height="80" Margin="10" RenderTransformOrigin="0.5,0.5">
                     <Button.RenderTransform>
                         <TransformGroup>
@@ -119,9 +117,7 @@
                         <ImageBrush ImageSource="Images/icon_Shopping.png" Stretch="UniformToFill"/>
                     </Button.Background>
                 </Button>
-                <Button Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50" Margin="10">
-                    <materialDesign:PackIcon Kind="InformationOutline" Width="40" Height="40"/>
-                </Button>
+               
             </StackPanel>
             <ListBox Foreground="White" x:Name="MenuListBox" >
                 
@@ -259,10 +255,10 @@
                 </Grid.RowDefinitions>
 
 
-                <Button FontWeight="bold" Panel.ZIndex="1000" x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
+                <Button FontWeight="bold" Panel.ZIndex="1000" x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Visibility="{Binding VisibilityCloseMenu,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding loadCloseMenuCMD}" >
                     <materialDesign:PackIcon Kind="Close" />
                 </Button>
-                <Button FontWeight="bold" Panel.ZIndex="1000" x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Click="ButtonOpenMenu_Click">
+                <Button FontWeight="bold" Panel.ZIndex="1000" x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Visibility="{Binding VisibilityOpenMenu,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding loadOpenMenuCMD}">
                     <materialDesign:PackIcon Kind="Menu" />
                 </Button>
 

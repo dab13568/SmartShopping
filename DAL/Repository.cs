@@ -295,6 +295,8 @@ namespace DAL
             using (var context = new ProductDB())
             {
                 ScannedProduct p = context.scans.Find(value);
+                if (p == null)
+                    return false;
                 return p.dateScan.DayOfWeek.ToString() == dt;
             }
         }
@@ -480,6 +482,16 @@ namespace DAL
                 }
             }
             return dict;
+        }
+
+        public Product getProductByProductNum(int productID)
+        {
+            Product res = new Product();
+            using (var context = new ProductDB())
+            {
+                res = context.products.First(value => value.num ==productID);
+            }
+            return res;
         }
 
         public Dictionary<string, float> getCategoryBy2DaysStatistic(DateTime? dt1, DateTime? dt2)
